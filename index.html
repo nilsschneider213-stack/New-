@@ -1,0 +1,178 @@
+<!doctype html>
+<html lang="de">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Green Tree Homes – Ferienwohnungen & Monteurwohnungen in Coburg, Bamberg und Regensburg</title>
+  <meta name="description" content="Green Tree Homes: Serviced Apartments, Ferienwohnungen und Monteurwohnungen in Coburg, Bamberg und Regensburg. Direkt beim Gastgeber online buchen.">
+  <meta property="og:title" content="Green Tree Homes – Serviced Apartments">
+  <meta property="og:description" content="Ferienwohnungen & Monteurwohnungen in Coburg, Bamberg und Regensburg – direkt online buchen.">
+  <meta property="og:type" content="website">
+  <link rel="icon" href="assets/img/favicon.svg" type="image/svg+xml">
+  <link rel="stylesheet" href="assets/css/style.css">
+</head>
+<body data-page="home">
+  <a class="skip-link" href="#main">Zum Inhalt springen</a>
+  <header id="site-header"></header>
+
+  <main id="main">
+    <!-- Hero: Ein eigenes Titelbild kann als images/hero.jpg abgelegt werden -->
+    <section class="hero" style="--hero-img: url('images/hero.jpg')">
+      <div class="container">
+        <span class="eyebrow" style="color:var(--gold)">Serviced Apartments in Franken & der Oberpfalz</span>
+        <h1>Ankommen. Wohlfühlen. Zuhause auf Zeit.</h1>
+        <p class="lead">Sechs liebevoll eingerichtete Apartments in Coburg, Bamberg und Regensburg – für Urlauber, Geschäftsreisende und Monteure. Direkt beim Gastgeber gebucht, ohne Portalgebühren.</p>
+        <ul class="hero__badges">
+          <li>✓ Bestpreis bei Direktbuchung</li>
+          <li>✓ Self-Check-in</li>
+          <li>✓ Rechnung für Firmen</li>
+          <li>✓ Kurz- & Langzeitmiete</li>
+        </ul>
+      </div>
+    </section>
+
+    <div class="container">
+      <form class="search" action="wohnungen.html" method="get" role="search" aria-label="Wohnung suchen">
+        <div class="field field--city">
+          <label for="s-stadt">Stadt</label>
+          <select id="s-stadt" name="stadt"></select>
+        </div>
+        <div class="field">
+          <label for="s-anreise">Anreise</label>
+          <input type="date" id="s-anreise" name="anreise">
+        </div>
+        <div class="field">
+          <label for="s-abreise">Abreise</label>
+          <input type="date" id="s-abreise" name="abreise">
+        </div>
+        <div class="field">
+          <label for="s-gaeste">Gäste</label>
+          <select id="s-gaeste" name="gaeste">
+            <option value="1">1 Gast</option>
+            <option value="2" selected>2 Gäste</option>
+            <option value="3">3 Gäste</option>
+            <option value="4">4 Gäste</option>
+          </select>
+        </div>
+        <button class="btn btn--primary" type="submit">Wohnungen finden</button>
+      </form>
+    </div>
+
+    <section class="section">
+      <div class="container">
+        <div class="section-head">
+          <div>
+            <span class="eyebrow">Unsere Standorte</span>
+            <h2>Drei Städte. Sechs Apartments.</h2>
+            <p>Wählen Sie Ihre Stadt und entdecken Sie unsere Wohnungen – zentral gelegen und komplett ausgestattet.</p>
+          </div>
+        </div>
+        <div class="grid grid--3" id="city-grid"></div>
+      </div>
+    </section>
+
+    <section class="section section--sage">
+      <div class="container">
+        <div class="section-head">
+          <div>
+            <span class="eyebrow">Unsere Wohnungen</span>
+            <h2>Finden Sie Ihr Zuhause auf Zeit</h2>
+            <p>Ob Städtetrip, Geschäftsreise oder Montageeinsatz – bei uns finden Sie die passende Unterkunft.</p>
+          </div>
+          <a class="btn btn--outline" href="wohnungen.html">Alle Wohnungen & Filter</a>
+        </div>
+        <div class="grid grid--3" id="featured"></div>
+      </div>
+    </section>
+
+    <section class="section">
+      <div class="container">
+        <div class="center" style="margin-bottom:48px">
+          <span class="eyebrow">Warum Green Tree Homes</span>
+          <h2>Hotelkomfort mit dem Platz einer eigenen Wohnung</h2>
+          <p class="lead">Wir verbinden die Freiheit einer Ferienwohnung mit dem Service, den Sie von einem guten Hotel erwarten.</p>
+        </div>
+        <div class="grid grid--4">
+          <div class="feature fade-in">
+            <div class="feature__icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 9.5 12 3l9 6.5V21H3z"/><path d="M9 21v-7h6v7"/></svg></div>
+            <h3>Voll ausgestattet</h3>
+            <p>Küche, WLAN, Bettwäsche und Handtücher – einfach ankommen und wohlfühlen.</p>
+          </div>
+          <div class="feature fade-in">
+            <div class="feature__icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="11" width="18" height="11" rx="2"/><path d="M7 11V7a5 5 0 0 1 10 0v4"/></svg></div>
+            <h3>Self-Check-in</h3>
+            <p>Flexibel anreisen, auch spät abends – kontaktlos und unkompliziert.</p>
+          </div>
+          <div class="feature fade-in">
+            <div class="feature__icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><path d="M14 2v6h6M16 13H8M16 17H8M10 9H8"/></svg></div>
+            <h3>Firmenkunden willkommen</h3>
+            <p>Rechnung mit MwSt., Langzeitrabatte und feste Ansprechpartner für Ihr Team.</p>
+          </div>
+          <div class="feature fade-in">
+            <div class="feature__icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20.8 4.6a5.5 5.5 0 0 0-7.8 0L12 5.7l-1-1.1a5.5 5.5 0 0 0-7.8 7.8l1 1L12 21l7.8-7.8 1-1a5.5 5.5 0 0 0 0-7.6z"/></svg></div>
+            <h3>Persönlich betreut</h3>
+            <p>Kein anonymes Portal: Sie buchen direkt beim Gastgeber und erreichen uns jederzeit.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="section section--dark">
+      <div class="container split">
+        <div>
+          <span class="eyebrow">Für Handwerker & Firmen</span>
+          <h2>Monteurwohnungen, die mehr bieten</h2>
+          <p class="lead">Ihr Team ist auf Montage in Coburg, Bamberg oder Regensburg? Unsere Wohnungen bieten Einzelbetten, große Küchen, Waschmaschine und Parkplätze – ideal für Einsätze von wenigen Tagen bis mehreren Monaten.</p>
+          <ul class="check-list">
+            <li>Einzelbetten & separate Schlafzimmer</li>
+            <li>Parkplatz für Transporter (je nach Objekt)</li>
+            <li>Wochen- und Monatspreise</li>
+            <li>Rechnung auf Firma</li>
+          </ul>
+          <a class="btn btn--gold" href="monteurwohnungen.html">Monteurwohnungen ansehen</a>
+        </div>
+        <div class="grid grid--2">
+          <div class="feature"><h3>3 Städte</h3><p>Coburg, Bamberg und Regensburg – nah an Industrie- und Gewerbegebieten.</p></div>
+          <div class="feature"><h3>bis 4 Personen</h3><p>Pro Wohnung – mehrere Wohnungen für größere Teams kombinierbar.</p></div>
+          <div class="feature"><h3>Ab 1 Nacht</h3><p>Kurzfristige Einsätze genauso wie mehrmonatige Projekte.</p></div>
+          <div class="feature"><h3>Direktkontakt</h3><p>Schnelle Antwort und ein fester Ansprechpartner für Ihr Unternehmen.</p></div>
+        </div>
+      </div>
+    </section>
+
+    <section class="section section--sand">
+      <div class="container split">
+        <div>
+          <span class="eyebrow">Für Eigentümer & Investoren</span>
+          <h2>Sie haben Fläche – wir haben ein Konzept</h2>
+          <p class="lead">Sie besitzen leerstehende Gewerbe- oder Wohnflächen? Oder Sie planen ein Bauprojekt und suchen einen zuverlässigen Langzeitmieter? Green Tree Homes mietet langfristig an und verwandelt Flächen in hochwertige Serviced Apartments.</p>
+          <a class="btn btn--primary" href="partner.html">Mehr erfahren</a>
+        </div>
+        <div class="stack">
+          <div class="feature fade-in"><h3>Leerstehende Gewerbeflächen</h3><p>Büros, Ladenlokale oder Praxen, die keinen Mieter finden? Wir prüfen die Umnutzung zu Apartments.</p></div>
+          <div class="feature fade-in"><h3>Investoren & Projektentwickler</h3><p>Langfristiger Generalmietvertrag, planbare Einnahmen und ein Betreiber, der sich um alles kümmert.</p></div>
+        </div>
+      </div>
+    </section>
+
+    <section class="section">
+      <div class="container">
+        <div class="cta-band">
+          <div>
+            <h2>Fragen oder Sonderwünsche?</h2>
+            <p>Längere Aufenthalte, Gruppenanfragen oder spezielle Wünsche – sprechen Sie uns gerne an.</p>
+          </div>
+          <a class="btn btn--light" href="kontakt.html">Kontakt aufnehmen</a>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer id="site-footer">
+    <noscript><div class="container" style="padding:24px 20px"><a href="impressum.html">Impressum</a> · <a href="datenschutz.html">Datenschutz</a> · <a href="agb.html">AGB</a></div></noscript>
+  </footer>
+  <script src="assets/js/config.js"></script>
+  <script src="assets/js/apartments.js"></script>
+  <script src="assets/js/main.js"></script>
+</body>
+</html>

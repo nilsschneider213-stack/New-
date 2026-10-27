@@ -1,0 +1,52 @@
+<!doctype html>
+<html lang="de">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Unsere Wohnungen in Coburg, Bamberg & Regensburg | Green Tree Homes</title>
+  <meta name="description" content="Alle Ferienwohnungen, Monteurwohnungen und Serviced Apartments von Green Tree Homes in Coburg, Bamberg und Regensburg im Überblick.">
+  <link rel="icon" href="assets/img/favicon.svg" type="image/svg+xml">
+  <link rel="stylesheet" href="assets/css/style.css">
+</head>
+<body data-page="wohnungen">
+  <a class="skip-link" href="#main">Zum Inhalt springen</a>
+  <header id="site-header"></header>
+
+  <main id="main">
+    <section class="page-hero">
+      <div class="container">
+        <div class="breadcrumb"><a href="index.html">Start</a> / Wohnungen</div>
+        <h1>Unsere Wohnungen</h1>
+        <p class="lead">Sechs Apartments in drei Städten – filtern Sie nach Stadt, Reisezeitraum und Wohnungsart.</p>
+      </div>
+    </section>
+    <section class="section--tight">
+      <div class="container">
+        <form class="search search--inline" action="wohnungen.html" method="get" role="search" aria-label="Wohnung suchen">
+          <div class="field field--city"><label for="s-stadt">Stadt</label><select id="s-stadt" name="stadt"></select></div>
+          <div class="field"><label for="s-anreise">Anreise</label><input type="date" id="s-anreise" name="anreise"></div>
+          <div class="field"><label for="s-abreise">Abreise</label><input type="date" id="s-abreise" name="abreise"></div>
+          <div class="field"><label for="s-gaeste">Gäste</label><select id="s-gaeste" name="gaeste"><option value="">Beliebig</option><option value="1">1 Gast</option><option value="2">2 Gäste</option><option value="3">3 Gäste</option><option value="4">4 Gäste</option></select></div>
+          <button class="btn btn--primary" type="submit">Suchen</button>
+        </form>
+      </div>
+    </section>
+    <section class="section" style="padding-top:8px">
+      <div class="container">
+        <div class="notice" id="date-info" hidden></div>
+        <div class="filter-bar" id="filter-city" aria-label="Nach Stadt filtern"></div>
+        <div class="filter-bar" id="filter-type" aria-label="Nach Wohnungsart filtern"></div>
+        <p class="result-info" id="result-info" aria-live="polite"></p>
+        <div class="grid grid--3" id="apt-grid"></div>
+      </div>
+    </section>
+  </main>
+
+  <footer id="site-footer">
+    <noscript><div class="container" style="padding:24px 20px"><a href="impressum.html">Impressum</a> · <a href="datenschutz.html">Datenschutz</a> · <a href="agb.html">AGB</a></div></noscript>
+  </footer>
+  <script src="assets/js/config.js"></script>
+  <script src="assets/js/apartments.js"></script>
+  <script src="assets/js/main.js"></script>
+</body>
+</html>
