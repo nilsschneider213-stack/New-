@@ -54,6 +54,15 @@ images/wohnungen/herzstueck-coburg/2.jpg
 ```
 Ordnernamen: `herzstueck-coburg`, `studio-vesteblick`, `penthouse-weide`, `penthouse-eiche`, `penthouse-orange`, `stadtvilla` (entsprechen der `id` in `apartments.js`). Fehlt ein Foto, erscheint automatisch ein Platzhalter. Empfehlung: Querformat, ca. 1600 px breit, als JPG komprimiert (unter 400 KB).
 
+### 4a. Roomtour-Videos
+Pro Wohnung kann in `assets/js/apartments.js` bei `video` ein Video eingetragen werden. Es erscheint auf der Wohnungsseite als zweites Element in der Galerie (nach dem Titelbild) und über den Button „▶ Roomtour“.
+
+- **YouTube** (empfohlen, z. B. als „nicht gelistetes“ Video): `video: "https://youtu.be/abc123XYZ00"`
+- **Vimeo**: `video: "https://vimeo.com/123456789"`
+- **Eigene Datei**: `video: "images/wohnungen/stadtvilla/roomtour.mp4"` (MP4, möglichst unter 50 MB, Querformat)
+
+YouTube-/Vimeo-Videos werden erst nach Klick auf „Roomtour ansehen“ geladen (datenschutzfreundlich).
+
 ### 5. Kontaktformulare
 Ohne Server öffnen die Formulare das E-Mail-Programm des Besuchers. Damit die Formulare Nachrichten direkt verschicken, bei einem Dienst wie [Formspree](https://formspree.io) oder [Web3Forms](https://web3forms.com) ein Formular anlegen und die Endpoint-URL in `config.js` bei `formEndpoint` eintragen. Den Dienst anschließend in der Datenschutzerklärung ergänzen.
 

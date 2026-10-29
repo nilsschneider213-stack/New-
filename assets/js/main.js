@@ -64,6 +64,7 @@
     return '<div class="ph" data-city="' + esc(city) + '">' + ICONS.image + "<span>" + esc(label || "Foto folgt") + "</span></div>";
   }
   function img(src, alt, city, eager) {
+    if (!src) return placeholder(city);
     return '<img src="' + esc(src) + '" alt="' + esc(alt) + '"' + (eager ? "" : ' loading="lazy"') +
       ' data-city="' + esc(city) + '" onerror="GTH.imgFail(this)">';
   }
@@ -96,6 +97,7 @@
         '<div class="container">' +
         '<a class="brand" href="index.html" aria-label="GreenTree Homes – Startseite">' + LOGO +
         '<span><span class="brand__name">GreenTree</span><span class="brand__sub">Homes</span></span></a>' +
+        '<a class="btn btn--primary header-book" href="buchen.html">Buchen</a>' +
         '<button class="nav-toggle" aria-label="Menü öffnen" aria-expanded="false" aria-controls="main-nav"><span></span><span></span><span></span></button>' +
         '<nav class="nav" id="main-nav" aria-label="Hauptnavigation">' +
         nav.map(function (n) {
@@ -204,7 +206,9 @@
       (a.bedrooms ? "<li>" + ICONS.bed + a.bedrooms + (a.bedrooms === 1 ? " Schlafzimmer" : " Schlafzimmer") + "</li>" : "") +
       (a.size ? "<li>" + ICONS.size + a.size + " m²</li>" : "") + "</ul>" +
       '<div class="card__foot"><span class="price">' + (a.priceFrom ? "ab <strong>" + a.priceFrom + " €</strong> / Nacht" : "Preise im Kalender") + "</span>" +
-      '<a class="link-arrow" href="' + href + '">Details →</a></div></div></article>';
+      (a.video ? '<span class="tag tag--video">▶ Roomtour</span>' : "") + "</div>" +
+      '<div class="card__actions"><a class="btn btn--outline" href="' + href + '">Details & Fotos</a>' +
+      '<a class="btn btn--primary" href="' + href + '&buchen=1#kalender">Jetzt buchen</a></div></div></article>';
   }
 
   function initHome() {
@@ -392,7 +396,10 @@
       return;
     }
 
+    var loaded = false;
     function load() {
+      if (loaded) return;
+      loaded = true;
       var html = "";
       if (links.calendar) {
         html += '<h3 class="embed-title">Belegungskalender</h3><p class="embed-hint">Freie Tage sind im Kalender markiert.</p>' +
@@ -424,12 +431,14 @@
       document.body.appendChild(s);
     }
 
+    // Andere „Jetzt buchen“-Buttons der Seite können den Kalender direkt öffnen
+    container.gthLoad = load;
     if (storage("gth_consent_smoobu") === "1") { load(); return; }
 
     container.innerHTML = '<div class="consent-box">' + ICONS.calendar +
-      "<h3>Buchungskalender laden</h3>" +
+      "<h3>Verfügbarkeit prüfen & direkt buchen</h3>" +
       "<p>Für die Online-Buchung binden wir den Kalender unseres Buchungspartners <strong>Smoobu GmbH</strong> ein. Beim Laden werden Daten (z. B. Ihre IP-Adresse) an Smoobu übertragen. Mehr dazu in unserer <a href=\"datenschutz.html#smoobu\">Datenschutzerklärung</a>.</p>" +
-      '<button type="button" class="btn btn--primary">Kalender anzeigen</button><br>' +
+      '<button type="button" class="btn btn--primary">Jetzt buchen – Kalender öffnen</button><br>' +
       '<label><input type="checkbox"> Externe Buchungsinhalte künftig immer laden</label></div>';
     $("button", container).addEventListener("click", function () {
       if ($("input", container).checked) storage("gth_consent_smoobu", "1");
@@ -457,17 +466,14 @@
         "<h1>" + esc(a.name) + '</h1><p class="lead">' + esc(a.tagline) + " · " + esc(city.name) + "</p>";
     }
 
-    // 1 Foto → großes Einzelbild, 2–3 → nebeneinander, ab 4 → Collage
-    var imgs = (a.images && a.images.length ? a.images : [""]).slice(0, 4);
+    var photos = a.images && a.images.length ? a.images : [""];
+    var video = parseVideo(a.video);
     var arr = isDate(params.get("anreise")) ? params.get("anreise") : "";
     var dep = isDate(params.get("abreise")) ? params.get("abreise") : "";
     var g = /^\d+$/.test(params.get("gaeste") || "") ? params.get("gaeste") : "";
     var inquiry = "kontakt.html?wohnung=" + encodeURIComponent(a.id) + (arr ? "&anreise=" + arr : "") + (dep ? "&abreise=" + dep : "") + (g ? "&gaeste=" + g : "");
 
-    root.innerHTML =
-      '<div class="gallery gallery--' + imgs.length + '">' + imgs.map(function (f, i) {
-        return '<button type="button" data-index="' + i + '" aria-label="Foto ' + (i + 1) + ' vergrößern">' + img(aptImg(a, i), a.name + " – Foto " + (i + 1), a.city, i === 0) + "</button>";
-      }).join("") + "</div>" +
+    root.innerHTML = mediaHtml(a, photos, video) +
       '<div class="detail"><div>' +
       '<div class="card__tags" style="position:static;margin-bottom:12px">' + a.type.map(function (t) {
         return '<span class="tag' + (t === "monteur" ? " tag--gold" : "") + '" style="background:' + (t === "monteur" ? "" : "var(--green-100)") + '">' + typeLabel(t) + "</span>";
@@ -484,6 +490,8 @@
       "<li>Kontaktloser Self-Check-in – Sie erhalten alle Infos vor der Anreise</li><li>Bettwäsche, Handtücher, Energiekosten und Endreinigung inklusive</li>" +
       "<li><a href=\"agb.html#storno\">Kostenlose Stornierung</a> bis 5 Tage vor Anreise</li><li>Nichtraucherwohnung, Haustiere sind leider nicht gestattet</li>" +
       "<li>Rund um die Uhr persönlich für Sie erreichbar</li><li>Rechnung mit ausgewiesener MwSt. für Geschäftsreisende</li></ul>" +
+      '<div class="book-cta"><div><strong>Gefällt Ihnen ' + esc(a.name) + '?</strong><span>Freie Termine prüfen und direkt beim Gastgeber buchen – ohne Portalgebühren.</span></div>' +
+      '<button type="button" class="btn btn--primary" data-book>Jetzt buchen</button></div>' +
       '<h2 id="kalender" style="margin-top:40px">Verfügbarkeit & Buchung</h2>' +
       (arr && dep ? '<div class="notice">Ihr gewünschter Zeitraum: <strong>' + fmtDate(arr) + " – " + fmtDate(dep) + "</strong>. Bitte wählen Sie die Daten im Kalender aus.</div>" : "") +
       '<div class="embed-wrap" id="detail-embed"></div>' +
@@ -495,9 +503,12 @@
       '<div class="field" style="margin-bottom:16px"><label for="b-g">Gäste</label><select id="b-g">' +
       Array.apply(null, Array(a.guests || 6)).map(function (_, i) { var v = i + 1; return '<option value="' + v + '"' + (String(v) === g ? " selected" : "") + ">" + v + (v === 1 ? " Gast" : " Gäste") + "</option>"; }).join("") +
       "</select></div>" +
-      '<a class="btn btn--primary btn--block" href="#kalender">Verfügbarkeit prüfen</a>' +
+      '<button type="button" class="btn btn--primary btn--block" data-book>Jetzt buchen</button>' +
       '<a class="btn btn--outline btn--block" style="margin-top:10px" id="box-inquiry" href="' + inquiry + '">Unverbindlich anfragen</a>' +
-      "<small>Direkt beim Gastgeber buchen – ohne Portalgebühren.</small></form></aside></div>";
+      "<small>Direkt beim Gastgeber buchen – ohne Portalgebühren. Beim Buchen wird der Kalender unseres Partners Smoobu geladen (<a href=\"datenschutz.html#smoobu\">Datenschutz</a>).</small></form></aside></div>" +
+      '<div class="book-bar"><div><strong>' + esc(a.name) + "</strong><span>" + esc(city.name) + (a.guests ? " · bis " + a.guests + " Gäste" : "") + "</span></div>" +
+      '<button type="button" class="btn btn--primary" data-book>Jetzt buchen</button></div>';
+    document.body.classList.add("has-book-bar");
 
     linkDates($("#b-arr"), $("#b-dep"));
     function updInquiry() {
@@ -509,8 +520,18 @@
     }
     ["#b-arr", "#b-dep", "#b-g"].forEach(function (s) { $(s).addEventListener("change", updInquiry); });
 
-    smoobuEmbed($("#detail-embed"), smoobuLinks(a), { inquiryHref: inquiry });
-    initLightbox(a, imgs);
+    var embed = $("#detail-embed");
+    smoobuEmbed(embed, smoobuLinks(a), { inquiryHref: inquiry });
+    // Alle „Jetzt buchen“-Buttons: zum Kalender springen und ihn öffnen
+    $all("[data-book]").forEach(function (b) {
+      b.addEventListener("click", function (e) {
+        e.preventDefault();
+        $("#kalender").scrollIntoView({ behavior: "smooth", block: "start" });
+        if (embed.gthLoad) embed.gthLoad();
+      });
+    });
+    if (params.get("buchen") === "1") setTimeout(function () { $("#kalender").scrollIntoView({ block: "start" }); }, 50);
+    initMedia(a, photos, video);
 
     var more = $("#more-apts");
     if (more) {
@@ -520,27 +541,117 @@
     }
   }
 
-  function initLightbox(a, imgs) {
+  /* ---------- Fotos & Roomtour-Video ---------- */
+  // Unterstützt YouTube- und Vimeo-Links sowie eigene Videodateien (.mp4/.webm/.mov)
+  function parseVideo(v) {
+    v = String(v || "").trim();
+    if (!v) return null;
+    var m = v.match(/(?:youtube(?:-nocookie)?\.com\/(?:watch\?(?:.*&)?v=|embed\/|shorts\/)|youtu\.be\/)([\w-]{11})/);
+    if (m) return { kind: "youtube", name: "YouTube", src: "https://www.youtube-nocookie.com/embed/" + m[1] + "?autoplay=1&rel=0&playsinline=1&modestbranding=1" };
+    m = v.match(/vimeo\.com\/(?:video\/)?(\d+)/);
+    if (m) return { kind: "vimeo", name: "Vimeo", src: "https://player.vimeo.com/video/" + m[1] + "?autoplay=1&dnt=1" };
+    if (/\.(mp4|webm|mov)(\?.*)?$/i.test(v)) return { kind: "file", src: v };
+    return null;
+  }
+
+  var PLAY = '<svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="12" fill="rgba(0,0,0,.55)"/><path d="M9.5 7.5v9l7-4.5z" fill="#fff"/></svg>';
+
+  function mediaHtml(a, photos, video) {
+    var slides = photos.map(function (f, i) {
+      return '<div class="media__slide"><button type="button" class="media__photo" data-photo="' + i + '" aria-label="Foto ' + (i + 1) + ' vergrößern">' +
+        img(aptImg(a, i), a.name + " – Foto " + (i + 1), a.city, i === 0) + "</button></div>";
+    });
+    if (video) {
+      var poster = aptImg(a, 0);
+      var tour = '<div class="media__slide media__slide--video" data-video>' +
+        (video.kind === "file"
+          ? '<video controls playsinline preload="metadata"' + (poster ? ' poster="' + esc(poster) + '"' : "") + ' src="' + esc(video.src) + '"></video>'
+          : '<button type="button" class="media__play" data-play>' + (poster ? img(poster, "", a.city) : "") +
+            '<span class="media__play-inner">' + PLAY + "<strong>Roomtour ansehen</strong><small>Beim Abspielen wird das Video von " + video.name + " geladen.</small></span></button>") +
+        "</div>";
+      slides.splice(Math.min(1, slides.length), 0, tour); // Video als 2. Element nach dem Titelbild
+    }
+    var n = slides.length;
+    var thumbs = n > 1 ? '<div class="media__thumbs" role="tablist">' + slides.map(function (sl, i) {
+      var isVideo = sl.indexOf("data-video") > -1;
+      var photoIdx = video && i > 1 ? i - 1 : (video && i === 1 ? 0 : i);
+      return '<button type="button" class="media__thumb' + (isVideo ? " media__thumb--video" : "") + '" data-go="' + i + '" aria-label="' + (isVideo ? "Roomtour-Video" : "Foto " + (photoIdx + 1)) + '">' +
+        img(aptImg(a, photoIdx), "", a.city) + (isVideo ? '<span>' + PLAY + "</span>" : "") + "</button>";
+    }).join("") + "</div>" : "";
+    return '<div class="media" id="media">' +
+      '<div class="media__track" tabindex="0" aria-label="Fotos' + (video ? " und Roomtour-Video" : "") + ' – zum Blättern wischen">' + slides.join("") + "</div>" +
+      (n > 1 ? '<button type="button" class="media__nav media__prev" aria-label="Zurück">‹</button><button type="button" class="media__nav media__next" aria-label="Weiter">›</button>' +
+        '<div class="media__count"><span id="media-pos">1</span> / ' + n + "</div>" : "") +
+      '<div class="media__actions">' + (video ? '<button type="button" class="btn btn--light media__tour" data-go="1">▶ Roomtour</button>' : "") +
+      '<button type="button" class="btn btn--primary" data-book>Jetzt buchen</button></div>' +
+      "</div>" + thumbs;
+  }
+
+  function initMedia(a, photos, video) {
+    var track = $(".media__track");
+    if (!track) return;
+    var slides = $all(".media__slide", track), pos = 0;
+    function go(i) {
+      i = Math.max(0, Math.min(slides.length - 1, i));
+      track.scrollTo({ left: i * track.clientWidth, behavior: "smooth" });
+    }
+    function onPos() {
+      var i = Math.round(track.scrollLeft / Math.max(1, track.clientWidth));
+      if (i === pos) return;
+      pos = i;
+      var el = $("#media-pos"); if (el) el.textContent = i + 1;
+      $all(".media__thumb").forEach(function (t, k) { t.classList.toggle("is-active", k === i); });
+      $all("video", track).forEach(function (v) { v.pause(); }); // Video pausieren beim Weiterblättern
+      // Auf dem Video-Slide Buttons aus dem Weg räumen, damit die Videosteuerung frei bleibt
+      track.parentNode.classList.toggle("on-video", !!(slides[i] && slides[i].hasAttribute("data-video")));
+    }
+    track.addEventListener("scroll", function () { window.requestAnimationFrame(onPos); }, { passive: true });
+    $all(".media__thumb")[0] && $all(".media__thumb")[0].classList.add("is-active");
+    var prev = $(".media__prev"), next = $(".media__next");
+    if (prev) prev.addEventListener("click", function () { go(pos - 1); });
+    if (next) next.addEventListener("click", function () { go(pos + 1); });
+    $all("[data-go]").forEach(function (b) { b.addEventListener("click", function () { go(+b.getAttribute("data-go")); }); });
+    track.addEventListener("keydown", function (e) {
+      if (e.key === "ArrowLeft") { e.preventDefault(); go(pos - 1); }
+      if (e.key === "ArrowRight") { e.preventDefault(); go(pos + 1); }
+    });
+    var play = $("[data-play]", track);
+    if (play && video) play.addEventListener("click", function () {
+      play.parentNode.innerHTML = '<iframe src="' + esc(video.src) + '" title="Roomtour ' + esc(a.name) + '" allow="autoplay; fullscreen; picture-in-picture" allowfullscreen></iframe>';
+    });
+    initLightbox(a, photos);
+  }
+
+  function initLightbox(a, photos) {
     var lb = document.createElement("div");
     lb.className = "lightbox";
     lb.setAttribute("role", "dialog");
     lb.setAttribute("aria-modal", "true");
     lb.setAttribute("aria-label", "Bildergalerie");
-    lb.innerHTML = '<button class="lb-close" aria-label="Schließen">×</button><button class="lb-prev" aria-label="Vorheriges Bild">‹</button><div class="lb-stage"></div><button class="lb-next" aria-label="Nächstes Bild">›</button>';
+    lb.innerHTML = '<button class="lb-close" aria-label="Schließen">×</button><button class="lb-prev" aria-label="Vorheriges Bild">‹</button><div class="lb-stage"></div><button class="lb-next" aria-label="Nächstes Bild">›</button><div class="lb-count"></div>';
     document.body.appendChild(lb);
     var idx = 0;
     function show(i) {
-      idx = (i + imgs.length) % imgs.length;
+      idx = (i + photos.length) % photos.length;
       $(".lb-stage", lb).innerHTML = img(aptImg(a, idx), a.name + " – Foto " + (idx + 1), a.city, true);
+      $(".lb-count", lb).textContent = (idx + 1) + " / " + photos.length;
     }
     function close() { lb.classList.remove("is-open"); }
-    $all(".gallery > button").forEach(function (b) {
-      b.addEventListener("click", function () { show(+b.getAttribute("data-index")); lb.classList.add("is-open"); $(".lb-close", lb).focus(); });
+    $all("[data-photo]").forEach(function (b) {
+      b.addEventListener("click", function () { show(+b.getAttribute("data-photo")); lb.classList.add("is-open"); $(".lb-close", lb).focus(); });
     });
     $(".lb-close", lb).addEventListener("click", close);
     $(".lb-prev", lb).addEventListener("click", function () { show(idx - 1); });
     $(".lb-next", lb).addEventListener("click", function () { show(idx + 1); });
-    lb.addEventListener("click", function (e) { if (e.target === lb) close(); });
+    lb.addEventListener("click", function (e) { if (e.target === lb || e.target.classList.contains("lb-stage")) close(); });
+    // Wischen auf Handy/Tablet
+    var x0 = null;
+    lb.addEventListener("touchstart", function (e) { x0 = e.touches[0].clientX; }, { passive: true });
+    lb.addEventListener("touchend", function (e) {
+      if (x0 === null) return;
+      var dx = e.changedTouches[0].clientX - x0; x0 = null;
+      if (Math.abs(dx) > 40) show(idx + (dx < 0 ? 1 : -1));
+    });
     document.addEventListener("keydown", function (e) {
       if (!lb.classList.contains("is-open")) return;
       if (e.key === "Escape") close();

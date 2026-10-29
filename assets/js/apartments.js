@@ -11,6 +11,10 @@
  *  type: "ferien" = Ferienwohnung / Serviced Apartment,
  *        "monteur" = Monteurwohnung, beide möglich: ["ferien", "monteur"]
  *
+ *  Roomtour-Video: bei "video" einen YouTube- oder Vimeo-Link eintragen
+ *  (z. B. "https://youtu.be/abc123XYZ00") oder eine eigene Videodatei
+ *  (z. B. "images/wohnungen/stadtvilla/roomtour.mp4").
+ *
  *  Felder mit null (z. B. size, beds) werden auf der Website einfach
  *  ausgeblendet, bis du sie einträgst.
  *
@@ -54,6 +58,7 @@ window.GTH_APARTMENTS = [
     size: null, // m²
     priceFrom: null, // z. B. 79 → zeigt „ab 79 € / Nacht“
     images: ["1.jpg"],
+    video: "", // Roomtour: YouTube-/Vimeo-Link oder Datei, z. B. "images/wohnungen/<id>/roomtour.mp4"
     description: [
       "Das Herzstück Coburg ist unsere Monteurwohnung für Handwerker, Monteure und Projektteams – mit Platz für bis zu 6 Personen und für Einsätze von wenigen Nächten bis zu mehreren Monaten.",
       "Die Wohnung ist voll ausgestattet, sauber und bezugsfertig, sodass Ihr Team nach Feierabend einfach ankommen und sich erholen kann. Rechnung auf Firma selbstverständlich möglich."
@@ -74,6 +79,7 @@ window.GTH_APARTMENTS = [
     size: null,
     priceFrom: null,
     images: ["1.jpg"],
+    video: "", // Roomtour: YouTube-/Vimeo-Link oder Datei, z. B. "images/wohnungen/<id>/roomtour.mp4"
     description: [
       "Unser helles Studio-Apartment unter dem Dach verbindet Wohnen und Schlafen in einem offen gestalteten, modern eingerichteten Raum – mit eigenem Balkon und Blick auf die Veste Coburg.",
       "Mit Küche, Waschmaschine, Trockner und Smart-TV ist es ideal für Städtereisende, Paare und Geschäftsreisende, die Coburg entdecken oder hier arbeiten."
@@ -96,6 +102,7 @@ window.GTH_APARTMENTS = [
     size: null,
     priceFrom: null,
     images: ["1.jpg"],
+    video: "", // Roomtour: YouTube-/Vimeo-Link oder Datei, z. B. "images/wohnungen/<id>/roomtour.mp4"
     description: [
       "Wohnen über den Dächern von Bamberg: Das Penthouse Weide begeistert mit offenem Wohn- und Essbereich, sichtbarem Holzgebälk und großen Fensterfronten mit Blick über die Stadt – Platz für bis zu 6 Gäste.",
       "Das UNESCO-Welterbe mit Altem Rathaus, Klein-Venedig und Dom sowie die berühmte Bamberger Bierkultur liegen ganz in Ihrer Nähe. Die Wohnung ist voll ausgestattet und bezugsfertig."
@@ -116,6 +123,7 @@ window.GTH_APARTMENTS = [
     size: null,
     priceFrom: null,
     images: ["1.jpg"],
+    video: "", // Roomtour: YouTube-/Vimeo-Link oder Datei, z. B. "images/wohnungen/<id>/roomtour.mp4"
     description: [
       "Das Penthouse Eiche verbindet modernes Design mit dem Charme alter Holzbalken: offene Küche, großer Esstisch und viel Licht – Platz für bis zu 6 Gäste.",
       "Ideal für Familien, Freundesgruppen und längere Aufenthalte in Bamberg. Sauber, liebevoll eingerichtet und voll ausgestattet."
@@ -138,6 +146,7 @@ window.GTH_APARTMENTS = [
     size: null,
     priceFrom: null,
     images: ["1.jpg"],
+    video: "", // Roomtour: YouTube-/Vimeo-Link oder Datei, z. B. "images/wohnungen/<id>/roomtour.mp4"
     description: [
       "Sonnenuntergang über den Dächern von Regensburg: Das Penthouse Orange bietet eine eigene Dachterrasse mit Blick bis zu den Türmen des Doms – für bis zu 4 Gäste.",
       "Mit kostenlosem Parkplatz, Arbeitsplatz, Spülmaschine und Smart-TV ist es ideal für Paare, kleine Familien und Geschäftsreisende."
@@ -158,6 +167,7 @@ window.GTH_APARTMENTS = [
     size: null,
     priceFrom: null,
     images: ["1.jpg"],
+    video: "", // Roomtour: YouTube-/Vimeo-Link oder Datei, z. B. "images/wohnungen/<id>/roomtour.mp4"
     description: [
       "Die Stadtvilla ist unsere große Wohnung in Regensburg: drei Schlafzimmer, ein großzügiger Wohnbereich mit Billardtisch und viel Platz für Familien, Freundesgruppen und Teams – bis zu 6 Gäste.",
       "Kostenloser Parkplatz auf dem Grundstück, Arbeitsplatz, Spülmaschine und Soundsystem sorgen für Komfort. Cafés, Restaurants, der Dom und die Donau sind schnell erreicht."
