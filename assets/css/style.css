@@ -484,3 +484,5 @@ p { margin: 0 0 1em; }
 .pick { padding-right: 38px; }
 .detail > * { min-width: 0; }
 @media (max-width: 960px) { .detail { grid-template-columns: minmax(0, 1fr); } }
+@media (max-width: 480px) { .amenities { grid-template-columns: minmax(0, 1fr); } }
+.amenities li { min-width: 0; }
