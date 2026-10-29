@@ -30,7 +30,8 @@ Dafür werden nur drei Angaben gebraucht:
 
 | Angabe | Wo in Smoobu | Wohin |
 |---|---|---|
-| **Kundennummer** | Einbettungscode des Buchungstools (Menü „Website“ bzw. „Buchungstool“ → Einbinden). Im Code steht `.../booking-tool/iframe/123456` – die Zahl ist die Kundennummer. | `assets/js/config.js` → `customerId` |
+| **Direkt-Link des Buchungstools** | Öffnet man das Buchungstool von Smoobu, steht in der Adresszeile z. B. `https://booking.smoobu.com/9A1066393`. | `assets/js/config.js` → `bookingUrl` |
+| **Kundennummer** (Alternative) | Einbettungscode des Buchungstools (Menü „Website“ bzw. „Buchungstool“ → Einbinden). Im Code steht `.../booking-tool/iframe/123456` – die Zahl ist die Kundennummer. | `assets/js/config.js` → `customerId` |
 | **Wohnungs-ID** je Wohnung | Im Code des Kalender-Widgets bzw. in der Adresszeile, wenn man die Wohnung in Smoobu bearbeitet. | `assets/js/apartments.js` → `smoobuId` |
 | **Kalender-Code** je Wohnung | Einbettungscode des Verfügbarkeitskalenders / Kalender-Widgets: der lange Code nach `data-verification="..."` bzw. am Ende von `.../show-calendar-iframe/ID/CODE`. | `assets/js/apartments.js` → `calendarHash` |
 

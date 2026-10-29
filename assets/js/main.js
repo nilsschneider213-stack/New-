@@ -341,10 +341,41 @@
     var cid = CFG.smoobu && String(CFG.smoobu.customerId || "").replace(/\D/g, "");
     var id = apt && String(apt.smoobuId || "").replace(/\D/g, "");
     var hash = apt && String(apt.calendarHash || "").replace(/[^a-f0-9]/gi, "");
+    var url = CFG.smoobu && String(CFG.smoobu.bookingUrl || "");
+    if (!/^https:\/\/booking\.smoobu\.com\//.test(url)) url = "";
     return {
-      booking: cid ? SMOOBU_BASE + "/de/booking-tool/iframe/" + cid + (id ? "/" + id : "") : "",
+      // Direkt-Link des Buchungstools (bevorzugt) oder über die Kundennummer
+      booking: url ? url + (id ? (url.indexOf("?") > -1 ? "&" : "?") + "apartmentId=" + id : "")
+        : cid ? SMOOBU_BASE + "/de/booking-tool/iframe/" + cid + (id ? "/" + id : "") : "",
       calendar: id && hash ? SMOOBU_BASE + "/de/cockpit/widget/show-calendar-iframe/" + id + "/" + hash : ""
     };
+  }
+
+  // Buchungstool direkt als iframe; die Höhe passt iframe-resizer (wie bei Smoobu) automatisch an
+  var resizerLoading = null;
+  function bookingFrame(target, url) {
+    var id = "smoobu-frame-" + Math.random().toString(36).slice(2, 9);
+    target.innerHTML = '<iframe id="' + id + '" class="smoobu-booking" src="' + esc(url) + '" title="Buchung" allowtransparency="true" allowfullscreen></iframe>' +
+      '<p class="embed-hint" style="margin-top:12px">Buchungsfenster wird nicht angezeigt? <a href="' + esc(url) + '" target="_blank" rel="noopener">Hier in neuem Fenster buchen →</a></p>';
+    var frame = $("#" + id), start = Date.now();
+    if (!resizerLoading) {
+      resizerLoading = new Promise(function (resolve, reject) {
+        var s = document.createElement("script");
+        s.src = "https://cdnjs.cloudflare.com/ajax/libs/iframe-resizer/3.5.16/iframeResizer.min.js";
+        s.onload = resolve; s.onerror = reject;
+        document.head.appendChild(s);
+      });
+    }
+    resizerLoading.then(function () {
+      if (typeof window.iFrameResize !== "function") return;
+      window.iFrameResize({
+        heightCalculationMethod: "lowestElement",
+        tolerance: 34,
+        checkOrigin: false,
+        // Beim Laden darf das Buchungsfenster die Seite nicht nach unten ziehen
+        scrollCallback: function () { return Date.now() - start > 4000; }
+      }, frame);
+    }).catch(function () { /* feste Höhe aus dem CSS bleibt */ });
   }
 
   function smoobuEmbed(container, links, opts) {
@@ -375,6 +406,11 @@
       if (!links.booking) return;
 
       var target = $("#" + targetId);
+      if (/^https:\/\/booking\.smoobu\.com\//.test(links.booking)) {
+        bookingFrame(target, links.booking);
+        return;
+      }
+      // Fallback: Einbindung über das Smoobu-Skript (nur Kundennummer bekannt)
       function fail() { if (!$("iframe", target)) target.innerHTML = inquiryBox; }
       var s = document.createElement("script");
       s.src = SMOOBU_BASE + "/js/Settings/BookingToolIframe.js";
@@ -611,6 +647,13 @@
   }, { threshold: 0.08 }) : null;
   function observe() {
     $all(".fade-in:not(.is-visible)").forEach(function (el) { io ? io.observe(el) : el.classList.add("is-visible"); });
+  }
+
+  // Neue Seite immer oben beginnen – auch wenn die Website in einem Rahmen
+  // (z. B. Vorschau) angezeigt wird, der seine Scroll-Position behält.
+  if (!location.hash) {
+    window.scrollTo(0, 0);
+    try { document.documentElement.scrollIntoView({ block: "start" }); } catch (e) { /* ältere Browser */ }
   }
 
   renderChrome();

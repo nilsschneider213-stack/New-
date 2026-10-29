@@ -24,6 +24,7 @@ window.GTH_CONFIG = {
    * Anleitung: siehe README.md, Abschnitt „Smoobu verbinden“.
    */
   smoobu: {
+    bookingUrl: "https://booking.smoobu.com/9A1066393", // Direkt-Link des Buchungstools
     customerId: "1066393",
     baseUrl: "https://login.smoobu.com"
   },

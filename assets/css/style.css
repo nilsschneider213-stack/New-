@@ -498,3 +498,4 @@ p { margin: 0 0 1em; }
   .gallery--1 > *:first-child { grid-column: auto; }
   .gallery--2, .gallery--3 { grid-template-rows: 240px 160px; }
 }
+.embed-wrap iframe.smoobu-booking { width: 100%; min-height: 0; height: 1200px; border: 0; display: block; }
