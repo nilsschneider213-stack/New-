@@ -24,7 +24,7 @@ window.GTH_CONFIG = {
    * Anleitung: siehe README.md, Abschnitt „Smoobu verbinden“.
    */
   smoobu: {
-    customerId: "",
+    customerId: "1066393",
     baseUrl: "https://login.smoobu.com"
   },
 

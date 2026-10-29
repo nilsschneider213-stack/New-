@@ -421,15 +421,15 @@
         "<h1>" + esc(a.name) + '</h1><p class="lead">' + esc(a.tagline) + " · " + esc(city.name) + "</p>";
     }
 
-    var imgs = (a.images && a.images.length ? a.images : ["", "", "", ""]).slice(0, 4);
-    while (imgs.length < 4) imgs.push("");
+    // 1 Foto → großes Einzelbild, 2–3 → nebeneinander, ab 4 → Collage
+    var imgs = (a.images && a.images.length ? a.images : [""]).slice(0, 4);
     var arr = isDate(params.get("anreise")) ? params.get("anreise") : "";
     var dep = isDate(params.get("abreise")) ? params.get("abreise") : "";
     var g = /^\d+$/.test(params.get("gaeste") || "") ? params.get("gaeste") : "";
     var inquiry = "kontakt.html?wohnung=" + encodeURIComponent(a.id) + (arr ? "&anreise=" + arr : "") + (dep ? "&abreise=" + dep : "") + (g ? "&gaeste=" + g : "");
 
     root.innerHTML =
-      '<div class="gallery">' + imgs.map(function (f, i) {
+      '<div class="gallery gallery--' + imgs.length + '">' + imgs.map(function (f, i) {
         return '<button type="button" data-index="' + i + '" aria-label="Foto ' + (i + 1) + ' vergrößern">' + img(aptImg(a, i), a.name + " – Foto " + (i + 1), a.city, i === 0) + "</button>";
       }).join("") + "</div>" +
       '<div class="detail"><div>' +
@@ -444,7 +444,7 @@
       (a.beds ? '<div class="fact"><span>Betten</span><strong style="font-size:.95rem">' + esc(a.beds) + "</strong></div>" : "") +
       '<div class="fact"><span>Stadt</span><strong>' + esc(city.name) + "</strong></div></div>" +
       "<h3>Ausstattung</h3><ul class=\"amenities\">" + a.amenities.map(function (m) { return "<li>" + ICONS.check + esc(m) + "</li>"; }).join("") + "</ul>" +
-      "<h3>Gut zu wissen</h3><ul class=\"check-list\"><li>Check-in ab 15:00 Uhr, Check-out bis 10:00 Uhr (nach Absprache flexibel)</li>" +
+      "<h3>Gut zu wissen</h3><ul class=\"check-list\"><li>Check-in ab 15:00 Uhr, Check-out bis 10:00 Uhr – früherer Check-in bzw. späterer Check-out bei der Buchung gegen Aufpreis wählbar</li>" +
       "<li>Kontaktloser Self-Check-in – Sie erhalten alle Infos vor der Anreise</li><li>Bettwäsche, Handtücher, Energiekosten und Endreinigung inklusive</li>" +
       "<li><a href=\"agb.html#storno\">Kostenlose Stornierung</a> bis 5 Tage vor Anreise</li><li>Nichtraucherwohnung, Haustiere sind leider nicht gestattet</li>" +
       "<li>Rund um die Uhr persönlich für Sie erreichbar</li><li>Rechnung mit ausgewiesener MwSt. für Geschäftsreisende</li></ul>" +

@@ -39,7 +39,7 @@ Am einfachsten: Die Einbettungscodes aus Smoobu kopieren und an Claude schicken 
 Fehlen die Angaben, sehen Gäste stattdessen „Unverbindlich anfragen“. Der Smoobu-Inhalt wird erst nach Klick auf „Kalender anzeigen“ geladen (Zwei-Klick-Lösung, DSGVO-konform). Darum braucht die Seite keinen Cookie-Banner: Sie setzt selbst keine Cookies, nutzt kein Tracking und lädt keine Google Fonts.
 
 ### 3. Wohnungen – `assets/js/apartments.js`
-Die 6 Wohnungen sind angelegt (Coburg: Monteurwohnung, Studio-Apartment · Bamberg: 2 Penthouses · Regensburg: Penthouse, große Altstadtwohnung). Felder mit `null` (Größe, Betten, teils Gästezahl) werden ausgeblendet, bis sie eingetragen sind. Beschreibungen bitte prüfen und ergänzen.
+Die 6 Wohnungen sind angelegt und mit Smoobu verknüpft (Kundennummer 1066393): Coburg: Herzstück Coburg (Monteurwohnung), Studio mit Balkon & Vesteblick · Bamberg: Penthouse Weide, Penthouse Eiche · Regensburg: Penthouse Orange, Die Stadtvilla. Felder mit `null` (Größe, Betten, teils Gästezahl) werden ausgeblendet, bis sie eingetragen sind. Beschreibungen bitte prüfen und ergänzen.
 
 ### 4. Fotos
 ```
@@ -47,11 +47,11 @@ images/hero.jpg                          ← großes Titelbild der Startseite
 images/staedte/coburg.jpg                ← Bilder der Städte-Kacheln
 images/staedte/bamberg.jpg
 images/staedte/regensburg.jpg
-images/wohnungen/coburg-monteurwohnung/1.jpg   ← 1.jpg ist das Titelbild der Wohnung
-images/wohnungen/coburg-monteurwohnung/2.jpg
+images/wohnungen/herzstueck-coburg/1.jpg   ← 1.jpg ist das Titelbild der Wohnung
+images/wohnungen/herzstueck-coburg/2.jpg
 …
 ```
-Ordnernamen: `coburg-monteurwohnung`, `coburg-studio`, `bamberg-penthouse-1`, `bamberg-penthouse-2`, `regensburg-penthouse`, `regensburg-altstadt` (entsprechen der `id` in `apartments.js`). Fehlt ein Foto, erscheint automatisch ein Platzhalter. Empfehlung: Querformat, ca. 1600 px breit, als JPG komprimiert (unter 400 KB).
+Ordnernamen: `herzstueck-coburg`, `studio-vesteblick`, `penthouse-weide`, `penthouse-eiche`, `penthouse-orange`, `stadtvilla` (entsprechen der `id` in `apartments.js`). Fehlt ein Foto, erscheint automatisch ein Platzhalter. Empfehlung: Querformat, ca. 1600 px breit, als JPG komprimiert (unter 400 KB).
 
 ### 5. Kontaktformulare
 Ohne Server öffnen die Formulare das E-Mail-Programm des Besuchers. Damit die Formulare Nachrichten direkt verschicken, bei einem Dienst wie [Formspree](https://formspree.io) oder [Web3Forms](https://web3forms.com) ein Formular anlegen und die Endpoint-URL in `config.js` bei `formEndpoint` eintragen. Den Dienst anschließend in der Datenschutzerklärung ergänzen.

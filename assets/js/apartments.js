@@ -14,8 +14,9 @@
  *  Felder mit null (z. B. size, beds) werden auf der Website einfach
  *  ausgeblendet, bis du sie einträgst.
  *
- *  Smoobu: smoobuId = Wohnungs-ID in Smoobu, calendarHash = Code aus dem
- *  Kalender-Widget (siehe README.md, Abschnitt „Smoobu verbinden“).
+ *  Smoobu: smoobuId = Wohnungs-ID in Smoobu (Buchungstool für genau diese
+ *  Wohnung), calendarHash = optionaler Code aus dem Kalender-Widget
+ *  (siehe README.md, Abschnitt „Smoobu verbinden“).
  * ============================================================
  */
 window.GTH_CITIES = [
@@ -42,127 +43,127 @@ window.GTH_CITIES = [
 window.GTH_APARTMENTS = [
   /* ---------------- COBURG ---------------- */
   {
-    id: "coburg-monteurwohnung",
+    id: "herzstueck-coburg",
     city: "coburg",
-    name: "Monteurwohnung Coburg",
-    tagline: "Praktisch und komfortabel – ideal für Handwerker und Teams",
+    name: "Herzstück Coburg",
+    tagline: "Unsere Monteurwohnung in Coburg – bis zu 6 Personen",
     type: ["monteur"],
-    guests: null, // [BITTE EINTRAGEN] max. Gäste
+    guests: 6,
     bedrooms: null,
-    beds: null, // z. B. "4 Einzelbetten"
+    beds: null, // z. B. "6 Einzelbetten"
     size: null, // m²
     priceFrom: null, // z. B. 79 → zeigt „ab 79 € / Nacht“
-    images: ["1.jpg", "2.jpg", "3.jpg", "4.jpg"],
+    images: ["1.jpg"],
     description: [
-      "Unsere Monteurwohnung in Coburg ist auf die Bedürfnisse von Handwerkern, Monteuren und Projektteams ausgelegt – für Einsätze von wenigen Nächten bis zu mehreren Monaten.",
-      "Die Wohnung ist voll ausgestattet und bezugsfertig, sodass Ihr Team nach Feierabend einfach ankommen und sich erholen kann. Rechnung auf Firma selbstverständlich möglich."
+      "Das Herzstück Coburg ist unsere Monteurwohnung für Handwerker, Monteure und Projektteams – mit Platz für bis zu 6 Personen und für Einsätze von wenigen Nächten bis zu mehreren Monaten.",
+      "Die Wohnung ist voll ausgestattet, sauber und bezugsfertig, sodass Ihr Team nach Feierabend einfach ankommen und sich erholen kann. Rechnung auf Firma selbstverständlich möglich."
     ],
-    amenities: ["Voll ausgestattete Küche", "Bettwäsche & Handtücher", "Endreinigung inklusive", "Rechnung für Firmen", "Langzeitmiete möglich", "Nichtraucherwohnung"],
-    smoobuId: "",
+    amenities: ["Bis zu 6 Personen", "Voll ausgestattet", "Handtücher & Bettwäsche", "Endreinigung inklusive", "Rechnung für Firmen", "Langzeitmiete möglich"],
+    smoobuId: "2636538",
     calendarHash: ""
   },
   {
-    id: "coburg-studio",
+    id: "studio-vesteblick",
     city: "coburg",
-    name: "Studio-Apartment Coburg",
-    tagline: "Kompakt, modern und gemütlich – perfekt für Paare und Geschäftsreisende",
+    name: "Studio mit Balkon & Vesteblick",
+    tagline: "Gemütliches Studio mit Balkon und Blick auf die Veste Coburg",
     type: ["ferien"],
-    guests: null, // [BITTE EINTRAGEN]
+    guests: 3,
     bedrooms: null,
     beds: null,
     size: null,
     priceFrom: null,
-    images: ["1.jpg", "2.jpg", "3.jpg", "4.jpg"],
+    images: ["1.jpg"],
     description: [
-      "Unser Studio-Apartment in Coburg verbindet Wohnen und Schlafen in einem offen gestalteten, modern eingerichteten Raum – ideal für Städtereisende und Geschäftsreisende.",
-      "Ob Veste Coburg, Schloss Ehrenburg oder der historische Marktplatz: Die Residenzstadt lädt zum Entdecken ein. Nach einem langen Tag erwartet Sie ein sauberes, liebevoll eingerichtetes Zuhause auf Zeit."
+      "Unser helles Studio-Apartment unter dem Dach verbindet Wohnen und Schlafen in einem offen gestalteten, modern eingerichteten Raum – mit eigenem Balkon und Blick auf die Veste Coburg.",
+      "Mit Küche, Waschmaschine, Trockner und Smart-TV ist es ideal für Städtereisende, Paare und Geschäftsreisende, die Coburg entdecken oder hier arbeiten."
     ],
-    amenities: ["Voll ausgestattet", "Bettwäsche & Handtücher", "Endreinigung inklusive", "Nichtraucherwohnung"],
-    smoobuId: "",
+    amenities: ["Balkon / Terrasse", "WLAN", "Küche mit Grundausstattung", "Kaffeemaschine & Wasserkocher", "Waschmaschine & Trockner", "Smart-TV & Streaming", "Föhn", "Handtücher & Bettwäsche", "Shampoo & Seife"],
+    smoobuId: "2428678",
     calendarHash: ""
   },
 
   /* ---------------- BAMBERG ---------------- */
   {
-    id: "bamberg-penthouse-1",
+    id: "penthouse-weide",
     city: "bamberg",
-    name: "Penthouse Bamberg I",
-    tagline: "Großzügiges Penthouse für bis zu 6 Gäste",
+    name: "Penthouse Weide",
+    tagline: "Lichtdurchflutetes Penthouse mit Balkon für bis zu 6 Gäste",
     type: ["ferien"],
     guests: 6,
     bedrooms: null,
     beds: null,
     size: null,
     priceFrom: null,
-    images: ["1.jpg", "2.jpg", "3.jpg", "4.jpg"],
+    images: ["1.jpg"],
     description: [
-      "Wohnen über den Dächern von Bamberg: Unser Penthouse bietet viel Platz für Familien, Freundesgruppen und Geschäftsreisende – für bis zu 6 Gäste.",
-      "Das UNESCO-Welterbe mit Altem Rathaus, Klein-Venedig und Dom sowie die berühmte Bamberger Bierkultur liegen ganz in Ihrer Nähe. Die Wohnung ist voll ausgestattet und bezugsfertig für Sie."
+      "Wohnen über den Dächern von Bamberg: Das Penthouse Weide begeistert mit offenem Wohn- und Essbereich, sichtbarem Holzgebälk und großen Fensterfronten mit Blick über die Stadt – Platz für bis zu 6 Gäste.",
+      "Das UNESCO-Welterbe mit Altem Rathaus, Klein-Venedig und Dom sowie die berühmte Bamberger Bierkultur liegen ganz in Ihrer Nähe. Die Wohnung ist voll ausgestattet und bezugsfertig."
     ],
-    amenities: ["Voll ausgestattete Küche", "Bettwäsche & Handtücher", "Endreinigung inklusive", "Ideal für Gruppen & Familien", "Nichtraucherwohnung"],
-    smoobuId: "",
+    amenities: ["Bis zu 6 Personen", "Großer Essbereich", "Voll ausgestattete Küche", "Handtücher & Bettwäsche", "Endreinigung inklusive", "Ideal für Familien & Gruppen"],
+    smoobuId: "2842573",
     calendarHash: ""
   },
   {
-    id: "bamberg-penthouse-2",
+    id: "penthouse-eiche",
     city: "bamberg",
-    name: "Penthouse Bamberg II",
-    tagline: "Stilvolles Penthouse mit Platz für bis zu 6 Gäste",
+    name: "Penthouse Eiche",
+    tagline: "Stilvolles Penthouse mit offener Küche für bis zu 6 Gäste",
     type: ["ferien"],
     guests: 6,
     bedrooms: null,
     beds: null,
     size: null,
     priceFrom: null,
-    images: ["1.jpg", "2.jpg", "3.jpg", "4.jpg"],
+    images: ["1.jpg"],
     description: [
-      "Unser zweites Penthouse in Bamberg bietet ebenfalls reichlich Platz für bis zu 6 Gäste – ideal für Familien, Gruppen und längere Aufenthalte.",
-      "Modern und liebevoll eingerichtet, sauber und voll ausgestattet: Hier können Sie Bamberg in vollen Zügen genießen und abends entspannt nach Hause kommen."
+      "Das Penthouse Eiche verbindet modernes Design mit dem Charme alter Holzbalken: offene Küche, großer Esstisch und viel Licht – Platz für bis zu 6 Gäste.",
+      "Ideal für Familien, Freundesgruppen und längere Aufenthalte in Bamberg. Sauber, liebevoll eingerichtet und voll ausgestattet."
     ],
-    amenities: ["Voll ausgestattete Küche", "Bettwäsche & Handtücher", "Endreinigung inklusive", "Ideal für Gruppen & Familien", "Nichtraucherwohnung"],
-    smoobuId: "",
+    amenities: ["Bis zu 6 Personen", "Offene Küche", "Großer Esstisch", "Handtücher & Bettwäsche", "Endreinigung inklusive", "Ideal für Familien & Gruppen"],
+    smoobuId: "2847177",
     calendarHash: ""
   },
 
   /* ---------------- REGENSBURG ---------------- */
   {
-    id: "regensburg-penthouse",
+    id: "penthouse-orange",
     city: "regensburg",
-    name: "Penthouse Regensburg",
-    tagline: "Modernes Penthouse für bis zu 4 Gäste",
+    name: "Penthouse Orange",
+    tagline: "Penthouse mit Dachterrasse und Blick bis zum Dom",
     type: ["ferien"],
-    guests: 4,
+    guests: 4, // in Smoobu derzeit 5 – bitte prüfen
     bedrooms: null,
     beds: null,
     size: null,
     priceFrom: null,
-    images: ["1.jpg", "2.jpg", "3.jpg", "4.jpg"],
+    images: ["1.jpg"],
     description: [
-      "Unser Penthouse in Regensburg bietet modernen Wohnkomfort für bis zu 4 Gäste – perfekt für Paare, kleine Familien oder Geschäftsreisende.",
-      "Dom St. Peter, die Steinerne Brücke und die lebendige Altstadt an der Donau sind ideale Ausflugsziele. Ihr voll ausgestattetes Apartment erwartet Sie bezugsfertig."
+      "Sonnenuntergang über den Dächern von Regensburg: Das Penthouse Orange bietet eine eigene Dachterrasse mit Blick bis zu den Türmen des Doms – für bis zu 4 Gäste.",
+      "Mit kostenlosem Parkplatz, Arbeitsplatz, Spülmaschine und Smart-TV ist es ideal für Paare, kleine Familien und Geschäftsreisende."
     ],
-    amenities: ["Voll ausgestattete Küche", "Bettwäsche & Handtücher", "Endreinigung inklusive", "Nichtraucherwohnung"],
-    smoobuId: "",
+    amenities: ["Dachterrasse / Balkon", "Kostenloser Parkplatz", "Arbeitsplatz", "Küche mit Grundausstattung", "Spülmaschine", "Kaffeemaschine", "Smart-TV & Streaming", "Kinderhochstuhl", "Bügeleisen", "Handtücher & Bettwäsche"],
+    smoobuId: "3553926",
     calendarHash: ""
   },
   {
-    id: "regensburg-altstadt",
+    id: "stadtvilla",
     city: "regensburg",
-    name: "Große Altstadtwohnung Regensburg",
-    tagline: "3 Schlafzimmer für bis zu 6 Gäste – mitten im Welterbe",
+    name: "Die Stadtvilla",
+    tagline: "Große Altstadtwohnung mit 3 Schlafzimmern für bis zu 6 Gäste",
     type: ["ferien"],
-    guests: 6,
+    guests: 6, // in Smoobu derzeit 7 – bitte prüfen
     bedrooms: 3,
     beds: null,
     size: null,
     priceFrom: null,
-    images: ["1.jpg", "2.jpg", "3.jpg", "4.jpg"],
+    images: ["1.jpg"],
     description: [
-      "Unsere große Altstadtwohnung in Regensburg bietet mit drei Schlafzimmern viel Platz und Privatsphäre für bis zu 6 Gäste – ideal für Familien, Freundesgruppen und Teams.",
-      "Wohnen Sie mitten in der UNESCO-Welterbe-Altstadt: Cafés, Restaurants, der Dom und die Donau sind bequem zu Fuß erreichbar. Die Wohnung ist voll ausgestattet und liebevoll eingerichtet."
+      "Die Stadtvilla ist unsere große Wohnung in Regensburg: drei Schlafzimmer, ein großzügiger Wohnbereich mit Billardtisch und viel Platz für Familien, Freundesgruppen und Teams – bis zu 6 Gäste.",
+      "Kostenloser Parkplatz auf dem Grundstück, Arbeitsplatz, Spülmaschine und Soundsystem sorgen für Komfort. Cafés, Restaurants, der Dom und die Donau sind schnell erreicht."
     ],
-    amenities: ["3 Schlafzimmer", "Voll ausgestattete Küche", "Bettwäsche & Handtücher", "Endreinigung inklusive", "Altstadtlage", "Nichtraucherwohnung"],
-    smoobuId: "",
+    amenities: ["3 Schlafzimmer", "Kostenloser Parkplatz", "Billardtisch", "Arbeitsplatz", "Küche mit Grundausstattung", "Spülmaschine", "Smart-TV & Soundsystem", "Rollstuhlgerecht", "Nichtraucherunterkunft", "Handtücher & Bettwäsche"],
+    smoobuId: "2485178",
     calendarHash: ""
   }
 ];
