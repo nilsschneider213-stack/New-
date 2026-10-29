@@ -8,8 +8,14 @@
  *  Dateinamen unten bei "images" ein. Fehlt ein Foto, erscheint automatisch
  *  ein Platzhalter.
  *
- *  type: "ferien" = Ferienwohnung, "monteur" = Monteurwohnung,
- *        beide möglich: ["ferien", "monteur"]
+ *  type: "ferien" = Ferienwohnung / Serviced Apartment,
+ *        "monteur" = Monteurwohnung, beide möglich: ["ferien", "monteur"]
+ *
+ *  Felder mit null (z. B. size, beds) werden auf der Website einfach
+ *  ausgeblendet, bis du sie einträgst.
+ *
+ *  Smoobu: smoobuId = Wohnungs-ID in Smoobu, calendarHash = Code aus dem
+ *  Kalender-Widget (siehe README.md, Abschnitt „Smoobu verbinden“).
  * ============================================================
  */
 window.GTH_CITIES = [
@@ -34,118 +40,129 @@ window.GTH_CITIES = [
 ];
 
 window.GTH_APARTMENTS = [
+  /* ---------------- COBURG ---------------- */
   {
-    id: "coburg-altstadt",
+    id: "coburg-monteurwohnung",
     city: "coburg",
-    name: "Altstadt-Apartment Coburg",
-    tagline: "Stilvoll wohnen, wenige Schritte vom Marktplatz",
-    type: ["ferien"],
-    guests: 2,
-    bedrooms: 1,
-    beds: "1 Doppelbett",
-    size: 45,
+    name: "Monteurwohnung Coburg",
+    tagline: "Praktisch und komfortabel – ideal für Handwerker und Teams",
+    type: ["monteur"],
+    guests: null, // [BITTE EINTRAGEN] max. Gäste
+    bedrooms: null,
+    beds: null, // z. B. "4 Einzelbetten"
+    size: null, // m²
     priceFrom: null, // z. B. 79 → zeigt „ab 79 € / Nacht“
     images: ["1.jpg", "2.jpg", "3.jpg", "4.jpg"],
     description: [
-      "Unser Altstadt-Apartment liegt ruhig und doch zentral – Marktplatz, Ehrenburg und Hofgarten erreichen Sie bequem zu Fuß.",
-      "Die Wohnung ist hell und modern eingerichtet, mit voll ausgestatteter Küche, gemütlichem Wohnbereich und einem Schlafzimmer mit komfortablem Doppelbett. Ideal für Paare, Städtereisende und Geschäftsreisende."
+      "Unsere Monteurwohnung in Coburg ist auf die Bedürfnisse von Handwerkern, Monteuren und Projektteams ausgelegt – für Einsätze von wenigen Nächten bis zu mehreren Monaten.",
+      "Die Wohnung ist voll ausgestattet und bezugsfertig, sodass Ihr Team nach Feierabend einfach ankommen und sich erholen kann. Rechnung auf Firma selbstverständlich möglich."
     ],
-    amenities: ["WLAN", "Voll ausgestattete Küche", "Kaffeemaschine", "Smart-TV", "Bettwäsche & Handtücher", "Self-Check-in", "Nichtraucher"],
-    smoobuUrl: ""
+    amenities: ["Voll ausgestattete Küche", "Bettwäsche & Handtücher", "Endreinigung inklusive", "Rechnung für Firmen", "Langzeitmiete möglich", "Nichtraucherwohnung"],
+    smoobuId: "",
+    calendarHash: ""
   },
   {
-    id: "coburg-monteur",
+    id: "coburg-studio",
     city: "coburg",
-    name: "Monteurwohnung Coburg",
-    tagline: "Praktisch, ruhig und mit Parkplatz – ideal für Teams",
-    type: ["monteur", "ferien"],
-    guests: 4,
-    bedrooms: 2,
-    beds: "4 Einzelbetten",
-    size: 68,
-    priceFrom: null,
-    images: ["1.jpg", "2.jpg", "3.jpg", "4.jpg"],
-    description: [
-      "Die Wohnung ist perfekt für Handwerker, Monteure und Projektteams: zwei Schlafzimmer mit Einzelbetten, große Küche mit Esstisch und eine Waschmaschine für längere Aufenthalte.",
-      "Parkmöglichkeiten direkt am Haus, gute Anbindung an die B4 und A73. Rechnung für Firmen selbstverständlich möglich."
-    ],
-    amenities: ["WLAN", "Parkplatz", "Waschmaschine", "Voll ausgestattete Küche", "Einzelbetten", "Rechnung für Firmen", "Langzeitmiete möglich"],
-    smoobuUrl: ""
-  },
-  {
-    id: "bamberg-welterbe",
-    city: "bamberg",
-    name: "Welterbe-Suite Bamberg",
-    tagline: "Mittendrin im UNESCO-Welterbe",
+    name: "Studio-Apartment Coburg",
+    tagline: "Kompakt, modern und gemütlich – perfekt für Paare und Geschäftsreisende",
     type: ["ferien"],
-    guests: 3,
-    bedrooms: 1,
-    beds: "1 Doppelbett, 1 Schlafsofa",
-    size: 52,
+    guests: null, // [BITTE EINTRAGEN]
+    bedrooms: null,
+    beds: null,
+    size: null,
     priceFrom: null,
     images: ["1.jpg", "2.jpg", "3.jpg", "4.jpg"],
     description: [
-      "Erleben Sie Bamberg hautnah: Altes Rathaus, Klein-Venedig und der Dom liegen in unmittelbarer Nähe. Abends locken die traditionsreichen Brauereigaststätten.",
-      "Die Suite verbindet historisches Flair mit modernem Komfort – mit hochwertigem Doppelbett, Schlafsofa für eine dritte Person und einer offenen Küche."
+      "Unser Studio-Apartment in Coburg verbindet Wohnen und Schlafen in einem offen gestalteten, modern eingerichteten Raum – ideal für Städtereisende und Geschäftsreisende.",
+      "Ob Veste Coburg, Schloss Ehrenburg oder der historische Marktplatz: Die Residenzstadt lädt zum Entdecken ein. Nach einem langen Tag erwartet Sie ein sauberes, liebevoll eingerichtetes Zuhause auf Zeit."
     ],
-    amenities: ["WLAN", "Küche", "Kaffeemaschine", "Smart-TV", "Bettwäsche & Handtücher", "Self-Check-in", "Altstadtlage"],
-    smoobuUrl: ""
+    amenities: ["Voll ausgestattet", "Bettwäsche & Handtücher", "Endreinigung inklusive", "Nichtraucherwohnung"],
+    smoobuId: "",
+    calendarHash: ""
   },
+
+  /* ---------------- BAMBERG ---------------- */
   {
-    id: "bamberg-regnitz",
+    id: "bamberg-penthouse-1",
     city: "bamberg",
-    name: "Apartment an der Regnitz",
-    tagline: "Großzügig wohnen für Familien und Arbeitsteams",
-    type: ["ferien", "monteur"],
-    guests: 4,
-    bedrooms: 2,
-    beds: "1 Doppelbett, 2 Einzelbetten",
-    size: 72,
-    priceFrom: null,
-    images: ["1.jpg", "2.jpg", "3.jpg", "4.jpg"],
-    description: [
-      "Viel Platz für Familien, Freunde oder Kollegen: zwei separate Schlafzimmer, ein großer Wohn-Essbereich und ein modernes Bad.",
-      "Die Lage nahe der Regnitz verbindet Ruhe mit kurzen Wegen in die Innenstadt und zu den Gewerbegebieten."
-    ],
-    amenities: ["WLAN", "Parkplatz", "Waschmaschine", "Voll ausgestattete Küche", "Familienfreundlich", "Rechnung für Firmen"],
-    smoobuUrl: ""
-  },
-  {
-    id: "regensburg-domblick",
-    city: "regensburg",
-    name: "Apartment Domblick Regensburg",
-    tagline: "Altstadt-Charme mit Blick auf die Domtürme",
+    name: "Penthouse Bamberg I",
+    tagline: "Großzügiges Penthouse für bis zu 6 Gäste",
     type: ["ferien"],
-    guests: 2,
-    bedrooms: 1,
-    beds: "1 Doppelbett",
-    size: 40,
+    guests: 6,
+    bedrooms: null,
+    beds: null,
+    size: null,
     priceFrom: null,
     images: ["1.jpg", "2.jpg", "3.jpg", "4.jpg"],
     description: [
-      "Steinerne Brücke, Dom St. Peter und die Donaupromenade – alles direkt vor der Haustür. Das ideale Zuhause für einen Städtetrip nach Regensburg.",
-      "Liebevoll eingerichtet mit Doppelbett, Kochnische und Arbeitsplatz – auch für Geschäftsreisende bestens geeignet."
+      "Wohnen über den Dächern von Bamberg: Unser Penthouse bietet viel Platz für Familien, Freundesgruppen und Geschäftsreisende – für bis zu 6 Gäste.",
+      "Das UNESCO-Welterbe mit Altem Rathaus, Klein-Venedig und Dom sowie die berühmte Bamberger Bierkultur liegen ganz in Ihrer Nähe. Die Wohnung ist voll ausgestattet und bezugsfertig für Sie."
     ],
-    amenities: ["WLAN", "Kochnische", "Arbeitsplatz", "Smart-TV", "Bettwäsche & Handtücher", "Self-Check-in"],
-    smoobuUrl: ""
+    amenities: ["Voll ausgestattete Küche", "Bettwäsche & Handtücher", "Endreinigung inklusive", "Ideal für Gruppen & Familien", "Nichtraucherwohnung"],
+    smoobuId: "",
+    calendarHash: ""
   },
   {
-    id: "regensburg-business",
-    city: "regensburg",
-    name: "Serviced Apartment Regensburg",
-    tagline: "Für längere Aufenthalte, Projekte und Montage",
-    type: ["monteur", "ferien"],
-    guests: 4,
-    bedrooms: 2,
-    beds: "4 Einzelbetten",
-    size: 65,
+    id: "bamberg-penthouse-2",
+    city: "bamberg",
+    name: "Penthouse Bamberg II",
+    tagline: "Stilvolles Penthouse mit Platz für bis zu 6 Gäste",
+    type: ["ferien"],
+    guests: 6,
+    bedrooms: null,
+    beds: null,
+    size: null,
     priceFrom: null,
     images: ["1.jpg", "2.jpg", "3.jpg", "4.jpg"],
     description: [
-      "Unser Serviced Apartment ist auf längere Aufenthalte ausgelegt: separate Schlafzimmer, schnelles WLAN, Waschmaschine und eine Küche, in der man wirklich kochen kann.",
-      "Gute Erreichbarkeit der großen Arbeitgeber und Industriegebiete Regensburgs. Wöchentliche Reinigung auf Wunsch."
+      "Unser zweites Penthouse in Bamberg bietet ebenfalls reichlich Platz für bis zu 6 Gäste – ideal für Familien, Gruppen und längere Aufenthalte.",
+      "Modern und liebevoll eingerichtet, sauber und voll ausgestattet: Hier können Sie Bamberg in vollen Zügen genießen und abends entspannt nach Hause kommen."
     ],
-    amenities: ["Schnelles WLAN", "Parkplatz", "Waschmaschine", "Voll ausgestattete Küche", "Reinigungsservice", "Rechnung für Firmen", "Langzeitmiete möglich"],
-    smoobuUrl: ""
+    amenities: ["Voll ausgestattete Küche", "Bettwäsche & Handtücher", "Endreinigung inklusive", "Ideal für Gruppen & Familien", "Nichtraucherwohnung"],
+    smoobuId: "",
+    calendarHash: ""
+  },
+
+  /* ---------------- REGENSBURG ---------------- */
+  {
+    id: "regensburg-penthouse",
+    city: "regensburg",
+    name: "Penthouse Regensburg",
+    tagline: "Modernes Penthouse für bis zu 4 Gäste",
+    type: ["ferien"],
+    guests: 4,
+    bedrooms: null,
+    beds: null,
+    size: null,
+    priceFrom: null,
+    images: ["1.jpg", "2.jpg", "3.jpg", "4.jpg"],
+    description: [
+      "Unser Penthouse in Regensburg bietet modernen Wohnkomfort für bis zu 4 Gäste – perfekt für Paare, kleine Familien oder Geschäftsreisende.",
+      "Dom St. Peter, die Steinerne Brücke und die lebendige Altstadt an der Donau sind ideale Ausflugsziele. Ihr voll ausgestattetes Apartment erwartet Sie bezugsfertig."
+    ],
+    amenities: ["Voll ausgestattete Küche", "Bettwäsche & Handtücher", "Endreinigung inklusive", "Nichtraucherwohnung"],
+    smoobuId: "",
+    calendarHash: ""
+  },
+  {
+    id: "regensburg-altstadt",
+    city: "regensburg",
+    name: "Große Altstadtwohnung Regensburg",
+    tagline: "3 Schlafzimmer für bis zu 6 Gäste – mitten im Welterbe",
+    type: ["ferien"],
+    guests: 6,
+    bedrooms: 3,
+    beds: null,
+    size: null,
+    priceFrom: null,
+    images: ["1.jpg", "2.jpg", "3.jpg", "4.jpg"],
+    description: [
+      "Unsere große Altstadtwohnung in Regensburg bietet mit drei Schlafzimmern viel Platz und Privatsphäre für bis zu 6 Gäste – ideal für Familien, Freundesgruppen und Teams.",
+      "Wohnen Sie mitten in der UNESCO-Welterbe-Altstadt: Cafés, Restaurants, der Dom und die Donau sind bequem zu Fuß erreichbar. Die Wohnung ist voll ausgestattet und liebevoll eingerichtet."
+    ],
+    amenities: ["3 Schlafzimmer", "Voll ausgestattete Küche", "Bettwäsche & Handtücher", "Endreinigung inklusive", "Altstadtlage", "Nichtraucherwohnung"],
+    smoobuId: "",
+    calendarHash: ""
   }
 ];

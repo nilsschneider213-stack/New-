@@ -17,16 +17,14 @@ window.GTH_CONFIG = {
   },
 
   /*
-   * SMOOBU-INTEGRATION
-   * In Smoobu: Einstellungen → Buchungstool (bzw. "Website") → Integration/Einbetten.
-   * Dort findest du einen Link der Form
-   *   https://login.smoobu.com/de/booking-tool/iframe/123456
-   * Diesen hier als "bookingToolUrl" eintragen. Für einzelne Wohnungen kannst du
-   * zusätzlich in assets/js/apartments.js bei jeder Wohnung "smoobuUrl" setzen
-   * (Link des Buchungstools, gefiltert auf diese eine Wohnung).
+   * SMOOBU-INTEGRATION (Buchungstool + Belegungskalender)
+   * customerId: deine Smoobu-Kundennummer. Sie steht im Einbettungscode des
+   * Buchungstools, z. B. ".../booking-tool/iframe/123456" → "123456".
+   * Die Wohnungs-IDs und Kalender-Codes stehen in assets/js/apartments.js.
+   * Anleitung: siehe README.md, Abschnitt „Smoobu verbinden“.
    */
   smoobu: {
-    bookingToolUrl: "", // z. B. "https://login.smoobu.com/de/booking-tool/iframe/123456"
+    customerId: "",
     baseUrl: "https://login.smoobu.com"
   },
 

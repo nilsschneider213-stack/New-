@@ -8,9 +8,10 @@ Die Seite ist eine statische Website (HTML/CSS/JavaScript) ohne Build-Schritt. S
 
 | Datei | Inhalt |
 |---|---|
-| `index.html` | Startseite mit Suche (Stadt, Anreise, Abreise, Gäste), Städten, allen Wohnungen |
+| `index.html` | Startseite mit Schnellauswahl (1. Stadt, 2. Ferienwohnung/Serviced Apartment oder Monteurwohnung, Reisedaten), Städten, allen Wohnungen |
 | `wohnungen.html` | Alle Wohnungen mit Filtern nach Stadt, Wohnungsart und Gästezahl |
-| `wohnung.html?id=…` | Detailseite je Wohnung: Galerie, Beschreibung, Ausstattung, Smoobu-Kalender |
+| `wohnung.html?id=…` | Detailseite je Wohnung: Galerie, Beschreibung, Ausstattung, Smoobu-Belegungskalender und Buchungstool |
+| `ueber-uns.html` | Über GreenTree Homes |
 | `buchen.html` | Smoobu-Buchungstool für alle Wohnungen |
 | `monteurwohnungen.html` | Angebot für Handwerker, Monteure und Firmen |
 | `partner.html` | Für Eigentümer leerer Gewerbeflächen und für Investoren (Langzeitmieter) |
@@ -22,30 +23,35 @@ Die Seite ist eine statische Website (HTML/CSS/JavaScript) ohne Build-Schritt. S
 ### 1. Firmendaten – `assets/js/config.js`
 Name, Anschrift, Telefon und E-Mail eintragen. Header, Footer und Kontaktseite übernehmen sie automatisch.
 
-### 2. Smoobu-Buchungskalender – `assets/js/config.js`
-1. In Smoobu: **Einstellungen → Buchungstool / Website → Einbinden** öffnen.
-2. Den Link der Form `https://login.smoobu.com/de/booking-tool/iframe/123456` kopieren.
-3. In `config.js` bei `bookingToolUrl` eintragen.
-4. Optional: Für jede Wohnung in `assets/js/apartments.js` bei `smoobuUrl` den Buchungstool-Link für genau diese Wohnung eintragen. Ist er leer, wird auf der Detailseite das allgemeine Buchungstool gezeigt.
+### 2. Smoobu verbinden (Buchungstool + Belegungskalender)
+Die Website zeigt pro Wohnung zwei Dinge von Smoobu an: den **Belegungskalender** (freie/belegte Tage) und das **Buchungstool** (Gäste wählen Daten, sehen den Preis und buchen direkt). Auf `buchen.html` erscheint das Buchungstool für alle Wohnungen.
 
-Solange kein Link eingetragen ist, sehen Gäste statt des Kalenders den Button „Unverbindlich anfragen“.
+Dafür werden nur drei Angaben gebraucht:
 
-Der Kalender wird erst geladen, wenn der Besucher auf „Kalender anzeigen“ klickt (Zwei-Klick-Lösung, DSGVO-konform). Darum braucht die Seite keinen Cookie-Banner: Sie setzt selbst keine Cookies, nutzt kein Tracking und lädt keine Google Fonts.
+| Angabe | Wo in Smoobu | Wohin |
+|---|---|---|
+| **Kundennummer** | Einbettungscode des Buchungstools (Menü „Website“ bzw. „Buchungstool“ → Einbinden). Im Code steht `.../booking-tool/iframe/123456` – die Zahl ist die Kundennummer. | `assets/js/config.js` → `customerId` |
+| **Wohnungs-ID** je Wohnung | Im Code des Kalender-Widgets bzw. in der Adresszeile, wenn man die Wohnung in Smoobu bearbeitet. | `assets/js/apartments.js` → `smoobuId` |
+| **Kalender-Code** je Wohnung | Einbettungscode des Verfügbarkeitskalenders / Kalender-Widgets: der lange Code nach `data-verification="..."` bzw. am Ende von `.../show-calendar-iframe/ID/CODE`. | `assets/js/apartments.js` → `calendarHash` |
+
+Am einfachsten: Die Einbettungscodes aus Smoobu kopieren und an Claude schicken – die Werte werden dann eingetragen.
+
+Fehlen die Angaben, sehen Gäste stattdessen „Unverbindlich anfragen“. Der Smoobu-Inhalt wird erst nach Klick auf „Kalender anzeigen“ geladen (Zwei-Klick-Lösung, DSGVO-konform). Darum braucht die Seite keinen Cookie-Banner: Sie setzt selbst keine Cookies, nutzt kein Tracking und lädt keine Google Fonts.
 
 ### 3. Wohnungen – `assets/js/apartments.js`
-Alle Texte sind **Beispieltexte**. Bitte Name, Beschreibung, Größe, Betten, Ausstattung und (optional) `priceFrom` an die echten Wohnungen anpassen.
+Die 6 Wohnungen sind angelegt (Coburg: Monteurwohnung, Studio-Apartment · Bamberg: 2 Penthouses · Regensburg: Penthouse, große Altstadtwohnung). Felder mit `null` (Größe, Betten, teils Gästezahl) werden ausgeblendet, bis sie eingetragen sind. Beschreibungen bitte prüfen und ergänzen.
 
 ### 4. Fotos
 ```
-images/hero.jpg                          ← großes Titelbild der Startseite (optional)
+images/hero.jpg                          ← großes Titelbild der Startseite
 images/staedte/coburg.jpg                ← Bilder der Städte-Kacheln
 images/staedte/bamberg.jpg
 images/staedte/regensburg.jpg
-images/wohnungen/coburg-altstadt/1.jpg   ← 1.jpg ist das Titelbild der Wohnung
-images/wohnungen/coburg-altstadt/2.jpg
+images/wohnungen/coburg-monteurwohnung/1.jpg   ← 1.jpg ist das Titelbild der Wohnung
+images/wohnungen/coburg-monteurwohnung/2.jpg
 …
 ```
-Die Ordnernamen entsprechen der `id` in `apartments.js`. Fehlt ein Foto, erscheint automatisch ein Platzhalter. Empfehlung: Querformat, ca. 1600 px breit, als JPG komprimiert (unter 400 KB).
+Ordnernamen: `coburg-monteurwohnung`, `coburg-studio`, `bamberg-penthouse-1`, `bamberg-penthouse-2`, `regensburg-penthouse`, `regensburg-altstadt` (entsprechen der `id` in `apartments.js`). Fehlt ein Foto, erscheint automatisch ein Platzhalter. Empfehlung: Querformat, ca. 1600 px breit, als JPG komprimiert (unter 400 KB).
 
 ### 5. Kontaktformulare
 Ohne Server öffnen die Formulare das E-Mail-Programm des Besuchers. Damit die Formulare Nachrichten direkt verschicken, bei einem Dienst wie [Formspree](https://formspree.io) oder [Web3Forms](https://web3forms.com) ein Formular anlegen und die Endpoint-URL in `config.js` bei `formEndpoint` eintragen. Den Dienst anschließend in der Datenschutzerklärung ergänzen.

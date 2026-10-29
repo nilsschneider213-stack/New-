@@ -22,7 +22,7 @@
   function $all(sel, root) { return Array.prototype.slice.call((root || document).querySelectorAll(sel)); }
   function cityById(id) { return CITIES.filter(function (c) { return c.id === id; })[0]; }
   function aptById(id) { return APTS.filter(function (a) { return a.id === id; })[0]; }
-  function typeLabel(t) { return t === "monteur" ? "Monteurwohnung" : "Ferienwohnung"; }
+  function typeLabel(t) { return t === "monteur" ? "Monteurwohnung" : "Ferienwohnung & Serviced"; }
   function isDate(s) { return /^\d{4}-\d{2}-\d{2}$/.test(s || ""); }
   function fmtDate(s) {
     if (!isDate(s)) return "";
@@ -57,7 +57,7 @@
     mail: '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="4" width="20" height="16" rx="2"/><path d="m22 7-10 6L2 7"/></svg>'
   };
 
-  var LOGO = '<svg viewBox="0 0 64 64" aria-hidden="true"><circle cx="32" cy="32" r="31" fill="#1a4230"/><path d="M32 11 17 32h7l-9 12h34l-9-12h7z" fill="#5f9c78"/><path d="M32 18 22 32h6l-7 10h22l-7-10h6z" fill="#8cc3a1"/><rect x="29.5" y="44" width="5" height="9" rx="1" fill="#b8955a"/></svg>';
+  var LOGO = '<img class="brand__logo" src="assets/img/logo-baum.png" alt="" width="50" height="47">';
 
   /* ---------- Bilder mit Platzhalter ---------- */
   function placeholder(city, label) {
@@ -95,7 +95,7 @@
       header.innerHTML =
         '<div class="container">' +
         '<a class="brand" href="index.html" aria-label="GreenTree Homes – Startseite">' + LOGO +
-        '<span><span class="brand__name">GreenTree Homes</span><span class="brand__sub">Coburg · Bamberg · Regensburg</span></span></a>' +
+        '<span><span class="brand__name">GreenTree</span><span class="brand__sub">Homes</span></span></a>' +
         '<button class="nav-toggle" aria-label="Menü öffnen" aria-expanded="false" aria-controls="main-nav"><span></span><span></span><span></span></button>' +
         '<nav class="nav" id="main-nav" aria-label="Hauptnavigation">' +
         nav.map(function (n) {
@@ -117,7 +117,7 @@
       footer.innerHTML =
         '<div class="container"><div class="footer-grid">' +
         '<div><a class="brand" href="index.html">' + LOGO +
-        '<span><span class="brand__name">GreenTree Homes</span><span class="brand__sub">Serviced Apartments</span></span></a>' +
+        '<span><span class="brand__name">GreenTree</span><span class="brand__sub">Homes</span></span></a>' +
         "<p>Ferienwohnungen, Monteurwohnungen und Serviced Apartments in Coburg, Bamberg und Regensburg – komfortabel, unkompliziert und direkt buchbar. Rund um die Uhr persönlich für Sie erreichbar.</p></div>" +
         "<div><h4>Unsere Städte</h4><ul>" +
         CITIES.map(function (ci) { return '<li><a href="wohnungen.html?stadt=' + ci.id + '">' + esc(ci.name) + "</a></li>"; }).join("") +
@@ -164,7 +164,7 @@
     });
   }
   function initSearch() {
-    $all("form.search").forEach(function (form) {
+    $all("form.search, form.quick").forEach(function (form) {
       fillCitySelect($('[name="stadt"]', form), params.get("stadt"));
       var arr = $('[name="anreise"]', form), dep = $('[name="abreise"]', form), g = $('[name="gaeste"]', form);
       if (isDate(params.get("anreise"))) arr.value = params.get("anreise");
@@ -200,7 +200,9 @@
       '<div class="card__body"><div class="card__city">' + esc(city.name) + "</div>" +
       '<h3 class="card__title"><a href="' + href + '">' + esc(a.name) + "</a></h3>" +
       '<p class="card__text">' + esc(a.tagline) + "</p>" +
-      '<ul class="facts"><li>' + ICONS.guests + "bis " + a.guests + " Gäste</li><li>" + ICONS.bed + a.bedrooms + " Schlafzi.</li><li>" + ICONS.size + a.size + " m²</li></ul>" +
+      '<ul class="facts">' + (a.guests ? "<li>" + ICONS.guests + "bis " + a.guests + " Gäste</li>" : "") +
+      (a.bedrooms ? "<li>" + ICONS.bed + a.bedrooms + (a.bedrooms === 1 ? " Schlafzimmer" : " Schlafzimmer") + "</li>" : "") +
+      (a.size ? "<li>" + ICONS.size + a.size + " m²</li>" : "") + "</ul>" +
       '<div class="card__foot"><span class="price">' + (a.priceFrom ? "ab <strong>" + a.priceFrom + " €</strong> / Nacht" : "Preise im Kalender") + "</span>" +
       '<a class="link-arrow" href="' + href + '">Details →</a></div></div></article>';
   }
@@ -217,6 +219,58 @@
     }
     var featured = $("#featured");
     if (featured) featured.innerHTML = APTS.map(aptCard).join("");
+  }
+
+  /* ---------- Schnellauswahl Stadt + Wohnungsart (Startseite) ---------- */
+  function initQuick() {
+    var form = $("form.quick");
+    if (!form) return;
+    function count(city, typ) {
+      return APTS.filter(function (a) {
+        return (!city || a.city === city) && (!typ || a.type.indexOf(typ) > -1);
+      }).length;
+    }
+    function val(name) { var el = $('input[name="' + name + '"]:checked', form); return el ? el.value : ""; }
+    function plural(n, typ) {
+      if (typ === "monteur") return n === 1 ? "1 Monteurwohnung" : n + " Monteurwohnungen";
+      return n === 1 ? "1 Wohnung" : n + " Wohnungen";
+    }
+    function update() {
+      var city = val("stadt"), typ = val("typ");
+      $all("[data-count-city]", form).forEach(function (el) {
+        var n = count(el.getAttribute("data-count-city"), typ);
+        el.textContent = plural(n, typ);
+      });
+      $all("[data-count-type]", form).forEach(function (el) {
+        var t = el.getAttribute("data-count-type"), n = count(city, t);
+        el.textContent = n ? plural(n, t) + (city ? " in " + cityById(city).name : "") : "In dieser Stadt nicht verfügbar";
+      });
+      var n = count(city, typ);
+      var btn = $("#quick-submit"), hint = $("#quick-hint");
+      var cityName = city ? cityById(city).name : "";
+      if (n === 0) {
+        btn.textContent = "Anfrage stellen";
+        hint.innerHTML = "In " + esc(cityName) + " haben wir aktuell keine " + (typ === "monteur" ? "Monteurwohnung" : "passende Wohnung") +
+          ". Fragen Sie uns gerne – wir finden eine Lösung, oder schauen Sie in unseren anderen Städten.";
+      } else {
+        btn.textContent = n === 1 ? "Wohnung ansehen" : plural(n, typ) + " anzeigen";
+        hint.textContent = city || typ ? "" : "Tipp: Wählen Sie Stadt und Unterkunftsart – oder sehen Sie direkt alle Wohnungen.";
+      }
+    }
+    form.addEventListener("change", update);
+    form.addEventListener("submit", function (e) {
+      var city = val("stadt"), typ = val("typ");
+      var list = APTS.filter(function (a) { return (!city || a.city === city) && (!typ || a.type.indexOf(typ) > -1); });
+      var dates = ["anreise", "abreise", "gaeste"].map(function (k) {
+        var v = form.elements[k] && form.elements[k].value; return v ? "&" + k + "=" + encodeURIComponent(v) : "";
+      }).join("");
+      if (e.defaultPrevented) return;
+      e.preventDefault();
+      if (list.length === 0) location.href = "kontakt.html?anliegen=" + (typ === "monteur" ? "firmenanfrage" : "buchungsanfrage") + dates;
+      else if (list.length === 1) location.href = "wohnung.html?id=" + encodeURIComponent(list[0].id) + dates;
+      else location.href = "wohnungen.html?stadt=" + city + "&typ=" + typ + dates;
+    });
+    update();
   }
 
   function initList() {
@@ -255,7 +309,7 @@
       var list = APTS.filter(function (a) {
         return (!state.stadt || a.city === state.stadt) &&
           (!state.typ || a.type.indexOf(state.typ) > -1) &&
-          (!state.gaeste || a.guests >= state.gaeste);
+          (!state.gaeste || !a.guests || a.guests >= state.gaeste);
       });
       grid.innerHTML = list.length ? list.map(aptCard).join("") :
         '<div class="empty" style="grid-column:1/-1"><h3>Keine passende Wohnung gefunden</h3><p>Bitte passen Sie Ihre Filter an oder <a href="kontakt.html">kontaktieren Sie uns</a> – wir finden eine Lösung.</p></div>';
@@ -280,38 +334,57 @@
   }
 
   /* ---------- Smoobu (Zwei-Klick-Lösung) ---------- */
-  function smoobuEmbed(container, url, opts) {
+  var SMOOBU_BASE = (CFG.smoobu && CFG.smoobu.baseUrl) || "https://login.smoobu.com";
+
+  // Links zu Buchungstool und Belegungskalender aus config.js / apartments.js
+  function smoobuLinks(apt) {
+    var cid = CFG.smoobu && String(CFG.smoobu.customerId || "").replace(/\D/g, "");
+    var id = apt && String(apt.smoobuId || "").replace(/\D/g, "");
+    var hash = apt && String(apt.calendarHash || "").replace(/[^a-f0-9]/gi, "");
+    return {
+      booking: cid ? SMOOBU_BASE + "/de/booking-tool/iframe/" + cid + (id ? "/" + id : "") : "",
+      calendar: id && hash ? SMOOBU_BASE + "/de/cockpit/widget/show-calendar-iframe/" + id + "/" + hash : ""
+    };
+  }
+
+  function smoobuEmbed(container, links, opts) {
     opts = opts || {};
     if (!container) return;
-    var base = (CFG.smoobu && CFG.smoobu.baseUrl) || "https://login.smoobu.com";
+    var inquiryBox = '<div class="consent-box">' + ICONS.calendar +
+      "<h3>" + (links.booking || links.calendar ? "Buchungskalender gerade nicht erreichbar" : "Online-Buchung in Kürze verfügbar") + "</h3>" +
+      "<p>Senden Sie uns gerne direkt eine unverbindliche Anfrage – wir melden uns schnellstmöglich mit Verfügbarkeit und Preis.</p>" +
+      '<a class="btn btn--primary" href="' + esc(opts.inquiryHref || "kontakt.html") + '">Unverbindlich anfragen</a></div>';
 
-    if (!url) {
-      container.innerHTML = '<div class="consent-box">' + ICONS.calendar +
-        "<h3>Online-Buchung in Kürze verfügbar</h3>" +
-        "<p>Unser Buchungskalender wird gerade eingerichtet. Senden Sie uns gerne direkt eine unverbindliche Anfrage – wir melden uns schnellstmöglich mit Verfügbarkeit und Preis.</p>" +
-        '<a class="btn btn--primary" href="' + esc(opts.inquiryHref || "kontakt.html") + '">Unverbindlich anfragen</a></div>';
-      if (window.console) console.info("[GreenTree Homes] Kein Smoobu-Link hinterlegt – bitte in assets/js/config.js bzw. apartments.js eintragen.");
+    if (!links.booking && !links.calendar) {
+      container.innerHTML = inquiryBox;
+      if (window.console) console.info("[GreenTree Homes] Keine Smoobu-Daten hinterlegt – bitte in assets/js/config.js bzw. apartments.js eintragen.");
       return;
     }
 
     function load() {
-      var targetId = "smoobu-" + Math.random().toString(36).slice(2, 9);
-      container.innerHTML = '<div id="' + targetId + '"></div>';
-      var done = false;
-      function fallback() {
-        if (done) return; done = true;
-        $("#" + targetId).innerHTML = '<iframe src="' + esc(url) + '" title="Buchungskalender" loading="lazy"></iframe>';
+      var html = "";
+      if (links.calendar) {
+        html += '<h3 class="embed-title">Belegungskalender</h3><p class="embed-hint">Freie Tage sind im Kalender markiert.</p>' +
+          '<iframe class="smoobu-calendar" src="' + esc(links.calendar) + '" title="Belegungskalender" loading="lazy"></iframe>';
       }
+      if (links.booking) {
+        var targetId = "smoobu-" + Math.random().toString(36).slice(2, 9);
+        html += (links.calendar ? '<h3 class="embed-title" style="margin-top:28px">Jetzt buchen</h3>' : "") + '<div id="' + targetId + '"></div>';
+      }
+      container.innerHTML = html;
+      if (!links.booking) return;
+
+      var target = $("#" + targetId);
+      function fail() { if (!$("iframe", target)) target.innerHTML = inquiryBox; }
       var s = document.createElement("script");
-      s.src = base + "/js/Settings/BookingToolIframe.js";
+      s.src = SMOOBU_BASE + "/js/Settings/BookingToolIframe.js";
       s.onload = function () {
         if (window.BookingToolIframe && typeof window.BookingToolIframe.initialize === "function") {
-          done = true;
-          window.BookingToolIframe.initialize({ url: url, baseUrl: base, target: "#" + targetId });
-        } else fallback();
+          window.BookingToolIframe.initialize({ url: links.booking, baseUrl: SMOOBU_BASE, target: "#" + targetId });
+        } else fail();
       };
-      s.onerror = fallback;
-      setTimeout(function () { if (!$("#" + targetId + " iframe") && !done) fallback(); }, 6000);
+      s.onerror = fail;
+      setTimeout(fail, 12000);
       document.body.appendChild(s);
     }
 
@@ -365,10 +438,11 @@
       }).join("") + "</div>" +
       "<h2>Über diese Wohnung</h2>" + a.description.map(function (p) { return "<p>" + esc(p) + "</p>"; }).join("") +
       '<div class="detail__facts">' +
-      '<div class="fact"><span>Gäste</span><strong>bis ' + a.guests + "</strong></div>" +
-      '<div class="fact"><span>Schlafzimmer</span><strong>' + a.bedrooms + "</strong></div>" +
-      '<div class="fact"><span>Größe</span><strong>' + a.size + " m²</strong></div>" +
-      '<div class="fact"><span>Betten</span><strong style="font-size:.95rem">' + esc(a.beds) + "</strong></div></div>" +
+      (a.guests ? '<div class="fact"><span>Gäste</span><strong>bis ' + a.guests + "</strong></div>" : "") +
+      (a.bedrooms ? '<div class="fact"><span>Schlafzimmer</span><strong>' + a.bedrooms + "</strong></div>" : "") +
+      (a.size ? '<div class="fact"><span>Größe</span><strong>' + a.size + " m²</strong></div>" : "") +
+      (a.beds ? '<div class="fact"><span>Betten</span><strong style="font-size:.95rem">' + esc(a.beds) + "</strong></div>" : "") +
+      '<div class="fact"><span>Stadt</span><strong>' + esc(city.name) + "</strong></div></div>" +
       "<h3>Ausstattung</h3><ul class=\"amenities\">" + a.amenities.map(function (m) { return "<li>" + ICONS.check + esc(m) + "</li>"; }).join("") + "</ul>" +
       "<h3>Gut zu wissen</h3><ul class=\"check-list\"><li>Check-in ab 15:00 Uhr, Check-out bis 10:00 Uhr (nach Absprache flexibel)</li>" +
       "<li>Kontaktloser Self-Check-in – Sie erhalten alle Infos vor der Anreise</li><li>Bettwäsche, Handtücher, Energiekosten und Endreinigung inklusive</li>" +
@@ -383,7 +457,7 @@
       '<form id="box-form"><div class="row"><div class="field"><label for="b-arr">Anreise</label><input type="date" id="b-arr" value="' + arr + '"></div>' +
       '<div class="field"><label for="b-dep">Abreise</label><input type="date" id="b-dep" value="' + dep + '"></div></div>' +
       '<div class="field" style="margin-bottom:16px"><label for="b-g">Gäste</label><select id="b-g">' +
-      Array.apply(null, Array(a.guests)).map(function (_, i) { var v = i + 1; return '<option value="' + v + '"' + (String(v) === g ? " selected" : "") + ">" + v + (v === 1 ? " Gast" : " Gäste") + "</option>"; }).join("") +
+      Array.apply(null, Array(a.guests || 6)).map(function (_, i) { var v = i + 1; return '<option value="' + v + '"' + (String(v) === g ? " selected" : "") + ">" + v + (v === 1 ? " Gast" : " Gäste") + "</option>"; }).join("") +
       "</select></div>" +
       '<a class="btn btn--primary btn--block" href="#kalender">Verfügbarkeit prüfen</a>' +
       '<a class="btn btn--outline btn--block" style="margin-top:10px" id="box-inquiry" href="' + inquiry + '">Unverbindlich anfragen</a>' +
@@ -399,7 +473,7 @@
     }
     ["#b-arr", "#b-dep", "#b-g"].forEach(function (s) { $(s).addEventListener("change", updInquiry); });
 
-    smoobuEmbed($("#detail-embed"), a.smoobuUrl || (CFG.smoobu && CFG.smoobu.bookingToolUrl), { inquiryHref: inquiry });
+    smoobuEmbed($("#detail-embed"), smoobuLinks(a), { inquiryHref: inquiry });
     initLightbox(a, imgs);
 
     var more = $("#more-apts");
@@ -449,7 +523,7 @@
       info.hidden = false;
       info.innerHTML = "Ihr gewünschter Zeitraum: <strong>" + fmtDate(arr) + " – " + fmtDate(dep) + "</strong>. Bitte wählen Sie die Daten im Kalender aus.";
     }
-    smoobuEmbed(box, CFG.smoobu && CFG.smoobu.bookingToolUrl, { inquiryHref: "kontakt.html" + location.search });
+    smoobuEmbed(box, smoobuLinks(aptById(params.get("wohnung")) || null), { inquiryHref: "kontakt.html" + location.search });
   }
 
   /* ---------- Formulare ---------- */
@@ -543,6 +617,7 @@
   fillCompany();
   initSearch();
   initHome();
+  initQuick();
   initList();
   initDetail();
   initBooking();
