@@ -482,3 +482,5 @@ p { margin: 0 0 1em; }
   .hero__badges { display: none; }
 }
 .pick { padding-right: 38px; }
+.detail > * { min-width: 0; }
+@media (max-width: 960px) { .detail { grid-template-columns: minmax(0, 1fr); } }
