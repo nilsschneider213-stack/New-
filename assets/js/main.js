@@ -1,5 +1,5 @@
 /* ============================================================
-   Green Tree Homes – Seitenlogik
+   GreenTree Homes – Seitenlogik
    (Header/Footer, Suche, Wohnungslisten, Detailseite,
     Smoobu-Einbindung mit Einwilligung, Formulare)
    ============================================================ */
@@ -83,10 +83,10 @@
   function renderChrome() {
     var c = CFG.company || {};
     var nav = [
-      ["index.html", "Start", "home"],
       ["wohnungen.html", "Wohnungen", "wohnungen"],
       ["monteurwohnungen.html", "Monteurwohnungen", "monteur"],
       ["partner.html", "Eigentümer & Investoren", "partner"],
+      ["ueber-uns.html", "Über uns", "ueber"],
       ["kontakt.html", "Kontakt", "kontakt"]
     ];
     var header = $("#site-header");
@@ -94,8 +94,8 @@
       header.className = "site-header";
       header.innerHTML =
         '<div class="container">' +
-        '<a class="brand" href="index.html" aria-label="Green Tree Homes – Startseite">' + LOGO +
-        '<span><span class="brand__name">Green Tree Homes</span><span class="brand__sub">Coburg · Bamberg · Regensburg</span></span></a>' +
+        '<a class="brand" href="index.html" aria-label="GreenTree Homes – Startseite">' + LOGO +
+        '<span><span class="brand__name">GreenTree Homes</span><span class="brand__sub">Coburg · Bamberg · Regensburg</span></span></a>' +
         '<button class="nav-toggle" aria-label="Menü öffnen" aria-expanded="false" aria-controls="main-nav"><span></span><span></span><span></span></button>' +
         '<nav class="nav" id="main-nav" aria-label="Hauptnavigation">' +
         nav.map(function (n) {
@@ -117,20 +117,20 @@
       footer.innerHTML =
         '<div class="container"><div class="footer-grid">' +
         '<div><a class="brand" href="index.html">' + LOGO +
-        '<span><span class="brand__name">Green Tree Homes</span><span class="brand__sub">Serviced Apartments</span></span></a>' +
-        "<p>Ferienwohnungen, Monteurwohnungen und Serviced Apartments in Coburg, Bamberg und Regensburg – komfortabel, unkompliziert und direkt buchbar.</p></div>" +
+        '<span><span class="brand__name">GreenTree Homes</span><span class="brand__sub">Serviced Apartments</span></span></a>' +
+        "<p>Ferienwohnungen, Monteurwohnungen und Serviced Apartments in Coburg, Bamberg und Regensburg – komfortabel, unkompliziert und direkt buchbar. Rund um die Uhr persönlich für Sie erreichbar.</p></div>" +
         "<div><h4>Unsere Städte</h4><ul>" +
         CITIES.map(function (ci) { return '<li><a href="wohnungen.html?stadt=' + ci.id + '">' + esc(ci.name) + "</a></li>"; }).join("") +
         '<li><a href="monteurwohnungen.html">Monteurwohnungen</a></li></ul></div>' +
         '<div><h4>Service</h4><ul><li><a href="buchen.html">Online buchen</a></li><li><a href="kontakt.html">Kontakt & Anfrage</a></li>' +
-        '<li><a href="partner.html">Für Eigentümer</a></li><li><a href="partner.html#investoren">Für Investoren</a></li></ul></div>' +
+        '<li><a href="ueber-uns.html">Über uns</a></li><li><a href="partner.html">Für Eigentümer</a></li><li><a href="partner.html#investoren">Für Investoren</a></li></ul></div>' +
         "<div><h4>Kontakt</h4><ul>" +
-        "<li>" + esc(c.owner) + "</li><li>" + esc(c.street) + "</li><li>" + esc(c.zipCity) + "</li>" +
+        "<li>" + esc(c.legalName || c.owner) + "</li><li>" + esc(c.street) + "</li><li>" + esc(c.zipCity) + "</li>" +
         '<li><a href="tel:' + esc(String(c.phone || "").replace(/[^\d+]/g, "")) + '">' + esc(c.phone) + "</a></li>" +
         '<li><a href="mailto:' + esc(c.email) + '">' + esc(c.email) + "</a></li></ul></div>" +
         "</div>" +
-        '<div class="footer-bottom"><span>© ' + new Date().getFullYear() + " Green Tree Homes. Alle Rechte vorbehalten.</span>" +
-        '<nav aria-label="Rechtliches"><a href="impressum.html">Impressum</a><a href="datenschutz.html">Datenschutz</a><a href="agb.html">AGB & Stornierung</a>' +
+        '<div class="footer-bottom"><span>© ' + new Date().getFullYear() + " GreenTree Homes. Alle Rechte vorbehalten.</span>" +
+        '<nav aria-label="Rechtliches"><a href="impressum.html">Impressum</a><a href="datenschutz.html">Datenschutz</a><a href="agb.html">AGB</a><a href="agb.html#storno">Stornierung</a>' +
         '<a href="#" id="consent-reset">Einwilligungen widerrufen</a></nav></div></div>';
       var reset = $("#consent-reset", footer);
       reset.addEventListener("click", function (e) {
@@ -290,7 +290,7 @@
         "<h3>Online-Buchung in Kürze verfügbar</h3>" +
         "<p>Unser Buchungskalender wird gerade eingerichtet. Senden Sie uns gerne direkt eine unverbindliche Anfrage – wir melden uns schnellstmöglich mit Verfügbarkeit und Preis.</p>" +
         '<a class="btn btn--primary" href="' + esc(opts.inquiryHref || "kontakt.html") + '">Unverbindlich anfragen</a></div>';
-      if (window.console) console.info("[Green Tree Homes] Kein Smoobu-Link hinterlegt – bitte in assets/js/config.js bzw. apartments.js eintragen.");
+      if (window.console) console.info("[GreenTree Homes] Kein Smoobu-Link hinterlegt – bitte in assets/js/config.js bzw. apartments.js eintragen.");
       return;
     }
 
@@ -338,9 +338,9 @@
       return;
     }
     var city = cityById(a.city) || {};
-    document.title = a.name + " – " + city.name + " | Green Tree Homes";
+    document.title = a.name + " – " + city.name + " | GreenTree Homes";
     var md = $('meta[name="description"]');
-    if (md) md.setAttribute("content", a.name + " in " + city.name + ": " + a.tagline + ". Jetzt direkt bei Green Tree Homes buchen.");
+    if (md) md.setAttribute("content", a.name + " in " + city.name + ": " + a.tagline + ". Jetzt direkt bei GreenTree Homes buchen.");
 
     var hero = $("#detail-hero");
     if (hero) {
@@ -371,8 +371,9 @@
       '<div class="fact"><span>Betten</span><strong style="font-size:.95rem">' + esc(a.beds) + "</strong></div></div>" +
       "<h3>Ausstattung</h3><ul class=\"amenities\">" + a.amenities.map(function (m) { return "<li>" + ICONS.check + esc(m) + "</li>"; }).join("") + "</ul>" +
       "<h3>Gut zu wissen</h3><ul class=\"check-list\"><li>Check-in ab 15:00 Uhr, Check-out bis 10:00 Uhr (nach Absprache flexibel)</li>" +
-      "<li>Kontaktloser Self-Check-in – Sie erhalten alle Infos vor der Anreise</li><li>Bettwäsche, Handtücher und Endreinigung inklusive</li>" +
-      "<li>Rechnung mit ausgewiesener MwSt. für Geschäftsreisende</li></ul>" +
+      "<li>Kontaktloser Self-Check-in – Sie erhalten alle Infos vor der Anreise</li><li>Bettwäsche, Handtücher, Energiekosten und Endreinigung inklusive</li>" +
+      "<li><a href=\"agb.html#storno\">Kostenlose Stornierung</a> bis 5 Tage vor Anreise</li><li>Nichtraucherwohnung, Haustiere sind leider nicht gestattet</li>" +
+      "<li>Rund um die Uhr persönlich für Sie erreichbar</li><li>Rechnung mit ausgewiesener MwSt. für Geschäftsreisende</li></ul>" +
       '<h2 id="kalender" style="margin-top:40px">Verfügbarkeit & Buchung</h2>' +
       (arr && dep ? '<div class="notice">Ihr gewünschter Zeitraum: <strong>' + fmtDate(arr) + " – " + fmtDate(dep) + "</strong>. Bitte wählen Sie die Daten im Kalender aus.</div>" : "") +
       '<div class="embed-wrap" id="detail-embed"></div>' +
@@ -480,7 +481,7 @@
 
         var data = new FormData(form);
         data.delete("website");
-        var subject = form.getAttribute("data-gth-form") + " – Green Tree Homes";
+        var subject = form.getAttribute("data-gth-form") + " – GreenTree Homes";
         data.append("_subject", subject);
 
         var endpoint = CFG.formEndpoint;

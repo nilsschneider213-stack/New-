@@ -1,5 +1,5 @@
 /* ============================================================
-   Green Tree Homes – Stylesheet
+   GreenTree Homes – Stylesheet
    Bewusst ohne externe Schriften (DSGVO-freundlich).
    ============================================================ */
 :root {
@@ -108,9 +108,10 @@ p { margin: 0 0 1em; }
 }
 .nav-toggle span { display: block; width: 24px; height: 2px; background: var(--green-900); margin: 5px 0; transition: .2s; }
 
-@media (max-width: 1100px) {
+@media (max-width: 1240px) {
   .brand__sub { display: none; }
 }
+.brand__sub { white-space: nowrap; }
 @media (max-width: 960px) {
   .nav-toggle { display: block; }
   .nav {
@@ -127,8 +128,8 @@ p { margin: 0 0 1em; }
 .hero {
   position: relative; color: #fff; overflow: hidden;
   background:
-    linear-gradient(115deg, rgba(18,48,31,.92) 0%, rgba(26,66,48,.78) 55%, rgba(46,108,80,.55) 100%),
-    var(--hero-img, none) center/cover no-repeat,
+    linear-gradient(110deg, rgba(14,38,24,.9) 0%, rgba(20,52,36,.72) 50%, rgba(30,80,56,.35) 100%),
+    url("../../images/hero.jpg") center/cover no-repeat,
     var(--green-800);
 }
 .hero::after {
@@ -415,3 +416,10 @@ p { margin: 0 0 1em; }
   .fade-in { opacity: 1; transform: none; transition: none; }
   * { transition: none !important; }
 }
+
+/* Über uns */
+.about-photo { border-radius: var(--radius); overflow: hidden; box-shadow: var(--shadow-lg); aspect-ratio: 1 / 1; background: var(--green-100); }
+.about-photo img, .about-photo .ph { width: 100%; height: 100%; object-fit: cover; }
+.values { display: grid; grid-template-columns: repeat(4, 1fr); gap: 20px; }
+@media (max-width: 860px) { .values { grid-template-columns: 1fr 1fr; } }
+@media (max-width: 480px) { .values { grid-template-columns: 1fr; } }

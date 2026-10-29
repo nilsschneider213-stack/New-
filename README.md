@@ -1,6 +1,6 @@
-# Green Tree Homes – Website
+# GreenTree Homes – Website
 
-Buchungswebsite für die Ferienwohnungen, Monteurwohnungen und Serviced Apartments von Green Tree Homes in **Coburg, Bamberg und Regensburg**.
+Buchungswebsite für die Ferienwohnungen, Monteurwohnungen und Serviced Apartments von GreenTree Homes in **Coburg, Bamberg und Regensburg**.
 
 Die Seite ist eine statische Website (HTML/CSS/JavaScript) ohne Build-Schritt. Sie läuft bei jedem Webhoster (z. B. IONOS, Strato, All-Inkl, Netlify, GitHub Pages): einfach alle Dateien hochladen.
 

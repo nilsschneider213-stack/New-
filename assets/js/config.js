@@ -6,12 +6,13 @@
  */
 window.GTH_CONFIG = {
   company: {
-    name: "Green Tree Homes",
-    owner: "[Vorname Nachname]",
-    street: "[Straße Hausnummer]",
-    zipCity: "[PLZ Ort]",
-    phone: "[+49 000 000000]",
-    email: "info@greentreehomes.de", // [PLATZHALTER] – deine echte E-Mail-Adresse eintragen
+    name: "GreenTree Homes",
+    owner: "Nils Schneider",
+    legalName: "Nils Schneider CN Einzelunternehmen",
+    street: "Keplerstraße 20",
+    zipCity: "93047 Regensburg",
+    phone: "+49 1575 7309729",
+    email: "hosting@nilsschneidercn.de",
     whatsapp: "" // optional, z. B. "4915112345678" (ohne + und Leerzeichen)
   },
 
