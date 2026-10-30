@@ -63,6 +63,9 @@ Pro Wohnung kann in `assets/js/apartments.js` bei `video` ein Video eingetragen 
 
 YouTube-/Vimeo-Videos werden erst nach Klick auf „Roomtour ansehen“ geladen (datenschutzfreundlich).
 
+### 4b. Bewertungen (Booking.com / Airbnb)
+Die Gästebewertungen kommen über Elfsight-Widgets. Die Widget-IDs stehen in `assets/js/config.js` unter `reviews` (derzeit Booking.com und Airbnb). Neues Widget: in Elfsight anlegen, die ID aus dem Code `elfsight-app-…` kopieren und als neue Zeile eintragen. Die Bewertungen werden erst nach Klick auf „Bewertungen anzeigen“ geladen (datenschutzfreundlich).
+
 ### 5. Kontaktformulare
 Ohne Server öffnen die Formulare das E-Mail-Programm des Besuchers. Damit die Formulare Nachrichten direkt verschicken, bei einem Dienst wie [Formspree](https://formspree.io) oder [Web3Forms](https://web3forms.com) ein Formular anlegen und die Endpoint-URL in `config.js` bei `formEndpoint` eintragen. Den Dienst anschließend in der Datenschutzerklärung ergänzen.
 

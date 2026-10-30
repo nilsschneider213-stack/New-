@@ -143,8 +143,8 @@
       var reset = $("#consent-reset", footer);
       reset.addEventListener("click", function (e) {
         e.preventDefault();
-        try { localStorage.removeItem("gth_consent_smoobu"); } catch (err) { /* ignore */ }
-        alert("Ihre Einwilligung zum Laden externer Inhalte (Smoobu) wurde widerrufen.");
+        try { localStorage.removeItem("gth_consent_smoobu"); localStorage.removeItem("gth_consent_reviews"); } catch (err) { /* ignore */ }
+        alert("Ihre Einwilligungen zum Laden externer Inhalte (Smoobu, Bewertungen) wurden widerrufen.");
         location.reload();
       });
     }
@@ -692,6 +692,50 @@
     smoobuEmbed(box, smoobuLinks(aptById(params.get("wohnung")) || null), { inquiryHref: "kontakt.html" + location.search });
   }
 
+  /* ---------- Bewertungen (Elfsight-Widgets, Zwei-Klick-Lösung) ---------- */
+  function initReviews() {
+    var box = $("#reviews");
+    var list = (CFG.reviews || []).filter(function (r) { return /^[a-f0-9-]{36}$/i.test(r.id || ""); });
+    if (!box) return;
+    if (!list.length) { box.closest("section").hidden = true; return; }
+
+    function load() {
+      box.innerHTML = (list.length > 1 ? '<div class="reviews__tabs" role="tablist">' + list.map(function (r, i) {
+          return '<button type="button" role="tab" aria-selected="' + (i === 0) + '" data-tab="' + i + '">' + esc(r.label) + "</button>";
+        }).join("") + "</div>" : "") +
+        list.map(function (r, i) {
+          return '<div class="reviews__pane" data-pane="' + i + '"' + (i ? " hidden" : "") + '><div class="elfsight-app-' + esc(r.id) + '"></div></div>';
+        }).join("");
+      $all("[data-tab]", box).forEach(function (t) {
+        t.addEventListener("click", function () {
+          var i = t.getAttribute("data-tab");
+          $all("[data-tab]", box).forEach(function (x) { x.setAttribute("aria-selected", x === t ? "true" : "false"); });
+          $all("[data-pane]", box).forEach(function (pn) { pn.hidden = pn.getAttribute("data-pane") !== i; });
+          window.dispatchEvent(new Event("resize")); // Widget passt sich der Breite an
+        });
+      });
+      if (!document.querySelector('script[src="https://elfsightcdn.com/platform.js"]')) {
+        var sc = document.createElement("script");
+        sc.src = "https://elfsightcdn.com/platform.js";
+        sc.async = true;
+        document.body.appendChild(sc);
+      }
+    }
+
+    if (storage("gth_consent_reviews") === "1") { load(); return; }
+    box.innerHTML = '<div class="consent-box reviews__consent">' +
+      '<div class="reviews__stars" aria-hidden="true">★★★★★</div>' +
+      "<h3>Das sagen unsere Gäste</h3>" +
+      "<p>Echte Bewertungen von " + list.map(function (r) { return esc(r.label); }).join(" und ") +
+      ". Beim Anzeigen werden Inhalte unseres Partners Elfsight geladen (<a href=\"datenschutz.html#bewertungen\">Datenschutz</a>).</p>" +
+      '<button type="button" class="btn btn--primary">Bewertungen anzeigen</button><br>' +
+      '<label><input type="checkbox"> Bewertungen künftig immer anzeigen</label></div>';
+    $("button", box).addEventListener("click", function () {
+      if ($("input", box).checked) storage("gth_consent_reviews", "1");
+      load();
+    });
+  }
+
   /* ---------- Formulare ---------- */
   function initForms() {
     // Vorbelegung aus URL (z. B. von einer Wohnungsseite)
@@ -791,6 +835,7 @@
   initSearch();
   initHome();
   initQuick();
+  initReviews();
   initList();
   initDetail();
   initBooking();

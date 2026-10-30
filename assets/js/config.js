@@ -30,6 +30,18 @@ window.GTH_CONFIG = {
   },
 
   /*
+   * BEWERTUNGEN (Elfsight-Widgets)
+   * Für jedes Widget die ID aus dem Elfsight-Code eintragen:
+   *   <div class="elfsight-app-XXXXXXXX-XXXX-XXXX-XXXX-XXXXXXXXXXXX"></div>
+   *   → id: "XXXXXXXX-XXXX-XXXX-XXXX-XXXXXXXXXXXX"
+   * Weitere Plattformen (z. B. Google) einfach als neue Zeile ergänzen.
+   */
+  reviews: [
+    { label: "Booking.com", id: "2bdc44c2-269d-4fa1-b493-e8d42667f75d" },
+    { label: "Airbnb", id: "4247a781-bb73-4050-8882-4d009a4816ec" }
+  ],
+
+  /*
    * KONTAKTFORMULARE
    * Ohne eigenen Server können Formulare über einen Dienst wie Formspree,
    * Web3Forms o. ä. verschickt werden. Trage hier die Endpoint-URL ein

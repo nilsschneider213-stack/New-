@@ -826,3 +826,11 @@ h3 { font-size: 1.55rem; }
   .site-header--center .brand--center .brand__sub { letter-spacing: .4em; font-size: .6rem; display: block; }
 }
 .site-header--center .brand--center .brand__name, .site-header--center .brand--center .brand__sub { text-shadow: 0 0 6px var(--cream), 0 0 2px var(--cream); }
+
+/* Bewertungen */
+.reviews { max-width: 1100px; margin: 0 auto; }
+.reviews__tabs { display: flex; justify-content: center; gap: 8px; margin-bottom: 24px; }
+.reviews__tabs button { font: 600 .95rem var(--sans); padding: .7em 1.6em; border-radius: 8px; border: 1px solid var(--line); background: #fff; color: var(--muted); cursor: pointer; }
+.reviews__tabs button[aria-selected="true"] { background: var(--green-700); border-color: var(--green-700); color: #fff; }
+.reviews__consent { background: #fff; border-radius: var(--radius); box-shadow: var(--shadow); max-width: 640px; }
+.reviews__stars { color: var(--gold); font-size: 1.6rem; letter-spacing: .15em; margin-bottom: 6px; }
