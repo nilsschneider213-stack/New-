@@ -126,9 +126,9 @@
         '<div class="container"><div class="footer-grid">' +
         '<div><a class="brand" href="index.html">' + LOGO +
         '<span><span class="brand__name">GreenTree</span><span class="brand__sub">Homes</span></span></a>' +
-        "<p>Ferienwohnungen, Monteurwohnungen und Serviced Apartments in Coburg, Bamberg und Regensburg – komfortabel, unkompliziert und direkt buchbar. Rund um die Uhr persönlich für Sie erreichbar.</p></div>" +
+        "<p>Serviced Apartments, Ferienwohnungen und Monteurwohnungen in Bayern – moderne Unterkünfte in Coburg, Bamberg und Regensburg, direkt beim Gastgeber buchbar.</p></div>" +
         "<div><h4>Unsere Städte</h4><ul>" +
-        CITIES.map(function (ci) { return '<li><a href="wohnungen.html?stadt=' + ci.id + '">' + esc(ci.name) + "</a></li>"; }).join("") +
+        CITIES.map(function (ci) { return '<li><a href="wohnungen.html?stadt=' + ci.id + '">Apartments ' + esc(ci.name) + "</a></li>"; }).join("") +
         "</ul></div>" +
         '<div><h4>Service</h4><ul><li><a href="buchen.html">Online buchen</a></li><li><a href="kontakt.html">Kontakt & Anfrage</a></li>' +
         '<li><a href="ueber-uns.html">Über uns</a></li><li><a href="partner.html">Für Eigentümer</a></li><li><a href="partner.html#investoren">Für Investoren</a></li></ul></div>' +
@@ -220,9 +220,9 @@
     var cityGrid = $("#city-grid");
     if (cityGrid) {
       cityGrid.innerHTML = CITIES.map(function (c) {
-        var count = APTS.filter(function (a) { return a.city === c.id; }).length;
-        return '<a class="city-card fade-in" href="wohnungen.html?stadt=' + c.id + '">' + img(c.image, c.name, c.id) +
-          '<div class="city-card__body"><span class="count">' + count + (count === 1 ? " Apartment" : " Apartments") + "</span>" +
+        var hasMonteur = APTS.some(function (a) { return a.city === c.id && a.type.indexOf("monteur") > -1; });
+        return '<a class="city-card fade-in" href="wohnungen.html?stadt=' + c.id + '">' + img(c.image, "Apartments und Ferienwohnungen in " + c.name, c.id) +
+          '<div class="city-card__body"><span class="count">' + (hasMonteur ? "Ferien- &amp; Monteurwohnungen" : "Ferienwohnungen &amp; Apartments") + "</span>" +
           "<h3>" + esc(c.name) + "</h3></div></a>";
       }).join("");
     }
@@ -461,9 +461,23 @@
       return;
     }
     var city = cityById(a.city) || {};
-    document.title = a.name + " – " + city.name + " | GreenTree Homes";
+    var kind = a.type.indexOf("monteur") > -1 ? "Monteurwohnung" : "Ferienwohnung & Serviced Apartment";
+    document.title = a.name + " – " + kind + " in " + city.name + " (Bayern) | GreenTree Homes";
     var md = $('meta[name="description"]');
-    if (md) md.setAttribute("content", a.name + " in " + city.name + ": " + a.tagline + ". Jetzt direkt bei GreenTree Homes buchen.");
+    if (md) md.setAttribute("content", a.name + ": " + kind + " in " + city.name + ", Bayern. " + a.tagline + ". Fotos, Ausstattung und direkte Online-Buchung bei GreenTree Homes.");
+    // Strukturierte Daten für Google (Unterkunft)
+    var ld = document.createElement("script");
+    ld.type = "application/ld+json";
+    ld.textContent = JSON.stringify({
+      "@context": "https://schema.org", "@type": "Accommodation",
+      name: a.name, description: a.description.join(" "),
+      image: (a.images || []).map(function (f) { return new URL(aptImg(a, a.images.indexOf(f)), location.href).href; }),
+      occupancy: a.guests ? { "@type": "QuantitativeValue", maxValue: a.guests } : undefined,
+      numberOfBedrooms: a.bedrooms || undefined,
+      address: { "@type": "PostalAddress", addressLocality: city.name, addressRegion: "Bayern", addressCountry: "DE" },
+      amenityFeature: a.amenities.map(function (m) { return { "@type": "LocationFeatureSpecification", name: m, value: true }; })
+    });
+    document.head.appendChild(ld);
 
     var hero = $("#detail-hero");
     if (hero) {

@@ -811,3 +811,5 @@ h3 { font-size: 1.55rem; }
 .city-card .count { color: rgba(255,255,255,.85); font-size: .74rem; letter-spacing: .18em; }
 .site-header .menu .container { height: auto; display: flex; justify-content: center; flex-wrap: wrap; }
 @media (max-width: 640px) { .site-header .menu .container { flex-direction: column; align-items: stretch; flex-wrap: nowrap; } }
+.hero__sub { margin: 14px auto 0; max-width: 720px; color: #e2cfa9; font-size: .82rem; font-weight: 700; letter-spacing: .2em; text-transform: uppercase; }
+@media (max-width: 640px) { .hero__sub { font-size: .72rem; letter-spacing: .14em; } }
