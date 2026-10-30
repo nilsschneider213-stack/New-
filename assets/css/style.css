@@ -849,3 +849,11 @@ h3 { font-size: 1.55rem; }
 .booking-fallback p { color: var(--muted); max-width: 520px; margin: 0 auto 18px; }
 .embed-wrap iframe.smoobu-booking.is-collapsed { height: 0 !important; min-height: 0; }
 .booking-newtab { margin-top: 12px; text-align: center; }
+
+/* Galerie: ganzes Foto zeigen (auch Hochformat), unscharfer Hintergrund aus demselben Bild */
+.media__slide { overflow: hidden; }
+.media__slide[style*="--bg"]::before { content: ""; position: absolute; inset: -30px; background: var(--bg) center/cover no-repeat; filter: blur(28px) brightness(.75); }
+.media__photo { position: relative; z-index: 1; }
+.media__photo img { object-fit: contain; }
+.media__track { height: clamp(360px, 62vw, 620px); }
+@media (max-width: 640px) { .media__track { height: min(118vw, 560px); } }

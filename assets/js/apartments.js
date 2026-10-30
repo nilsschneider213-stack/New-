@@ -4,6 +4,7 @@
  *  Alle Texte sind Beispieltexte – bitte an deine echten Wohnungen anpassen.
  *
  *  Bilder: Lege die Fotos in den Ordner images/wohnungen/<id>/
+ *  (Vorschaubilder für die Galerie in images/wohnungen/<id>/thumbs/)
  *  (z. B. images/wohnungen/coburg-altstadt/1.jpg, 2.jpg, …) und trage die
  *  Dateinamen unten bei "images" ein. Fehlt ein Foto, erscheint automatisch
  *  ein Platzhalter.
@@ -58,13 +59,33 @@ window.GTH_APARTMENTS = [
     beds: null,
     size: null,
     priceFrom: null,
-    images: ["1.jpg"],
+    images: ["1.jpg", "2.jpg", "3.jpg", "4.jpg", "5.jpg", "6.jpg", "7.jpg", "8.jpg", "9.jpg", "10.jpg", "11.jpg", "12.jpg", "13.jpg", "14.jpg", "15.jpg", "16.jpg", "17.jpg"],
+    // Bildbeschreibungen (gleiche Reihenfolge wie images) – wichtig für Google
+    captions: [
+      "Dachterrasse mit Lounge, Esstisch und Grill",
+      "Sonnenuntergang auf der Dachterrasse mit Blick zum Regensburger Dom",
+      "Wohnbereich mit Ledersofa und Blick über die Dächer",
+      "Gemütliche Sofaecke mit Bogenlampe",
+      "Esstisch für sechs Personen mit Blick auf die Dachterrasse",
+      "Essbereich mit Massivholztisch",
+      "Essbereich mit Kinderhochstuhl und Zugang zur Terrasse",
+      "Schlafzimmer mit Doppelbett",
+      "Doppelbett mit Akzentwand",
+      "Schlafzimmer mit Kommode",
+      "Schlafzimmer mit Smart-TV und Babybett",
+      "Smart-TV mit Streaming-Apps und Babybett",
+      "Frisch bezogenes Bett",
+      "Wohnbereich mit Pflanzen und Kunstdrucken",
+      "Offener Wohn- und Essbereich",
+      "Arbeitsplatz mit Schreibtisch und Balkontür",
+      "Garderobe im Flur"
+    ],
     video: "", // Roomtour: YouTube-/Vimeo-Link oder Datei, z. B. "images/wohnungen/<id>/roomtour.mp4"
     description: [
       "Sonnenuntergang über den Dächern von Regensburg: Das Penthouse Orange bietet eine eigene Dachterrasse mit Blick bis zu den Türmen des Doms – für bis zu 4 Gäste.",
       "Mit kostenlosem Parkplatz, Arbeitsplatz, Spülmaschine und Smart-TV ist es ideal für Paare, kleine Familien und Geschäftsreisende."
     ],
-    amenities: ["Dachterrasse / Balkon", "Kostenloser Parkplatz", "Arbeitsplatz", "Küche mit Grundausstattung", "Spülmaschine", "Kaffeemaschine", "Smart-TV & Streaming", "Kinderhochstuhl", "Bügeleisen", "Handtücher & Bettwäsche"],
+    amenities: ["Große Dachterrasse mit Lounge & Grill", "Kostenloser Parkplatz", "Arbeitsplatz", "Küche mit Grundausstattung", "Spülmaschine", "Kaffeemaschine", "Smart-TV & Streaming", "Babybett & Kinderhochstuhl", "Bügeleisen", "Handtücher & Bettwäsche"],
     smoobuId: "3553926",
     calendarHash: ""
   },

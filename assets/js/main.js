@@ -72,6 +72,16 @@
     var file = apt.images && apt.images[i];
     return file ? "images/wohnungen/" + apt.id + "/" + file : "";
   }
+  // Kleines Vorschaubild (images/wohnungen/<id>/thumbs/…) für die Leiste unter der Galerie
+  function aptThumb(apt, i) {
+    var file = apt.images && apt.images[i];
+    return file ? "images/wohnungen/" + apt.id + "/thumbs/" + file : "";
+  }
+  // Bildbeschreibung (alt-Text) – nutzt captions aus apartments.js, sonst „Foto n“
+  function aptAlt(apt, i) {
+    var cap = apt.captions && apt.captions[i];
+    return apt.name + " – " + (cap || "Foto " + (i + 1));
+  }
   window.GTH = {
     imgFail: function (el) {
       var tmp = document.createElement("div");
@@ -612,8 +622,10 @@
 
   function mediaHtml(a, photos, video) {
     var slides = photos.map(function (f, i) {
-      return '<div class="media__slide"><button type="button" class="media__photo" data-photo="' + i + '" aria-label="Foto ' + (i + 1) + ' vergrößern">' +
-        img(aptImg(a, i), a.name + " – Foto " + (i + 1), a.city, i === 0) + "</button></div>";
+      var src = aptImg(a, i);
+      // Hochformat-Fotos werden vollständig gezeigt, dahinter ein unscharfer Hintergrund aus demselben Bild
+      return '<div class="media__slide"' + (src ? ' style="--bg:url(\'../../' + esc(src) + '\')"' : "") /* Pfad relativ zur CSS-Datei */ + '><button type="button" class="media__photo" data-photo="' + i + '" aria-label="Foto ' + (i + 1) + ' vergrößern">' +
+        img(src, aptAlt(a, i), a.city, i === 0) + "</button></div>";
     });
     if (video) {
       var poster = aptImg(a, 0);
@@ -630,7 +642,7 @@
       var isVideo = sl.indexOf("data-video") > -1;
       var photoIdx = video && i > 1 ? i - 1 : (video && i === 1 ? 0 : i);
       return '<button type="button" class="media__thumb' + (isVideo ? " media__thumb--video" : "") + '" data-go="' + i + '" aria-label="' + (isVideo ? "Roomtour-Video" : "Foto " + (photoIdx + 1)) + '">' +
-        img(aptImg(a, photoIdx), "", a.city) + (isVideo ? '<span>' + PLAY + "</span>" : "") + "</button>";
+        img(aptThumb(a, photoIdx), "", a.city) + (isVideo ? '<span>' + PLAY + "</span>" : "") + "</button>";
     }).join("") + "</div>" : "";
     return '<div class="media" id="media">' +
       '<div class="media__track" tabindex="0" aria-label="Fotos' + (video ? " und Roomtour-Video" : "") + ' – zum Blättern wischen">' + slides.join("") + "</div>" +
@@ -687,7 +699,7 @@
     var idx = 0;
     function show(i) {
       idx = (i + photos.length) % photos.length;
-      $(".lb-stage", lb).innerHTML = img(aptImg(a, idx), a.name + " – Foto " + (idx + 1), a.city, true);
+      $(".lb-stage", lb).innerHTML = img(aptImg(a, idx), aptAlt(a, idx), a.city, true);
       $(".lb-count", lb).textContent = (idx + 1) + " / " + photos.length;
     }
     function close() { lb.classList.remove("is-open"); }
