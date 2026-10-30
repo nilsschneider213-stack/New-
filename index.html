@@ -103,7 +103,8 @@
       <div class="container">
         <h2 class="section-h">Kontakt</h2>
         <div class="contact-compact">
-          <form class="form-grid panel" data-gth-form="Kontaktanfrage" novalidate>
+          <form class="form-grid panel" data-gth-form="Kontaktanfrage" name="kontakt-startseite" method="post" data-netlify="true" netlify-honeypot="website" novalidate>
+            <input type="hidden" name="form-name" value="kontakt-startseite">
             <div class="field"><label for="h-name">Name *</label><input id="h-name" name="name" autocomplete="name" required></div>
             <div class="field"><label for="h-mail">E-Mail *</label><input type="email" id="h-mail" name="email" autocomplete="email" required></div>
             <div class="field full"><label for="h-tel">Telefon</label><input type="tel" id="h-tel" name="telefon" autocomplete="tel"></div>

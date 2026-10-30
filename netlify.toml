@@ -1,0 +1,21 @@
+# Einstellungen für Netlify (kein Build nötig – die Seite besteht aus fertigen Dateien)
+[build]
+  publish = "."
+
+# Bilder, Schriften, CSS und JS dürfen vom Browser zwischengespeichert werden (schnellere Ladezeiten)
+[[headers]]
+  for = "/assets/*"
+  [headers.values]
+    Cache-Control = "public, max-age=604800"
+
+[[headers]]
+  for = "/images/*"
+  [headers.values]
+    Cache-Control = "public, max-age=604800"
+
+# Grundlegende Sicherheits-Header
+[[headers]]
+  for = "/*"
+  [headers.values]
+    X-Content-Type-Options = "nosniff"
+    Referrer-Policy = "strict-origin-when-cross-origin"

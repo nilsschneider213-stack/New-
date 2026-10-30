@@ -33,7 +33,8 @@
       <div class="container split" style="align-items:start">
         <div class="panel">
           <h2 style="font-size:1.8rem">Schreiben Sie uns</h2>
-          <form class="form-grid" data-gth-form="Kontaktanfrage" novalidate>
+          <form class="form-grid" data-gth-form="Kontaktanfrage" name="kontakt" method="post" data-netlify="true" netlify-honeypot="website" novalidate>
+            <input type="hidden" name="form-name" value="kontakt">
             <div class="field full"><label for="f-anliegen">Anliegen *</label>
               <select id="f-anliegen" name="anliegen" required>
                 <option value="buchungsanfrage">Buchungsanfrage</option>

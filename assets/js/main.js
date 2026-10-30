@@ -803,29 +803,12 @@
         var subject = form.getAttribute("data-gth-form") + " – GreenTree Homes";
         data.append("_subject", subject);
 
-        var endpoint = CFG.formEndpoint;
-        if (endpoint) {
-          var btn = $('button[type="submit"]', form);
-          btn.disabled = true;
-          status.className = "form-status";
-          status.textContent = "Wird gesendet …";
-          fetch(endpoint, { method: "POST", body: data, headers: { Accept: "application/json" } })
-            .then(function (r) {
-              if (!r.ok) throw new Error();
-              status.className = "form-status ok";
-              status.textContent = "Vielen Dank! Ihre Nachricht ist bei uns eingegangen. Wir melden uns schnellstmöglich.";
-              form.reset();
-            })
-            .catch(function () {
-              status.className = "form-status err";
-              status.textContent = "Leider ist ein Fehler aufgetreten. Bitte schreiben Sie uns direkt an " + (CFG.company && CFG.company.email) + ".";
-            })
-            .then(function () { btn.disabled = false; });
-        } else {
-          // Fallback: E-Mail-Programm öffnen
+        var btn = $('button[type="submit"]', form);
+        function mailtoFallback() {
+          // E-Mail-Programm mit vorbereiteter Nachricht öffnen
           var lines = [];
           data.forEach(function (v, k) {
-            if (k.charAt(0) === "_" || k === "datenschutz") return;
+            if (k.charAt(0) === "_" || k === "datenschutz" || k === "form-name" || k === "subject") return;
             var el = form.elements[k];
             var label = el && el.labels && el.labels[0] ? el.labels[0].textContent.replace(/\s*\*$/, "") : k;
             if (el && el.tagName === "SELECT" && el.selectedOptions[0]) v = el.selectedOptions[0].textContent;
@@ -834,6 +817,36 @@
           location.href = "mailto:" + (CFG.company && CFG.company.email) + "?subject=" + encodeURIComponent(subject) + "&body=" + encodeURIComponent(lines.join("\n"));
           status.className = "form-status ok";
           status.textContent = "Ihr E-Mail-Programm wurde geöffnet. Bitte senden Sie die vorbereitete Nachricht ab.";
+        }
+        function send(url, init, onFail) {
+          btn.disabled = true;
+          status.className = "form-status";
+          status.textContent = "Wird gesendet …";
+          fetch(url, init)
+            .then(function (r) {
+              if (!r.ok) throw new Error();
+              status.className = "form-status ok";
+              status.textContent = "Vielen Dank! Ihre Nachricht ist bei uns eingegangen. Wir melden uns schnellstmöglich.";
+              form.reset();
+            })
+            .catch(onFail)
+            .then(function () { btn.disabled = false; });
+        }
+
+        if (CFG.formEndpoint) {
+          // Eigener Formular-Dienst (z. B. Formspree) aus config.js
+          send(CFG.formEndpoint, { method: "POST", body: data, headers: { Accept: "application/json" } }, function () {
+            status.className = "form-status err";
+            status.textContent = "Leider ist ein Fehler aufgetreten. Bitte schreiben Sie uns direkt an " + (CFG.company && CFG.company.email) + ".";
+          });
+        } else if (form.hasAttribute("data-netlify")) {
+          // Netlify Forms: funktioniert, sobald die Seite bei Netlify liegt – sonst E-Mail-Programm
+          data.set("subject", subject);
+          var body = new URLSearchParams();
+          data.forEach(function (v, k) { if (k !== "_subject") body.append(k, v); });
+          send("/", { method: "POST", headers: { "Content-Type": "application/x-www-form-urlencoded" }, body: body.toString() }, mailtoFallback);
+        } else {
+          mailtoFallback();
         }
       });
     });

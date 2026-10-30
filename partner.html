@@ -91,7 +91,8 @@
         </div>
         <div class="panel" id="anfrage">
           <h3>Unverbindliche Anfrage</h3>
-          <form class="form-grid" data-gth-form="Partneranfrage" novalidate>
+          <form class="form-grid" data-gth-form="Partneranfrage" name="partner" method="post" data-netlify="true" netlify-honeypot="website" novalidate>
+            <input type="hidden" name="form-name" value="partner">
             <div class="field full"><label for="p-art">Ich bin … *</label>
               <select id="p-art" name="art" required>
                 <option value="">Bitte wählen</option>
