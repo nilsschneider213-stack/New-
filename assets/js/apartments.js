@@ -142,28 +142,38 @@ window.GTH_APARTMENTS = [
     beds: null,
     size: null,
     priceFrom: null,
-    images: ["1.jpg", "2.jpg", "3.jpg", "4.jpg", "5.jpg", "6.jpg", "7.jpg", "8.jpg", "9.jpg", "10.jpg", "11.jpg", "12.jpg", "13.jpg"],
+    images: ["1.jpg", "2.jpg", "3.jpg", "4.jpg", "5.jpg", "6.jpg", "7.jpg", "8.jpg", "9.jpg", "10.jpg", "11.jpg", "12.jpg", "13.jpg", "14.jpg", "15.jpg", "16.jpg", "17.jpg", "18.jpg", "19.jpg", "20.jpg", "21.jpg", "22.jpg", "23.jpg"],
     captions: [
       "Offener Wohn- und Essbereich mit Holzbalken und Panoramafenster",
       "Balkon mit Sitzgelegenheit und Blick über Bamberg",
       "Wohnzimmer mit Natursteinwand und Smart-TV",
+      "Sofaecke mit Sesseln vor der Natursteinwand",
+      "Großzügiger Wohnbereich mit Blick in die Küche",
       "Gedeckter Esstisch für sechs Personen mit Kinderhochstuhl",
+      "Gedeckter Esstisch mit Blick ins Wohnzimmer",
+      "Weingläser und Geschirr für sechs Personen",
       "Moderne Küche mit Kochinsel unter dem Dachgebälk",
       "Küchenzeile mit Dachfenster und Spülmaschine",
       "Bartheke mit Barhockern",
       "Kaffeemaschine, Wasserkocher und Toaster",
       "Einbau-Backofen",
       "Schlafzimmer mit Doppelbett und Mooswand",
+      "Schlafzimmer mit Boxspringbett und Babybett",
+      "Schlafzimmer mit Schreibtisch und Smart-TV",
+      "TV-Möbel und Arbeitsplatz im Schlafzimmer",
       "Badezimmer mit Badewanne",
       "Waschtisch im Badezimmer",
+      "Eingangsbereich mit Garderobe",
+      "Klimaanlage",
+      "Blick durch das Dachfenster auf den Bamberger Dom und St. Michael",
       "Blick vom Balkon über die Dächer von Bamberg"
     ],
     video: "", // Roomtour: YouTube-/Vimeo-Link oder Datei, z. B. "images/wohnungen/<id>/roomtour.mp4"
     description: [
       "Wohnen über den Dächern von Bamberg: Das Penthouse Weide begeistert mit offenem Wohn- und Essbereich, sichtbarem Holzgebälk, großen Panoramafenstern und eigenem Balkon mit Blick über die Stadt – Platz für bis zu 6 Gäste.",
-      "Die moderne Küche mit Kochinsel und Bartheke, das gemütliche Wohnzimmer mit Natursteinwand und das Schlafzimmer mit grüner Mooswand machen den Aufenthalt besonders. Das UNESCO-Welterbe mit Altem Rathaus, Klein-Venedig und Dom liegt ganz in der Nähe."
+      "Die moderne Küche mit Kochinsel und Bartheke, das gemütliche Wohnzimmer mit Natursteinwand und das Schlafzimmer mit grüner Mooswand machen den Aufenthalt besonders. Vom Dachfenster blicken Sie bis zum Bamberger Dom und Kloster St. Michael – das UNESCO-Welterbe mit Altem Rathaus und Klein-Venedig liegt ganz in der Nähe."
     ],
-    amenities: ["Bis zu 6 Personen", "Balkon mit Stadtblick", "Küche mit Kochinsel & Bartheke", "Backofen & Spülmaschine", "Kaffeemaschine, Wasserkocher & Toaster", "Smart-TV & Streaming", "Esstisch für 6 Personen", "Kinderhochstuhl", "Bad mit Badewanne", "Handtücher & Bettwäsche", "Endreinigung inklusive"],
+    amenities: ["Bis zu 6 Personen", "Balkon mit Stadtblick", "Blick auf Dom & St. Michael", "Klimaanlage", "Küche mit Kochinsel & Bartheke", "Backofen & Spülmaschine", "Kaffeemaschine, Wasserkocher & Toaster", "Smart-TV im Wohn- und Schlafzimmer", "Arbeitsplatz", "Esstisch für 6 Personen", "Babybett & Kinderhochstuhl", "Bad mit Badewanne", "Handtücher & Bettwäsche", "Endreinigung inklusive"],
     smoobuId: "2842573",
     calendarHash: ""
   },
