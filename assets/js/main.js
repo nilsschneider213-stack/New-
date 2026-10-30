@@ -234,7 +234,7 @@
         return (!city || a.city === city) && (!typ || a.type.indexOf(typ) > -1);
       }).length;
     }
-    function val(name) { var el = $('input[name="' + name + '"]:checked', form); return el ? el.value : ""; }
+    function val(name) { var el = form.elements[name]; return el ? el.value : ""; }
     function plural(n, typ) {
       if (typ === "monteur") return n === 1 ? "1 Monteurwohnung" : n + " Monteurwohnungen";
       return n === 1 ? "1 Wohnung" : n + " Wohnungen";
@@ -255,10 +255,10 @@
       if (n === 0) {
         btn.textContent = "Anfrage stellen";
         hint.innerHTML = "In " + esc(cityName) + " haben wir aktuell keine " + (typ === "monteur" ? "Monteurwohnung" : "passende Wohnung") +
-          ". Fragen Sie uns gerne – wir finden eine Lösung, oder schauen Sie in unseren anderen Städten.";
+          " – fragen Sie uns gerne an oder wählen Sie eine andere Stadt.";
       } else {
-        btn.textContent = n === 1 ? "Wohnung ansehen" : plural(n, typ) + " anzeigen";
-        hint.textContent = city || typ ? "" : "Tipp: Wählen Sie Stadt und Unterkunftsart – oder sehen Sie direkt alle Wohnungen.";
+        btn.textContent = "Suchen";
+        hint.textContent = city || typ ? plural(n, typ) + (cityName ? " in " + cityName : "") + " verfügbar" : "";
       }
     }
     form.addEventListener("change", update);
