@@ -364,9 +364,30 @@
   var resizerLoading = null;
   function bookingFrame(target, url) {
     var id = "smoobu-frame-" + Math.random().toString(36).slice(2, 9);
-    target.innerHTML = '<iframe id="' + id + '" class="smoobu-booking" src="' + esc(url) + '" title="Buchung" allowtransparency="true" allowfullscreen></iframe>' +
-      '<p class="embed-hint" style="margin-top:12px">Buchungsfenster wird nicht angezeigt? <a href="' + esc(url) + '" target="_blank" rel="noopener">Hier in neuem Fenster buchen →</a></p>';
-    var frame = $("#" + id), start = Date.now();
+    var newTab = '<a class="btn btn--primary" href="' + esc(url) + '" target="_blank" rel="noopener">Buchung in neuem Fenster öffnen</a>';
+    target.innerHTML =
+      '<div class="booking-fallback" hidden>' + ICONS.calendar +
+        "<h3>Jetzt direkt buchen</h3><p>Der Buchungskalender kann hier gerade nicht angezeigt werden. Öffnen Sie ihn einfach in einem neuen Fenster – dort wählen Sie Ihre Daten und buchen direkt.</p>" + newTab + "</div>" +
+      '<iframe id="' + id + '" class="smoobu-booking" src="' + esc(url) + '" title="Buchung" allowtransparency="true" allowfullscreen></iframe>' +
+      '<p class="embed-hint booking-newtab">Buchungsfenster wird nicht richtig angezeigt? <a href="' + esc(url) + '" target="_blank" rel="noopener">Hier in neuem Fenster buchen →</a></p>';
+    var frame = $("#" + id), start = Date.now(), ready = false;
+    var fallback = $(".booking-fallback", target);
+    // Meldet sich das Buchungsfenster nicht (z. B. weil der Browser oder eine Vorschau
+    // fremde Fenster blockiert), wird statt eines leeren Feldes ein Buchungs-Button gezeigt.
+    function showFallback() {
+      if (ready) return;
+      fallback.hidden = false;
+      frame.classList.add("is-collapsed");
+      $(".booking-newtab", target).hidden = true;
+    }
+    function markReady() {
+      if (ready) return;
+      ready = true;
+      fallback.hidden = true;
+      frame.classList.remove("is-collapsed");
+      $(".booking-newtab", target).hidden = false;
+    }
+    var timer = setTimeout(showFallback, 9000);
     if (!resizerLoading) {
       resizerLoading = new Promise(function (resolve, reject) {
         var s = document.createElement("script");
@@ -381,10 +402,12 @@
         heightCalculationMethod: "lowestElement",
         tolerance: 34,
         checkOrigin: false,
+        initCallback: function () { clearTimeout(timer); markReady(); },
+        resizedCallback: markReady,
         // Beim Laden darf das Buchungsfenster die Seite nicht nach unten ziehen
         scrollCallback: function () { return Date.now() - start > 4000; }
       }, frame);
-    }).catch(function () { /* feste Höhe aus dem CSS bleibt */ });
+    }).catch(function () { /* ohne Größenanpassung: Ersatz-Button nach Zeitablauf */ });
   }
 
   function smoobuEmbed(container, links, opts) {

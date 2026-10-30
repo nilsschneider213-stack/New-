@@ -844,3 +844,8 @@ h3 { font-size: 1.55rem; }
   .site-header--center .brand--center .brand__name { font-size: 1.55rem; }
   .site-header--center .brand--center .brand__sub { font-size: .62rem; }
 }
+.booking-fallback { text-align: center; padding: 36px 20px; }
+.booking-fallback svg { width: 48px; height: 48px; color: var(--green-600); margin: 0 auto 10px; display: block; }
+.booking-fallback p { color: var(--muted); max-width: 520px; margin: 0 auto 18px; }
+.embed-wrap iframe.smoobu-booking.is-collapsed { height: 0 !important; min-height: 0; }
+.booking-newtab { margin-top: 12px; text-align: center; }
