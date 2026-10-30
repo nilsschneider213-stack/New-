@@ -197,9 +197,16 @@
     });
     return q.length ? "&" + q.join("&") : "";
   }
+  // Eigene Seite je Wohnung (z. B. ferienwohnung-bamberg-penthouse-weide.html), sonst wohnung.html?id=…
+  function aptUrl(a, query) {
+    query = String(query || "").replace(/^&/, "");
+    if (a.slug) return a.slug + ".html" + (query ? "?" + query : "");
+    return "wohnung.html?id=" + encodeURIComponent(a.id) + (query ? "&" + query : "");
+  }
+
   function aptCard(a) {
     var city = cityById(a.city) || {};
-    var href = "wohnung.html?id=" + encodeURIComponent(a.id) + dateQuery();
+    var href = aptUrl(a, dateQuery());
     return '<article class="card fade-in">' +
       '<div class="card__media">' + img(aptImg(a, 0), a.name, a.city) +
       '<div class="card__tags">' + a.type.map(function (t, i) {
@@ -213,7 +220,7 @@
       (a.priceFrom || a.video ? '<div class="card__foot">' + (a.priceFrom ? '<span class="price">ab <strong>' + a.priceFrom + " €</strong> / Nacht</span>" : "") +
         (a.video ? '<span class="tag tag--video">▶ Roomtour</span>' : "") + "</div>" : "") +
       '<div class="card__actions"><a class="btn btn--outline" href="' + href + '">Details & Fotos</a>' +
-      '<a class="btn btn--primary" href="' + href + '&buchen=1#kalender">Jetzt buchen</a></div></div></article>';
+      '<a class="btn btn--primary" href="' + aptUrl(a, dateQuery() + "&buchen=1") + '#kalender">Jetzt buchen</a></div></div></article>';
   }
 
   function initHome() {
@@ -276,7 +283,7 @@
       if (e.defaultPrevented) return;
       e.preventDefault();
       if (list.length === 0) location.href = "kontakt.html?anliegen=" + (typ === "monteur" ? "firmenanfrage" : "buchungsanfrage") + dates;
-      else if (list.length === 1) location.href = "wohnung.html?id=" + encodeURIComponent(list[0].id) + dates;
+      else if (list.length === 1) location.href = aptUrl(list[0], dates);
       else location.href = "wohnungen.html?stadt=" + city + "&typ=" + typ + dates;
     });
     update();
@@ -478,7 +485,7 @@
   function initDetail() {
     var root = $("#apt-detail");
     if (!root) return;
-    var a = aptById(params.get("id"));
+    var a = aptById(params.get("id") || document.body.getAttribute("data-apt"));
     if (!a) {
       root.innerHTML = '<div class="empty"><h2>Wohnung nicht gefunden</h2><p><a class="btn btn--primary" href="wohnungen.html">Alle Wohnungen ansehen</a></p></div>';
       return;
@@ -489,8 +496,9 @@
     var md = $('meta[name="description"]');
     if (md) md.setAttribute("content", a.name + ": " + kind + " in " + city.name + ", Bayern. " + a.tagline + ". Fotos, Ausstattung und direkte Online-Buchung bei GreenTree Homes.");
     // Strukturierte Daten für Google (Unterkunft)
-    var ld = document.createElement("script");
+    var ld = document.querySelector("script[data-apt-ld]") || document.createElement("script");
     ld.type = "application/ld+json";
+    ld.setAttribute("data-apt-ld", "");
     ld.textContent = JSON.stringify({
       "@context": "https://schema.org", "@type": "Accommodation",
       name: a.name, description: a.description.join(" "),
@@ -500,7 +508,7 @@
       address: { "@type": "PostalAddress", addressLocality: city.name, addressRegion: "Bayern", addressCountry: "DE" },
       amenityFeature: a.amenities.map(function (m) { return { "@type": "LocationFeatureSpecification", name: m, value: true }; })
     });
-    document.head.appendChild(ld);
+    if (!ld.parentNode) document.head.appendChild(ld);
 
     var hero = $("#detail-hero");
     if (hero) {
@@ -572,7 +580,11 @@
         if (embed.gthLoad) embed.gthLoad();
       });
     });
-    if (params.get("buchen") === "1") setTimeout(function () { $("#kalender").scrollIntoView({ block: "start" }); }, 50);
+    if (params.get("buchen") === "1") {
+      var toCal = function () { $("#kalender").scrollIntoView({ block: "start" }); };
+      setTimeout(toCal, 50);
+      window.addEventListener("load", toCal); // nach dem Laden der Bilder erneut ausrichten
+    }
     initMedia(a, photos, video);
 
     var more = $("#more-apts");

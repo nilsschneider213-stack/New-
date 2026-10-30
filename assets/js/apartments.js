@@ -48,6 +48,7 @@ window.GTH_APARTMENTS = [
   /* ---------------- REGENSBURG ---------------- */
   {
     id: "penthouse-orange",
+    slug: "ferienwohnung-regensburg-penthouse-orange", // eigene Seite: ferienwohnung-regensburg-penthouse-orange.html
     city: "regensburg",
     name: "Penthouse Orange",
     tagline: "Penthouse mit Dachterrasse und Blick bis zum Dom",
@@ -69,6 +70,7 @@ window.GTH_APARTMENTS = [
   },
   {
     id: "stadtvilla",
+    slug: "ferienwohnung-regensburg-stadtvilla", // eigene Seite: ferienwohnung-regensburg-stadtvilla.html
     city: "regensburg",
     name: "Die Stadtvilla",
     tagline: "Große Altstadtwohnung mit 3 Schlafzimmern für bis zu 6 Gäste",
@@ -92,6 +94,7 @@ window.GTH_APARTMENTS = [
   /* ---------------- BAMBERG ---------------- */
   {
     id: "penthouse-weide",
+    slug: "ferienwohnung-bamberg-penthouse-weide", // eigene Seite: ferienwohnung-bamberg-penthouse-weide.html
     city: "bamberg",
     name: "Penthouse Weide",
     tagline: "Lichtdurchflutetes Penthouse mit Balkon für bis zu 6 Gäste",
@@ -113,6 +116,7 @@ window.GTH_APARTMENTS = [
   },
   {
     id: "penthouse-eiche",
+    slug: "ferienwohnung-bamberg-penthouse-eiche", // eigene Seite: ferienwohnung-bamberg-penthouse-eiche.html
     city: "bamberg",
     name: "Penthouse Eiche",
     tagline: "Stilvolles Penthouse mit offener Küche für bis zu 6 Gäste",
@@ -136,6 +140,7 @@ window.GTH_APARTMENTS = [
   /* ---------------- COBURG ---------------- */
   {
     id: "herzstueck-coburg",
+    slug: "monteurwohnung-coburg-herzstueck", // eigene Seite: monteurwohnung-coburg-herzstueck.html
     city: "coburg",
     name: "Herzstück Coburg",
     tagline: "Unsere Monteurwohnung in Coburg – bis zu 6 Personen",
@@ -157,6 +162,7 @@ window.GTH_APARTMENTS = [
   },
   {
     id: "studio-vesteblick",
+    slug: "ferienwohnung-coburg-studio-vesteblick", // eigene Seite: ferienwohnung-coburg-studio-vesteblick.html
     city: "coburg",
     name: "Studio mit Balkon & Vesteblick",
     tagline: "Gemütliches Studio mit Balkon und Blick auf die Veste Coburg",

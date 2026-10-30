@@ -73,6 +73,8 @@ Ohne Server öffnen die Formulare das E-Mail-Programm des Besuchers. Damit die F
 In `impressum.html`, `datenschutz.html` und `agb.html` sind alle Stellen zum Ausfüllen **gelb markiert**. Die Texte sind Vorlagen und ersetzen keine Rechtsberatung. Bitte vor dem Livegang prüfen lassen (z. B. über einen Rechtstext-Dienst oder einen Anwalt) und danach den gelben Hinweiskasten oben auf den Seiten entfernen.
 
 ## Google / SEO
+- **Eigene Seite je Wohnung** mit Suchbegriffen in der Adresse, z. B. `ferienwohnung-regensburg-penthouse-orange.html`, `monteurwohnung-coburg-herzstueck.html`. Die Adresse steht in `apartments.js` bei `slug`.
+- Menü, Fußbereich, Wohnungslisten und Wohnungsseiten liegen als fertiges HTML vor, damit Suchmaschinen alles sofort lesen können. **Nach Änderungen an `apartments.js` oder `config.js`** einmal `node scripts/prerender.js` ausführen (oder Claude fragen) – das aktualisiert alle Seiten und die `sitemap.xml`.
 - Seitentitel und Beschreibungen enthalten Suchbegriffe wie „Apartments Bayern“, „Serviced Apartments“, „Ferienwohnung Coburg/Bamberg/Regensburg“, „Monteurwohnung Coburg“, „Unterkunft Bayern“.
 - Strukturierte Daten (schema.org `LodgingBusiness` auf der Startseite, `Accommodation` je Wohnung) für Google.
 - `sitemap.xml` und `robots.txt` liegen im Hauptordner. Die Domain ist auf `https://www.greentree-homes.com/` eingestellt – bei anderer Domain dort sowie in den `canonical`/`og:url`-Angaben der HTML-Seiten anpassen.
