@@ -834,3 +834,13 @@ h3 { font-size: 1.55rem; }
 .reviews__tabs button[aria-selected="true"] { background: var(--green-700); border-color: var(--green-700); color: #fff; }
 .reviews__consent { background: #fff; border-radius: var(--radius); box-shadow: var(--shadow); max-width: 640px; }
 .reviews__stars { color: var(--gold); font-size: 1.6rem; letter-spacing: .15em; margin-bottom: 6px; }
+
+/* Schriftzug kräftiger und klar über dem Baum */
+.site-header--center .brand--center .brand__name { font-weight: 700; font-size: 2.05rem; color: #0f4d27; letter-spacing: .07em;
+  text-shadow: 0 0 3px var(--cream), 0 0 6px var(--cream), 0 0 10px var(--cream), 0 0 14px var(--cream); }
+.site-header--center .brand--center .brand__sub { font-weight: 800; color: #1f1f1f; font-size: .72rem;
+  text-shadow: 0 0 3px var(--cream), 0 0 6px var(--cream), 0 0 10px var(--cream); }
+@media (max-width: 640px) {
+  .site-header--center .brand--center .brand__name { font-size: 1.55rem; }
+  .site-header--center .brand--center .brand__sub { font-size: .62rem; }
+}
