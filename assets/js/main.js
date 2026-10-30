@@ -92,25 +92,31 @@
     ];
     var header = $("#site-header");
     if (header) {
-      header.className = "site-header";
+      // Symmetrischer Kopf: links Buchen, Mitte Logo, rechts Menü
+      header.className = "site-header site-header--center";
       header.innerHTML =
-        '<div class="container">' +
-        '<a class="brand" href="index.html" aria-label="GreenTree Homes – Startseite">' + LOGO +
+        '<div class="container header-bar">' +
+        '<div class="header-bar__left"><a class="btn btn--primary header-book" href="buchen.html"><span class="hide-xs">Jetzt buchen</span><span class="show-xs">Buchen</span></a></div>' +
+        '<a class="brand brand--center" href="index.html" aria-label="GreenTree Homes – Startseite">' + LOGO +
         '<span><span class="brand__name">GreenTree</span><span class="brand__sub">Homes</span></span></a>' +
-        '<a class="btn btn--primary header-book" href="buchen.html">Buchen</a>' +
-        '<button class="nav-toggle" aria-label="Menü öffnen" aria-expanded="false" aria-controls="main-nav"><span></span><span></span><span></span></button>' +
-        '<nav class="nav" id="main-nav" aria-label="Hauptnavigation">' +
-        nav.map(function (n) {
+        '<div class="header-bar__right"><button class="menu-btn" aria-label="Menü öffnen" aria-expanded="false" aria-controls="main-nav">' +
+        '<span class="menu-btn__label">Menü</span><span class="menu-btn__icon"><span></span><span></span><span></span></span></button></div>' +
+        "</div>" +
+        '<nav class="menu" id="main-nav" aria-label="Hauptnavigation"><div class="container">' +
+        [["index.html", "Start", "home"]].concat(nav).map(function (n) {
           return '<a href="' + n[0] + '"' + (page === n[2] ? ' aria-current="page"' : "") + ">" + n[1] + "</a>";
         }).join("") +
-        '<a class="btn btn--primary" href="buchen.html"' + (page === "buchen" ? ' aria-current="page"' : "") + ">Jetzt buchen</a>" +
-        "</nav></div>";
-      var toggle = $(".nav-toggle", header);
-      var navEl = $(".nav", header);
-      toggle.addEventListener("click", function () {
-        var open = navEl.classList.toggle("is-open");
+        "</div></nav>";
+      var toggle = $(".menu-btn", header);
+      var navEl = $(".menu", header);
+      function setMenu(open) {
+        navEl.classList.toggle("is-open", open);
         toggle.setAttribute("aria-expanded", open ? "true" : "false");
-      });
+        toggle.setAttribute("aria-label", open ? "Menü schließen" : "Menü öffnen");
+      }
+      toggle.addEventListener("click", function () { setMenu(!navEl.classList.contains("is-open")); });
+      document.addEventListener("keydown", function (e) { if (e.key === "Escape") setMenu(false); });
+      document.addEventListener("click", function (e) { if (!header.contains(e.target)) setMenu(false); });
     }
 
     var footer = $("#site-footer");
@@ -123,7 +129,7 @@
         "<p>Ferienwohnungen, Monteurwohnungen und Serviced Apartments in Coburg, Bamberg und Regensburg – komfortabel, unkompliziert und direkt buchbar. Rund um die Uhr persönlich für Sie erreichbar.</p></div>" +
         "<div><h4>Unsere Städte</h4><ul>" +
         CITIES.map(function (ci) { return '<li><a href="wohnungen.html?stadt=' + ci.id + '">' + esc(ci.name) + "</a></li>"; }).join("") +
-        '<li><a href="monteurwohnungen.html">Monteurwohnungen</a></li></ul></div>' +
+        "</ul></div>" +
         '<div><h4>Service</h4><ul><li><a href="buchen.html">Online buchen</a></li><li><a href="kontakt.html">Kontakt & Anfrage</a></li>' +
         '<li><a href="ueber-uns.html">Über uns</a></li><li><a href="partner.html">Für Eigentümer</a></li><li><a href="partner.html#investoren">Für Investoren</a></li></ul></div>' +
         "<div><h4>Kontakt</h4><ul>" +
@@ -201,12 +207,11 @@
       }).join("") + "</div></div>" +
       '<div class="card__body"><div class="card__city">' + esc(city.name) + "</div>" +
       '<h3 class="card__title"><a href="' + href + '">' + esc(a.name) + "</a></h3>" +
-      '<p class="card__text">' + esc(a.tagline) + "</p>" +
       '<ul class="facts">' + (a.guests ? "<li>" + ICONS.guests + "bis " + a.guests + " Gäste</li>" : "") +
       (a.bedrooms ? "<li>" + ICONS.bed + a.bedrooms + (a.bedrooms === 1 ? " Schlafzimmer" : " Schlafzimmer") + "</li>" : "") +
       (a.size ? "<li>" + ICONS.size + a.size + " m²</li>" : "") + "</ul>" +
-      '<div class="card__foot"><span class="price">' + (a.priceFrom ? "ab <strong>" + a.priceFrom + " €</strong> / Nacht" : "Preise im Kalender") + "</span>" +
-      (a.video ? '<span class="tag tag--video">▶ Roomtour</span>' : "") + "</div>" +
+      (a.priceFrom || a.video ? '<div class="card__foot">' + (a.priceFrom ? '<span class="price">ab <strong>' + a.priceFrom + " €</strong> / Nacht</span>" : "") +
+        (a.video ? '<span class="tag tag--video">▶ Roomtour</span>' : "") + "</div>" : "") +
       '<div class="card__actions"><a class="btn btn--outline" href="' + href + '">Details & Fotos</a>' +
       '<a class="btn btn--primary" href="' + href + '&buchen=1#kalender">Jetzt buchen</a></div></div></article>';
   }
@@ -218,7 +223,7 @@
         var count = APTS.filter(function (a) { return a.city === c.id; }).length;
         return '<a class="city-card fade-in" href="wohnungen.html?stadt=' + c.id + '">' + img(c.image, c.name, c.id) +
           '<div class="city-card__body"><span class="count">' + count + (count === 1 ? " Apartment" : " Apartments") + "</span>" +
-          "<h3>" + esc(c.name) + "</h3><p>" + esc(c.teaser) + "</p></div></a>";
+          "<h3>" + esc(c.name) + "</h3></div></a>";
       }).join("");
     }
     var featured = $("#featured");

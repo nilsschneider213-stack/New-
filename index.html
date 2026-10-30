@@ -20,10 +20,7 @@
     <!-- Titelbild: images/hero.jpg -->
     <section class="hero hero--center">
       <div class="container">
-        <span class="eyebrow eyebrow--light">Serviced Apartments · Coburg · Bamberg · Regensburg</span>
         <h1>Die passende Unterkunft für Sie</h1>
-        <p class="lead">Moderne, voll ausgestattete Apartments – liebevoll eingerichtet, sauber und bezugsfertig. Direkt beim Gastgeber gebucht.</p>
-
         <form class="quick search-bar" action="wohnungen.html" method="get" role="search" aria-label="Unterkunft suchen">
           <div class="search-bar__tabs" role="radiogroup" aria-label="Art der Unterkunft">
             <label><input type="radio" name="typ" value="" checked><span>Alle<span class="hide-sm"> Unterkünfte</span></span></label>
@@ -60,116 +57,51 @@
       </div>
     </section>
 
-    <section class="section">
+    <section class="section section--compact" id="standorte">
       <div class="container">
-        <header class="section-title">
-          <span class="eyebrow">Unsere Standorte</span>
-          <h2>Drei Städte. Sechs Apartments.</h2>
-          <p>Zentral gelegen, komplett ausgestattet und sofort bezugsfertig.</p>
-        </header>
+        <h2 class="section-h">Unsere Standorte</h2>
         <div class="grid grid--3" id="city-grid"></div>
       </div>
     </section>
 
-    <section class="section section--sage">
+    <section class="section section--compact section--sage" id="wohnungen">
       <div class="container">
-        <header class="section-title">
-          <span class="eyebrow">Unsere Apartments</span>
-          <h2>Finden Sie Ihr Zuhause auf Zeit</h2>
-          <p>Ob Städtereise, Geschäftsreise oder Montageeinsatz – wählen Sie aus unseren sechs Apartments.</p>
-        </header>
+        <h2 class="section-h">Unsere Wohnungen</h2>
         <div class="grid grid--3" id="featured"></div>
-        <div class="section-actions">
-          <a class="btn btn--outline" href="wohnungen.html">Alle Wohnungen &amp; Filter</a>
-          <a class="btn btn--primary" href="buchen.html">Jetzt buchen</a>
-        </div>
       </div>
     </section>
 
-    <section class="section">
+    <section class="section section--compact" id="partner">
       <div class="container">
-        <header class="section-title">
-          <span class="eyebrow">Zwei Angebote</span>
-          <h2>Für jeden Aufenthalt die richtige Wohnung</h2>
-        </header>
-        <div class="offer-grid">
-          <article class="offer fade-in">
-            <div class="offer__img"><img src="images/wohnungen/penthouse-eiche/1.jpg" alt="Penthouse Eiche in Bamberg" loading="lazy" data-city="bamberg" onerror="GTH.imgFail(this)"></div>
-            <div class="offer__body">
-              <span class="eyebrow">Urlaub &amp; Business</span>
-              <h3>Ferienwohnungen &amp; Serviced Apartments</h3>
-              <p>Penthouses, Studio und Stadtvilla in Coburg, Bamberg und Regensburg – für Städtereisen, Familien und Geschäftsreisende.</p>
-              <div class="offer__actions">
-                <a class="btn btn--primary" href="wohnungen.html?typ=ferien">Wohnungen ansehen</a>
-              </div>
-            </div>
-          </article>
-          <article class="offer fade-in">
-            <div class="offer__img"><img src="images/wohnungen/herzstueck-coburg/1.jpg" alt="Herzstück Coburg" loading="lazy" data-city="coburg" onerror="GTH.imgFail(this)"></div>
-            <div class="offer__body">
-              <span class="eyebrow">Handwerker &amp; Firmen</span>
-              <h3>Monteurwohnungen</h3>
-              <p>Unser Herzstück Coburg für bis zu 6 Personen – mit Rechnung auf Firma, Wochen- und Monatspreisen.</p>
-              <div class="offer__actions">
-                <a class="btn btn--primary" href="wohnung.html?id=herzstueck-coburg">Monteurwohnung ansehen</a>
-              </div>
-            </div>
-          </article>
-        </div>
-      </div>
-    </section>
-
-    <section class="section section--dark">
-      <div class="container">
-        <header class="section-title section-title--light">
-          <span class="eyebrow">Warum GreenTree Homes</span>
-          <h2>Hotelkomfort mit dem Platz einer eigenen Wohnung</h2>
-        </header>
-        <div class="usp-grid">
-          <div class="usp"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M3 9.5 12 3l9 6.5V21H3z"/><path d="M9 21v-7h6v7"/></svg><h3>Voll ausgestattet</h3><p>Küche, WLAN, Bettwäsche und Handtücher – einfach ankommen.</p></div>
-          <div class="usp"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2v20M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6"/></svg><h3>Bestpreis direkt</h3><p>Keine Portalgebühren – Sie buchen direkt beim Gastgeber.</p></div>
-          <div class="usp"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><path d="M14 2v6h6M16 13H8M16 17H8"/></svg><h3>Firmenkunden</h3><p>Rechnung mit MwSt., Langzeit- und Teamaufenthalte.</p></div>
-          <div class="usp"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M20.8 4.6a5.5 5.5 0 0 0-7.8 0L12 5.7l-1-1.1a5.5 5.5 0 0 0-7.8 7.8l1 1L12 21l7.8-7.8 1-1a5.5 5.5 0 0 0 0-7.6z"/></svg><h3>Persönlich betreut</h3><p>Rund um die Uhr für Sie erreichbar – vor und während Ihres Aufenthalts.</p></div>
-        </div>
-      </div>
-    </section>
-
-    <section class="section">
-      <div class="container split">
-        <div class="about-photo fade-in"><img src="images/ueber-uns.jpg" alt="Nils Schneider, Gründer von GreenTree Homes" loading="lazy" data-city="regensburg" onerror="GTH.imgFail(this)"></div>
-        <div>
-          <span class="eyebrow">Über uns</span>
-          <h2>Gastgeben auf einem neuen Niveau</h2>
-          <p class="lead">GreenTree Homes steht für moderne Vermietung von Ferien- und Serviced Apartments in Bayern – mit dem Anspruch, jedem Gast einen unkomplizierten, komfortablen Aufenthalt zu bieten.</p>
-          <p>Im Mittelpunkt stehen Qualität, Sauberkeit, Liebe zum Detail und Effizienz. Von der Buchung über den Check-in bis zum Check-out gestalten wir jeden Schritt so einfach und reibungslos wie möglich.</p>
-          <a class="btn btn--outline" href="ueber-uns.html">Mehr über uns</a>
-        </div>
-      </div>
-    </section>
-
-    <section class="section section--sand">
-      <div class="container">
-        <header class="section-title">
-          <span class="eyebrow">Für Eigentümer &amp; Investoren</span>
-          <h2>Sie haben Fläche – wir haben ein Konzept</h2>
-          <p>Leerstehende Gewerbe- oder Wohnflächen? Ein Bauprojekt, für das Sie einen zuverlässigen Langzeitmieter suchen? Wir mieten langfristig an und betreiben hochwertige Serviced Apartments.</p>
-        </header>
-        <div class="section-actions" style="margin-top:0">
-          <a class="btn btn--primary" href="partner.html#eigentuemer">Fläche anbieten</a>
-          <a class="btn btn--outline" href="partner.html#investoren">Für Investoren</a>
-        </div>
-      </div>
-    </section>
-
-    <section class="section">
-      <div class="container">
-        <div class="cta-band cta-band--center">
-          <h2>Bereit für Ihren Aufenthalt?</h2>
-          <p>Freie Termine prüfen und direkt buchen – oder sprechen Sie uns bei Fragen und Sonderwünschen an.</p>
-          <div class="section-actions" style="margin-top:24px">
-            <a class="btn btn--gold" href="buchen.html">Jetzt buchen</a>
-            <a class="btn btn--light" href="kontakt.html">Kontakt aufnehmen</a>
+        <div class="invite">
+          <h2 class="section-h">Für Eigentümer &amp; Investoren</h2>
+          <p>Leerstehende Flächen oder ein Bauprojekt? Wir suchen langfristig Objekte zur Anmietung.</p>
+          <div class="section-actions">
+            <a class="btn btn--gold" href="partner.html#eigentuemer">Fläche anbieten</a>
+            <a class="btn btn--light" href="partner.html#investoren">Für Investoren</a>
           </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="section section--compact section--sage" id="kontakt">
+      <div class="container">
+        <h2 class="section-h">Kontakt</h2>
+        <div class="contact-compact">
+          <form class="form-grid panel" data-gth-form="Kontaktanfrage" novalidate>
+            <div class="field"><label for="h-name">Name *</label><input id="h-name" name="name" autocomplete="name" required></div>
+            <div class="field"><label for="h-mail">E-Mail *</label><input type="email" id="h-mail" name="email" autocomplete="email" required></div>
+            <div class="field full"><label for="h-tel">Telefon</label><input type="tel" id="h-tel" name="telefon" autocomplete="tel"></div>
+            <div class="field full"><label for="h-msg">Nachricht *</label><textarea id="h-msg" name="nachricht" required style="min-height:120px"></textarea></div>
+            <label class="checkbox full"><input type="checkbox" name="datenschutz" required> <span>Ich habe die <a href="datenschutz.html" target="_blank">Datenschutzerklärung</a> gelesen und bin mit der Verarbeitung meiner Angaben einverstanden. *</span></label>
+            <div class="hp" aria-hidden="true"><label>Website <input type="text" name="website" tabindex="-1" autocomplete="off"></label></div>
+            <div class="full"><button class="btn btn--primary" type="submit">Nachricht senden</button><p class="form-status" role="status"></p></div>
+          </form>
+          <ul class="contact-list contact-list--compact">
+            <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 16.9v3a2 2 0 0 1-2.2 2 19.8 19.8 0 0 1-8.6-3.1 19.5 19.5 0 0 1-6-6A19.8 19.8 0 0 1 2.1 4.2 2 2 0 0 1 4.1 2h3a2 2 0 0 1 2 1.7c.1.9.4 1.8.7 2.7a2 2 0 0 1-.5 2.1L8 9.8a16 16 0 0 0 6 6l1.3-1.3a2 2 0 0 1 2.1-.4c.9.3 1.8.6 2.7.7a2 2 0 0 1 1.7 2Z"/></svg><a data-company="phone" href="#"></a></li>
+            <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="4" width="20" height="16" rx="2"/><path d="m22 7-10 6L2 7"/></svg><a data-company="email" href="#"></a></li>
+            <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20 10c0 6-8 12-8 12s-8-6-8-12a8 8 0 0 1 16 0Z"/><circle cx="12" cy="10" r="3"/></svg><span><span data-company="street"></span>, <span data-company="zipCity"></span></span></li>
+          </ul>
         </div>
       </div>
     </section>
