@@ -135,20 +135,35 @@ window.GTH_APARTMENTS = [
     slug: "ferienwohnung-bamberg-penthouse-weide", // eigene Seite: ferienwohnung-bamberg-penthouse-weide.html
     city: "bamberg",
     name: "Penthouse Weide",
-    tagline: "Lichtdurchflutetes Penthouse mit Balkon für bis zu 6 Gäste",
+    tagline: "Lichtdurchflutetes Penthouse mit Balkon und Blick über Bamberg – bis zu 6 Gäste",
     type: ["ferien"],
     guests: 6,
     bedrooms: null,
     beds: null,
     size: null,
     priceFrom: null,
-    images: ["1.jpg"],
+    images: ["1.jpg", "2.jpg", "3.jpg", "4.jpg", "5.jpg", "6.jpg", "7.jpg", "8.jpg", "9.jpg", "10.jpg", "11.jpg", "12.jpg", "13.jpg"],
+    captions: [
+      "Offener Wohn- und Essbereich mit Holzbalken und Panoramafenster",
+      "Balkon mit Sitzgelegenheit und Blick über Bamberg",
+      "Wohnzimmer mit Natursteinwand und Smart-TV",
+      "Gedeckter Esstisch für sechs Personen mit Kinderhochstuhl",
+      "Moderne Küche mit Kochinsel unter dem Dachgebälk",
+      "Küchenzeile mit Dachfenster und Spülmaschine",
+      "Bartheke mit Barhockern",
+      "Kaffeemaschine, Wasserkocher und Toaster",
+      "Einbau-Backofen",
+      "Schlafzimmer mit Doppelbett und Mooswand",
+      "Badezimmer mit Badewanne",
+      "Waschtisch im Badezimmer",
+      "Blick vom Balkon über die Dächer von Bamberg"
+    ],
     video: "", // Roomtour: YouTube-/Vimeo-Link oder Datei, z. B. "images/wohnungen/<id>/roomtour.mp4"
     description: [
-      "Wohnen über den Dächern von Bamberg: Das Penthouse Weide begeistert mit offenem Wohn- und Essbereich, sichtbarem Holzgebälk und großen Fensterfronten mit Blick über die Stadt – Platz für bis zu 6 Gäste.",
-      "Das UNESCO-Welterbe mit Altem Rathaus, Klein-Venedig und Dom sowie die berühmte Bamberger Bierkultur liegen ganz in Ihrer Nähe. Die Wohnung ist voll ausgestattet und bezugsfertig."
+      "Wohnen über den Dächern von Bamberg: Das Penthouse Weide begeistert mit offenem Wohn- und Essbereich, sichtbarem Holzgebälk, großen Panoramafenstern und eigenem Balkon mit Blick über die Stadt – Platz für bis zu 6 Gäste.",
+      "Die moderne Küche mit Kochinsel und Bartheke, das gemütliche Wohnzimmer mit Natursteinwand und das Schlafzimmer mit grüner Mooswand machen den Aufenthalt besonders. Das UNESCO-Welterbe mit Altem Rathaus, Klein-Venedig und Dom liegt ganz in der Nähe."
     ],
-    amenities: ["Bis zu 6 Personen", "Großer Essbereich", "Voll ausgestattete Küche", "Handtücher & Bettwäsche", "Endreinigung inklusive", "Ideal für Familien & Gruppen"],
+    amenities: ["Bis zu 6 Personen", "Balkon mit Stadtblick", "Küche mit Kochinsel & Bartheke", "Backofen & Spülmaschine", "Kaffeemaschine, Wasserkocher & Toaster", "Smart-TV & Streaming", "Esstisch für 6 Personen", "Kinderhochstuhl", "Bad mit Badewanne", "Handtücher & Bettwäsche", "Endreinigung inklusive"],
     smoobuId: "2842573",
     calendarHash: ""
   },
