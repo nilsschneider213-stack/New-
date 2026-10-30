@@ -8,11 +8,11 @@ window.GTH_CONFIG = {
   company: {
     name: "GreenTree Homes",
     owner: "Nils Schneider",
-    legalName: "Nils Schneider CN Einzelunternehmen",
+    legalName: "Nils Schneider GTH",
     street: "Keplerstraße 20",
     zipCity: "93047 Regensburg",
     phone: "+49 1575 7309729",
-    email: "hosting@nilsschneidercn.de",
+    email: "kontakt@greentree-homes.com",
     whatsapp: "" // optional, z. B. "4915112345678" (ohne + und Leerzeichen)
   },
 
