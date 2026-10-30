@@ -816,7 +816,7 @@ h3 { font-size: 1.55rem; }
 
 /* Logo leicht durchsichtig mittig hinter dem Schriftzug */
 .site-header--center .brand--center { position: relative; display: grid; place-items: center; text-align: center; padding: 0 10px; }
-.site-header--center .brand--center .brand__logo { position: absolute; left: 50%; top: 50%; transform: translate(-50%, -50%); width: auto; height: 78px; opacity: .2; z-index: 0; pointer-events: none; }
+.site-header--center .brand--center .brand__logo { position: absolute; left: 50%; top: 50%; transform: translate(-50%, -50%); width: auto; height: 80px; opacity: .42; z-index: 0; pointer-events: none; }
 .site-header--center .brand--center > span { position: relative; z-index: 1; display: flex; flex-direction: column; align-items: center; }
 .site-header--center .brand--center .brand__name { font-size: 1.85rem; line-height: 1; }
 .site-header--center .brand--center .brand__sub { margin-top: 3px; letter-spacing: .5em; padding-left: .5em; color: #4a4a4a; }
@@ -825,3 +825,4 @@ h3 { font-size: 1.55rem; }
   .site-header--center .brand--center .brand__name { font-size: 1.4rem; }
   .site-header--center .brand--center .brand__sub { letter-spacing: .4em; font-size: .6rem; display: block; }
 }
+.site-header--center .brand--center .brand__name, .site-header--center .brand--center .brand__sub { text-shadow: 0 0 6px var(--cream), 0 0 2px var(--cream); }
