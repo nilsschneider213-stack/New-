@@ -25,7 +25,7 @@
  * ============================================================
  */
 // Wird von scripts/prerender.js automatisch hochgezählt (sorgt dafür, dass neue Fotos sofort sichtbar sind)
-window.GTH_ASSET_VERSION = "202611021750";
+window.GTH_ASSET_VERSION = "202611021758";
 
 window.GTH_CITIES = [
   {
@@ -65,22 +65,11 @@ window.GTH_APARTMENTS = [
     images: ["1.jpg", "2.jpg", "3.jpg", "4.jpg", "5.jpg", "6.jpg", "7.jpg", "8.jpg", "9.jpg", "10.jpg", "11.jpg", "12.jpg", "13.jpg", "14.jpg", "15.jpg", "16.jpg", "17.jpg", "18.jpg", "19.jpg", "20.jpg", "21.jpg", "22.jpg", "23.jpg", "24.jpg", "25.jpg", "26.jpg", "27.jpg", "28.jpg", "29.jpg", "30.jpg", "31.jpg", "32.jpg", "33.jpg", "34.jpg"],
     // Bildbeschreibungen (gleiche Reihenfolge wie images) – wichtig für Google
     captions: [
-      "Dachterrasse mit Lounge, Esstisch und Grill",
-      "Sonnenuntergang auf der Dachterrasse mit Blick zum Regensburger Dom",
-      "Essbereich mit Sonnenuntergang über Regensburg",
+      "Ledersofa mit Bogenlampe – Blick durch den Wandspiegel",
       "Wohnbereich mit Ledersofa und Blick über die Dächer",
       "Gemütliche Sofaecke mit Bogenlampe",
-      "Ledersofa mit Bogenlampe – Blick durch den Wandspiegel",
       "Wohnbereich mit Pflanzen und Kunstdrucken",
       "Offener Wohn- und Essbereich",
-      "Offener Wohn- und Essbereich am Abend",
-      "Esstisch mit Abendrot über den Dächern",
-      "Essbereich mit Balkontür zur blauen Stunde",
-      "Esstisch für sechs Personen mit Blick auf die Dachterrasse",
-      "Essbereich mit Massivholztisch",
-      "Essbereich mit Kinderhochstuhl und Zugang zur Terrasse",
-      "Küche mit Spülmaschine, Kaffeemaschine, Toaster und Wasserkocher",
-      "Küche mit Backofen und Ceranfeld",
       "Schlafzimmer 1 mit Doppelbett",
       "Doppelbett mit Akzentwand",
       "Schlafzimmer 1 mit Kommode",
@@ -95,6 +84,17 @@ window.GTH_APARTMENTS = [
       "Doppelbett mit Nachttischlampe",
       "Schlafzimmer 2 mit Spiegel",
       "Kommode im Schlafzimmer 2",
+      "Dachterrasse mit Lounge, Esstisch und Grill",
+      "Sonnenuntergang auf der Dachterrasse mit Blick zum Regensburger Dom",
+      "Essbereich mit Sonnenuntergang über Regensburg",
+      "Offener Wohn- und Essbereich am Abend",
+      "Esstisch mit Abendrot über den Dächern",
+      "Essbereich mit Balkontür zur blauen Stunde",
+      "Esstisch für sechs Personen mit Blick auf die Dachterrasse",
+      "Essbereich mit Massivholztisch",
+      "Essbereich mit Kinderhochstuhl und Zugang zur Terrasse",
+      "Küche mit Spülmaschine, Kaffeemaschine, Toaster und Wasserkocher",
+      "Küche mit Backofen und Ceranfeld",
       "Badezimmer mit Badewanne",
       "Badezimmer mit Dusche",
       "Arbeitsplatz mit Schreibtisch und Balkontür",
