@@ -25,7 +25,7 @@
  * ============================================================
  */
 // Wird von scripts/prerender.js automatisch hochgezählt (sorgt dafür, dass neue Fotos sofort sichtbar sind)
-window.GTH_ASSET_VERSION = "202611021829";
+window.GTH_ASSET_VERSION = "202611021830";
 
 window.GTH_CITIES = [
   {
@@ -344,20 +344,39 @@ window.GTH_APARTMENTS = [
     slug: "ferienwohnung-coburg-studio-vesteblick", // eigene Seite: ferienwohnung-coburg-studio-vesteblick.html
     city: "coburg",
     name: "Studio mit Balkon & Vesteblick",
-    tagline: "Gemütliches Studio mit Balkon und Blick auf die Veste Coburg",
+    tagline: "Helles Dachstudio in Coburg-Cortendorf mit Balkon und Blick auf die Veste",
     type: ["ferien"],
     guests: 3,
     bedrooms: null,
-    beds: null,
+    beds: "1 Boxspring-Doppelbett, 1 Schlafsofa",
     size: null,
     priceFrom: null,
-    images: ["1.jpg"],
+    images: ["1.jpg", "2.jpg", "3.jpg", "4.jpg", "5.jpg", "6.jpg", "7.jpg", "8.jpg", "9.jpg", "10.jpg", "11.jpg", "12.jpg", "13.jpg", "14.jpg", "15.jpg", "16.jpg", "17.jpg"],
+    captions: [
+      "Helles Dachstudio mit Boxspringbett, Sofa und Arbeitsplatz",
+      "Boxspringbett mit Blick zum Arbeitsplatz am Fenster",
+      "Boxspringbett mit goldenem Standspiegel",
+      "Frische Handtücher mit kleiner Begrüßung",
+      "Gemütliches Sofa und Arbeitsplatz am Fenster",
+      "Ein Glas Wein auf dem Sofa",
+      "Arbeitsplatz mit Blick ins Grüne",
+      "Offene Küche mit Backofen und Esstisch für vier",
+      "Gedeckter Esstisch",
+      "Badezimmer mit Dusche",
+      "Ankleide mit Kommode und Spiegeln",
+      "Liebevolle Dekoration",
+      "Balkon mit Loungemöbeln und Blick auf die Veste Coburg",
+      "Die Veste Coburg – Blick vom Studio",
+      "Studio mit Balkon und Vesteblick",
+      "Helles Treppenhaus",
+      "Waschmaschinen und Trockner im Waschraum"
+    ],
     video: "", // Roomtour: YouTube-/Vimeo-Link oder Datei, z. B. "images/wohnungen/<id>/roomtour.mp4"
     description: [
-      "Unser helles Studio-Apartment unter dem Dach verbindet Wohnen und Schlafen in einem offen gestalteten, modern eingerichteten Raum – mit eigenem Balkon und Blick auf die Veste Coburg.",
-      "Mit Küche, Waschmaschine, Trockner und Smart-TV ist es ideal für Städtereisende, Paare und Geschäftsreisende, die Coburg entdecken oder hier arbeiten."
+      "Unser helles Dachstudio liegt im ruhigen Coburger Stadtteil Cortendorf – mit eigenem Balkon und Blick auf die Veste Coburg. Großzügig geschnitten, verbindet es Schlafen, Wohnen und Arbeiten in einem offenen Raum mit Dachschrägen und warmem Holzboden.",
+      "Boxspringbett, Sofa, Arbeitsplatz am Fenster, eine offene Küche mit Esstisch für vier sowie eine eigene Ankleide machen es ideal für Paare, Städtereisende und Geschäftsreisende. Waschmaschinen und Trockner stehen im Waschraum des Hauses bereit."
     ],
-    amenities: ["Balkon / Terrasse", "WLAN", "Küche mit Grundausstattung", "Kaffeemaschine & Wasserkocher", "Waschmaschine & Trockner", "Smart-TV & Streaming", "Föhn", "Handtücher & Bettwäsche", "Shampoo & Seife"],
+    amenities: ["Balkon mit Loungemöbeln & Vesteblick", "Boxspringbett", "Sofa", "Arbeitsplatz", "WLAN", "Küche mit Backofen & Ceranfeld", "Esstisch für 4 Personen", "Kaffeemaschine & Wasserkocher", "Ankleide", "Bad mit Dusche", "Waschmaschine & Trockner (Waschraum)", "Smart-TV & Streaming", "Föhn", "Handtücher & Bettwäsche"],
     smoobuId: "2428678",
     calendarHash: ""
   }
