@@ -25,7 +25,7 @@
  * ============================================================
  */
 // Wird von scripts/prerender.js automatisch hochgezählt (sorgt dafür, dass neue Fotos sofort sichtbar sind)
-window.GTH_ASSET_VERSION = "202611021833";
+window.GTH_ASSET_VERSION = "202611021837";
 
 window.GTH_CITIES = [
   {
@@ -329,13 +329,31 @@ window.GTH_APARTMENTS = [
     beds: null, // z. B. "6 Einzelbetten"
     size: null, // m²
     priceFrom: null, // z. B. 79 → zeigt „ab 79 € / Nacht“
-    images: ["1.jpg"],
+    images: ["1.jpg", "2.jpg", "3.jpg", "4.jpg", "5.jpg", "6.jpg", "7.jpg", "8.jpg", "9.jpg", "10.jpg", "11.jpg", "12.jpg", "13.jpg", "14.jpg", "15.jpg", "16.jpg"],
+    captions: [
+      "Schlafzimmer 1 mit Boxspring-Doppelbett",
+      "Schlafzimmer 1 mit Smart-TV und Blick ins Grüne",
+      "Frische Handtücher im Schlafzimmer 1",
+      "Nachttisch mit Leselampe",
+      "Schlafzimmer 2 mit Doppelbett und Smart-TV",
+      "Fire TV mit Netflix, Prime Video und Disney+",
+      "Esstisch für sechs Personen",
+      "Küche mit Backofen, Ceranfeld und Spülmaschine",
+      "Arbeitsfläche mit Spüle, Messern und Schneidebrettern",
+      "Toaster und Wasserkocher",
+      "Senseo-Kaffeemaschine am Küchenfenster",
+      "Badezimmer mit Dusche",
+      "Regendusche",
+      "Waschtisch mit Spiegelschrank",
+      "Waschmaschine und Trockner im Keller",
+      "Das Haus von außen"
+    ],
     video: "", // Roomtour: YouTube-/Vimeo-Link oder Datei, z. B. "images/wohnungen/<id>/roomtour.mp4"
     description: [
       "Das Herzstück Coburg ist unsere Monteurwohnung für Handwerker, Monteure und Projektteams – mit Platz für bis zu 6 Personen und für Einsätze von wenigen Nächten bis zu mehreren Monaten.",
-      "Die Wohnung ist voll ausgestattet, sauber und bezugsfertig, sodass Ihr Team nach Feierabend einfach ankommen und sich erholen kann. Rechnung auf Firma selbstverständlich möglich."
+      "Gemütliche Schlafzimmer mit Smart-TV und Fire TV, eine voll ausgestattete Küche mit Spülmaschine, ein großer Esstisch und ein modernes Bad mit Regendusche sorgen dafür, dass Ihr Team nach Feierabend gut zur Ruhe kommt. Waschmaschine und Trockner stehen im Keller bereit. Rechnung auf Firma selbstverständlich möglich."
     ],
-    amenities: ["Bis zu 6 Personen", "Voll ausgestattet", "Handtücher & Bettwäsche", "Endreinigung inklusive", "Rechnung für Firmen", "Langzeitmiete möglich"],
+    amenities: ["Bis zu 6 Personen", "Voll ausgestattete Küche", "Backofen, Ceranfeld & Spülmaschine", "Senseo-Kaffeemaschine, Toaster & Wasserkocher", "Esstisch für 6 Personen", "Smart-TV mit Fire TV (Netflix, Prime, Disney+)", "WLAN", "Bad mit Regendusche", "Waschmaschine & Trockner (Keller)", "Handtücher & Bettwäsche", "Endreinigung inklusive", "Rechnung für Firmen", "Langzeitmiete möglich", "Nichtraucherwohnung"],
     smoobuId: "2636538",
     calendarHash: ""
   },
