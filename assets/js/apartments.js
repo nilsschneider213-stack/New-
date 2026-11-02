@@ -25,7 +25,7 @@
  * ============================================================
  */
 // Wird von scripts/prerender.js automatisch hochgezählt (sorgt dafür, dass neue Fotos sofort sichtbar sind)
-window.GTH_ASSET_VERSION = "202611021814";
+window.GTH_ASSET_VERSION = "202611021816";
 
 window.GTH_CITIES = [
   {
@@ -128,12 +128,14 @@ window.GTH_APARTMENTS = [
     beds: null,
     size: null,
     priceFrom: null,
-    images: ["1.jpg", "2.jpg", "3.jpg", "4.jpg", "5.jpg", "6.jpg", "7.jpg", "8.jpg", "9.jpg", "10.jpg", "11.jpg", "12.jpg", "13.jpg", "14.jpg", "15.jpg", "16.jpg", "17.jpg", "18.jpg", "19.jpg", "20.jpg", "21.jpg", "22.jpg", "23.jpg", "24.jpg", "25.jpg", "26.jpg", "27.jpg", "28.jpg", "29.jpg", "30.jpg", "31.jpg", "32.jpg", "33.jpg", "34.jpg", "35.jpg", "36.jpg", "37.jpg", "38.jpg"],
+    images: ["1.jpg", "2.jpg", "3.jpg", "4.jpg", "5.jpg", "6.jpg", "7.jpg", "8.jpg", "9.jpg", "10.jpg", "11.jpg", "12.jpg", "13.jpg", "14.jpg", "15.jpg", "16.jpg", "17.jpg", "18.jpg", "19.jpg", "20.jpg", "21.jpg", "22.jpg", "23.jpg", "24.jpg", "25.jpg", "26.jpg", "27.jpg", "28.jpg", "29.jpg", "30.jpg", "31.jpg", "32.jpg", "33.jpg", "34.jpg", "35.jpg", "36.jpg", "37.jpg", "38.jpg", "39.jpg", "40.jpg", "41.jpg", "42.jpg", "43.jpg", "44.jpg", "45.jpg", "46.jpg", "47.jpg", "48.jpg"],
     captions: [
       "Essbereich mit Holztisch für acht Personen und Designerleuchte",
       "Gedeckter Esstisch mit Blick in den Innenhof",
       "Gedeckter Tisch mit Weingläsern",
+      "Kinderhochstuhl am Esstisch",
       "Wohnzimmer mit drei grünen Samtsofas und Rundbogenfenster",
+      "Wohnzimmer mit Samtsofas und Billardtisch",
       "Gemütliche Sitzecke mit Bogenlampe und Smart-TV",
       "Samtsofas mit Bogenlampe und Kunstdruck",
       "Wohnzimmer mit grünen Samtsofas und Smart-TV",
@@ -146,16 +148,24 @@ window.GTH_APARTMENTS = [
       "Kühl-Gefrier-Kombination",
       "Kaffeemaschine und Wasserkocher",
       "Schlafzimmer 1 mit Doppelbett, Smart-TV und Schreibtisch",
-      "Schlafzimmer 1 mit Kleiderschrank und Smart-TV",
-      "Arbeitsplatz und Smart-TV im Schlafzimmer",
-      "Bett mit Blick auf das Rundbogenfenster",
-      "Schlafzimmer 1 mit Boxspringbett – Blick durch den Spiegelschrank",
-      "Schlafzimmer 1 mit Rundbogenfenster",
-      "Arbeitsplatz am Fenster",
+      "Schlafzimmer 1 – Doppelbett mit Nachttischlampen",
+      "Frische Handtücher mit kleiner Begrüßung",
+      "Schlafzimmer 1 – Bett mit Blick zum Rundbogenfenster",
+      "Arbeitsplatz im Schlafzimmer 1",
+      "Schlafzimmer 2 mit zwei Rundbogenfenstern",
+      "Schlafzimmer 2 – Boxspringbett mit Rautenmuster",
+      "Schlafzimmer 2 – Boxspringbett mit Nachttischlampe",
+      "Schlafzimmer 2 mit Kleiderschrank und Smart-TV",
+      "Schlafzimmer 2 – Arbeitsplatz und Smart-TV",
+      "Schreibtisch und Kleiderschrank im Schlafzimmer 2",
+      "Schlafzimmer 2 – Blick durch den Spiegelschrank",
       "Kleiderschrank und Babybett",
-      "Schlafzimmer 2 mit zwei Einzelbetten",
+      "Babybett am Rundbogenfenster",
+      "Schlafzimmer mit Rundbogenfenster",
+      "Schlafzimmer 3 mit zwei Einzelbetten",
       "Einzelbetten mit beleuchtetem Rundspiegel",
       "Einzelbett mit Handtüchern und kleiner Begrüßung",
+      "Runder Spiegel mit Deko im Schlafzimmer 3",
       "Regendusche mit Ablagenische",
       "Badezimmer mit Waschtisch",
       "Waschtisch mit Fenster",
@@ -174,7 +184,7 @@ window.GTH_APARTMENTS = [
       "Die Stadtvilla ist unsere große Wohnung in Regensburg: drei Schlafzimmer, ein großzügiger Wohnbereich mit Billardtisch und viel Platz für Familien, Freundesgruppen und Teams – bis zu 6 Gäste.",
       "Kostenloser Parkplatz auf dem Grundstück, Arbeitsplatz, Spülmaschine und Soundsystem sorgen für Komfort. Cafés, Restaurants, der Dom und die Donau sind schnell erreicht."
     ],
-    amenities: ["3 Schlafzimmer", "Kostenloser Parkplatz", "Billardtisch", "Esstisch für 8 Personen", "Arbeitsplatz", "Spielzeug für Kinder", "Babybett", "Küche mit Ceranfeld, Backofen & Toaster", "Kühl-Gefrier-Kombination", "Spülmaschine", "Kaffeemaschine & Wasserkocher", "Regendusche", "Smart-TV im Wohn- und Schlafzimmer", "Soundsystem", "Rollstuhlgerecht", "Nichtraucherunterkunft", "Handtücher & Bettwäsche"],
+    amenities: ["3 Schlafzimmer", "Kostenloser Parkplatz", "Billardtisch", "Esstisch für 8 Personen", "Arbeitsplatz", "Spielzeug für Kinder", "Babybett & Kinderhochstuhl", "Küche mit Ceranfeld, Backofen & Toaster", "Kühl-Gefrier-Kombination", "Spülmaschine", "Kaffeemaschine & Wasserkocher", "Regendusche", "Smart-TV im Wohn- und Schlafzimmer", "Soundsystem", "Rollstuhlgerecht", "Nichtraucherunterkunft", "Handtücher & Bettwäsche"],
     smoobuId: "2485178",
     calendarHash: ""
   },
