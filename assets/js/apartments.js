@@ -25,7 +25,7 @@
  * ============================================================
  */
 // Wird von scripts/prerender.js automatisch hochgezählt (sorgt dafür, dass neue Fotos sofort sichtbar sind)
-window.GTH_ASSET_VERSION = "202611021830";
+window.GTH_ASSET_VERSION = "202611021832";
 
 window.GTH_CITIES = [
   {
@@ -351,23 +351,30 @@ window.GTH_APARTMENTS = [
     beds: "1 Boxspring-Doppelbett, 1 Schlafsofa",
     size: null,
     priceFrom: null,
-    images: ["1.jpg", "2.jpg", "3.jpg", "4.jpg", "5.jpg", "6.jpg", "7.jpg", "8.jpg", "9.jpg", "10.jpg", "11.jpg", "12.jpg", "13.jpg", "14.jpg", "15.jpg", "16.jpg", "17.jpg"],
+    images: ["1.jpg", "2.jpg", "3.jpg", "4.jpg", "5.jpg", "6.jpg", "7.jpg", "8.jpg", "9.jpg", "10.jpg", "11.jpg", "12.jpg", "13.jpg", "14.jpg", "15.jpg", "16.jpg", "17.jpg", "18.jpg", "19.jpg", "20.jpg", "21.jpg", "22.jpg", "23.jpg", "24.jpg"],
     captions: [
       "Helles Dachstudio mit Boxspringbett, Sofa und Arbeitsplatz",
       "Boxspringbett mit Blick zum Arbeitsplatz am Fenster",
       "Boxspringbett mit goldenem Standspiegel",
+      "Boxspringbett mit Sofa unter der Dachschräge",
       "Frische Handtücher mit kleiner Begrüßung",
       "Gemütliches Sofa und Arbeitsplatz am Fenster",
+      "Sofa mit Stehlampe und goldenem Spiegel",
       "Ein Glas Wein auf dem Sofa",
       "Arbeitsplatz mit Blick ins Grüne",
+      "Smart-TV mit Netflix & Streaming",
       "Offene Küche mit Backofen und Esstisch für vier",
+      "Offene Küche mit Esstisch",
+      "Esstisch mit Blick in die Küche",
+      "Esstisch am Balkonfenster",
       "Gedeckter Esstisch",
+      "Küchenzeile mit Ceranfeld, Kaffeemaschine und Wasserkocher",
+      "Senseo-Kaffeemaschine",
       "Badezimmer mit Dusche",
       "Ankleide mit Kommode und Spiegeln",
       "Liebevolle Dekoration",
       "Balkon mit Loungemöbeln und Blick auf die Veste Coburg",
       "Die Veste Coburg – Blick vom Studio",
-      "Studio mit Balkon und Vesteblick",
       "Helles Treppenhaus",
       "Waschmaschinen und Trockner im Waschraum"
     ],
@@ -376,7 +383,7 @@ window.GTH_APARTMENTS = [
       "Unser helles Dachstudio liegt im ruhigen Coburger Stadtteil Cortendorf – mit eigenem Balkon und Blick auf die Veste Coburg. Großzügig geschnitten, verbindet es Schlafen, Wohnen und Arbeiten in einem offenen Raum mit Dachschrägen und warmem Holzboden.",
       "Boxspringbett, Sofa, Arbeitsplatz am Fenster, eine offene Küche mit Esstisch für vier sowie eine eigene Ankleide machen es ideal für Paare, Städtereisende und Geschäftsreisende. Waschmaschinen und Trockner stehen im Waschraum des Hauses bereit."
     ],
-    amenities: ["Balkon mit Loungemöbeln & Vesteblick", "Boxspringbett", "Sofa", "Arbeitsplatz", "WLAN", "Küche mit Backofen & Ceranfeld", "Esstisch für 4 Personen", "Kaffeemaschine & Wasserkocher", "Ankleide", "Bad mit Dusche", "Waschmaschine & Trockner (Waschraum)", "Smart-TV & Streaming", "Föhn", "Handtücher & Bettwäsche"],
+    amenities: ["Balkon mit Loungemöbeln & Vesteblick", "Boxspringbett", "Sofa", "Arbeitsplatz", "WLAN", "Küche mit Backofen & Ceranfeld", "Esstisch für 4 Personen", "Senseo-Kaffeemaschine & Wasserkocher", "Ankleide", "Bad mit Dusche", "Waschmaschine & Trockner (Waschraum)", "Smart-TV & Streaming", "Föhn", "Handtücher & Bettwäsche"],
     smoobuId: "2428678",
     calendarHash: ""
   }
