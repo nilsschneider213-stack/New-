@@ -25,7 +25,7 @@
  * ============================================================
  */
 // Wird von scripts/prerender.js automatisch hochgezählt (sorgt dafür, dass neue Fotos sofort sichtbar sind)
-window.GTH_ASSET_VERSION = "202611021803";
+window.GTH_ASSET_VERSION = "202611021811";
 
 window.GTH_CITIES = [
   {
@@ -128,13 +128,32 @@ window.GTH_APARTMENTS = [
     beds: null,
     size: null,
     priceFrom: null,
-    images: ["1.jpg"],
+    images: ["1.jpg", "2.jpg", "3.jpg", "4.jpg", "5.jpg", "6.jpg", "7.jpg", "8.jpg", "9.jpg", "10.jpg", "11.jpg", "12.jpg", "13.jpg", "14.jpg", "15.jpg", "16.jpg", "17.jpg"],
+    captions: [
+      "Essbereich mit Holztisch für acht Personen und Designerleuchte",
+      "Gedeckter Esstisch mit Blick in den Innenhof",
+      "Gedeckter Tisch mit Weingläsern",
+      "Wohnbereich mit Billardtisch",
+      "Kaffeemaschine und Wasserkocher",
+      "Grünes Samtsofa im Wohnzimmer",
+      "Spielzeug für Kinder",
+      "Schlafzimmer 1 mit Boxspringbett – Blick durch den Spiegelschrank",
+      "Schlafzimmer 1 mit Rundbogenfenster",
+      "Arbeitsplatz am Fenster",
+      "Schlafzimmer 2 mit zwei Einzelbetten",
+      "Einzelbetten mit beleuchtetem Rundspiegel",
+      "Regendusche mit Ablagenische",
+      "Badezimmer mit Waschtisch",
+      "Waschtisch mit Fenster",
+      "Eingangsbereich mit Garderobe und Spiegel",
+      "Antiker Bauernschrank im Eingangsbereich"
+    ],
     video: "", // Roomtour: YouTube-/Vimeo-Link oder Datei, z. B. "images/wohnungen/<id>/roomtour.mp4"
     description: [
       "Die Stadtvilla ist unsere große Wohnung in Regensburg: drei Schlafzimmer, ein großzügiger Wohnbereich mit Billardtisch und viel Platz für Familien, Freundesgruppen und Teams – bis zu 6 Gäste.",
       "Kostenloser Parkplatz auf dem Grundstück, Arbeitsplatz, Spülmaschine und Soundsystem sorgen für Komfort. Cafés, Restaurants, der Dom und die Donau sind schnell erreicht."
     ],
-    amenities: ["3 Schlafzimmer", "Kostenloser Parkplatz", "Billardtisch", "Arbeitsplatz", "Küche mit Grundausstattung", "Spülmaschine", "Smart-TV & Soundsystem", "Rollstuhlgerecht", "Nichtraucherunterkunft", "Handtücher & Bettwäsche"],
+    amenities: ["3 Schlafzimmer", "Kostenloser Parkplatz", "Billardtisch", "Esstisch für 8 Personen", "Arbeitsplatz", "Spielzeug für Kinder", "Küche mit Grundausstattung", "Spülmaschine", "Kaffeemaschine & Wasserkocher", "Regendusche", "Smart-TV & Soundsystem", "Rollstuhlgerecht", "Nichtraucherunterkunft", "Handtücher & Bettwäsche"],
     smoobuId: "2485178",
     calendarHash: ""
   },
