@@ -25,7 +25,7 @@
  * ============================================================
  */
 // Wird von scripts/prerender.js automatisch hochgezählt (sorgt dafür, dass neue Fotos sofort sichtbar sind)
-window.GTH_ASSET_VERSION = "202611021816";
+window.GTH_ASSET_VERSION = "202611021818";
 
 window.GTH_CITIES = [
   {
@@ -128,7 +128,7 @@ window.GTH_APARTMENTS = [
     beds: null,
     size: null,
     priceFrom: null,
-    images: ["1.jpg", "2.jpg", "3.jpg", "4.jpg", "5.jpg", "6.jpg", "7.jpg", "8.jpg", "9.jpg", "10.jpg", "11.jpg", "12.jpg", "13.jpg", "14.jpg", "15.jpg", "16.jpg", "17.jpg", "18.jpg", "19.jpg", "20.jpg", "21.jpg", "22.jpg", "23.jpg", "24.jpg", "25.jpg", "26.jpg", "27.jpg", "28.jpg", "29.jpg", "30.jpg", "31.jpg", "32.jpg", "33.jpg", "34.jpg", "35.jpg", "36.jpg", "37.jpg", "38.jpg", "39.jpg", "40.jpg", "41.jpg", "42.jpg", "43.jpg", "44.jpg", "45.jpg", "46.jpg", "47.jpg", "48.jpg"],
+    images: ["1.jpg", "2.jpg", "3.jpg", "4.jpg", "5.jpg", "6.jpg", "7.jpg", "8.jpg", "9.jpg", "10.jpg", "11.jpg", "12.jpg", "13.jpg", "14.jpg", "15.jpg", "16.jpg", "17.jpg", "18.jpg", "19.jpg", "20.jpg", "21.jpg", "22.jpg", "23.jpg", "24.jpg", "25.jpg", "26.jpg", "27.jpg", "28.jpg", "29.jpg", "30.jpg", "31.jpg", "32.jpg", "33.jpg", "34.jpg", "35.jpg", "36.jpg", "37.jpg", "38.jpg", "39.jpg", "40.jpg", "41.jpg", "42.jpg", "43.jpg", "44.jpg", "45.jpg", "46.jpg", "47.jpg", "48.jpg", "49.jpg", "50.jpg", "51.jpg", "52.jpg", "53.jpg", "54.jpg", "55.jpg", "56.jpg", "57.jpg"],
     captions: [
       "Essbereich mit Holztisch für acht Personen und Designerleuchte",
       "Gedeckter Esstisch mit Blick in den Innenhof",
@@ -138,6 +138,7 @@ window.GTH_APARTMENTS = [
       "Wohnzimmer mit Samtsofas und Billardtisch",
       "Gemütliche Sitzecke mit Bogenlampe und Smart-TV",
       "Samtsofas mit Bogenlampe und Kunstdruck",
+      "Blick aus dem Wohnzimmer auf die blühende Magnolie",
       "Wohnzimmer mit grünen Samtsofas und Smart-TV",
       "Grünes Samtsofa im Wohnzimmer",
       "Spielzeug für Kinder",
@@ -149,6 +150,8 @@ window.GTH_APARTMENTS = [
       "Kaffeemaschine und Wasserkocher",
       "Schlafzimmer 1 mit Doppelbett, Smart-TV und Schreibtisch",
       "Schlafzimmer 1 – Doppelbett mit Nachttischlampen",
+      "Schlafzimmer 1 – Doppelbett mit Begrüßung",
+      "Blick durch die Tür ins Schlafzimmer 1",
       "Frische Handtücher mit kleiner Begrüßung",
       "Schlafzimmer 1 – Bett mit Blick zum Rundbogenfenster",
       "Arbeitsplatz im Schlafzimmer 1",
@@ -171,13 +174,19 @@ window.GTH_APARTMENTS = [
       "Waschtisch mit Fenster",
       "Beleuchteter Spiegel im Bad",
       "Flur mit Blick zum Eingangsbereich",
+      "Blick vom Esstisch in den Flur",
       "Flur mit Stufen zum Essbereich",
       "Eingangsbereich mit Rundbogenfenster",
+      "Rundbogenfenster mit schmiedeeisernem Gitter",
       "Eingangsbereich mit Garderobe und Spiegel",
       "Antiker Bauernschrank im Eingangsbereich",
+      "Eingangsbereich mit Spiegel, Garderobe und Bauernschrank",
+      "Schnitzereien am antiken Bauernschrank",
       "Grüner Sessel im Eingangsbereich",
+      "Grüner Cordsessel im Flur",
       "Wohnungstür mit Begrüßungsmatte",
-      "Historischer Hauseingang mit Rundbogen"
+      "Historischer Hauseingang mit Rundbogen",
+      "Die Straße vor der Stadtvilla mit blühender Magnolie"
     ],
     video: "", // Roomtour: YouTube-/Vimeo-Link oder Datei, z. B. "images/wohnungen/<id>/roomtour.mp4"
     description: [
