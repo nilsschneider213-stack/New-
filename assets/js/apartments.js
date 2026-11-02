@@ -25,7 +25,7 @@
  * ============================================================
  */
 // Wird von scripts/prerender.js automatisch hochgezählt (sorgt dafür, dass neue Fotos sofort sichtbar sind)
-window.GTH_ASSET_VERSION = "202611021844";
+window.GTH_ASSET_VERSION = "202611021847";
 
 window.GTH_CITIES = [
   {
@@ -57,9 +57,9 @@ window.GTH_APARTMENTS = [
     name: "Penthouse Orange",
     tagline: "Penthouse mit Dachterrasse und Blick bis zum Dom",
     type: ["ferien"],
-    guests: 4, // in Smoobu derzeit 5 – bitte prüfen
+    guests: 5,
     bedrooms: 2,
-    beds: null,
+    beds: "2 Doppelbetten, 1 Schlafsofa",
     size: null,
     priceFrom: null,
     images: ["1.jpg", "2.jpg", "3.jpg", "4.jpg", "5.jpg", "6.jpg", "7.jpg", "8.jpg", "9.jpg", "10.jpg", "11.jpg", "12.jpg", "13.jpg", "14.jpg", "15.jpg", "16.jpg", "17.jpg", "18.jpg", "19.jpg", "20.jpg", "21.jpg", "22.jpg", "23.jpg", "24.jpg", "25.jpg", "26.jpg", "27.jpg", "28.jpg", "29.jpg", "30.jpg", "31.jpg", "32.jpg", "33.jpg", "34.jpg", "35.jpg", "36.jpg", "37.jpg", "38.jpg", "39.jpg", "40.jpg", "41.jpg"],
@@ -109,10 +109,10 @@ window.GTH_APARTMENTS = [
     ],
     video: "", // Roomtour: YouTube-/Vimeo-Link oder Datei, z. B. "images/wohnungen/<id>/roomtour.mp4"
     description: [
-      "Sonnenuntergang über den Dächern von Regensburg: Das Penthouse Orange bietet eine eigene Dachterrasse mit Blick bis zu den Türmen des Doms – für bis zu 4 Gäste.",
+      "Sonnenuntergang über den Dächern von Regensburg: Das Penthouse Orange bietet eine eigene Dachterrasse mit Blick bis zu den Türmen des Doms – für bis zu 5 Gäste.",
       "Mit kostenlosem Parkplatz, Arbeitsplatz, Spülmaschine und Smart-TV ist es ideal für Paare, kleine Familien und Geschäftsreisende."
     ],
-    amenities: ["Große Dachterrasse mit Lounge & Grill", "Kostenloser Parkplatz", "Arbeitsplatz", "2 Schlafzimmer mit Doppelbett", "Voll ausgestattete Küche mit Backofen", "Spülmaschine", "Kaffeemaschine, Toaster & Wasserkocher", "Bad mit Badewanne & Dusche", "Smart-TV & Streaming", "Babybett & Kinderhochstuhl", "Bügeleisen", "Handtücher & Bettwäsche"],
+    amenities: ["Große Dachterrasse mit Lounge & Grill", "Kostenloser Parkplatz", "Arbeitsplatz", "2 Schlafzimmer mit Doppelbett", "Schlafsofa", "Voll ausgestattete Küche mit Backofen", "Spülmaschine", "Kaffeemaschine, Toaster & Wasserkocher", "Bad mit Badewanne & Dusche", "Smart-TV & Streaming", "Babybett & Kinderhochstuhl", "Bügeleisen", "Handtücher & Bettwäsche"],
     smoobuId: "3553926",
     calendarHash: ""
   },
@@ -322,26 +322,23 @@ window.GTH_APARTMENTS = [
     slug: "monteurwohnung-coburg-herzstueck", // eigene Seite: monteurwohnung-coburg-herzstueck.html
     city: "coburg",
     name: "Herzstück Coburg",
-    tagline: "Unsere Monteurwohnung in Coburg – bis zu 6 Personen",
+    tagline: "Unsere Monteurwohnung in Coburg – bis zu 5 Personen",
     type: ["monteur"],
-    guests: 6,
-    bedrooms: 3,
-    beds: "2 Doppelbetten, 2 Einzelbetten, 1 Sofa",
+    guests: 5,
+    bedrooms: 2,
+    beds: "1 Doppelbett, 2 Einzelbetten, 1 Schlafsofa",
     size: null, // m²
     priceFrom: null, // z. B. 79 → zeigt „ab 79 € / Nacht“
-    images: ["1.jpg", "2.jpg", "3.jpg", "4.jpg", "5.jpg", "6.jpg", "7.jpg", "8.jpg", "9.jpg", "10.jpg", "11.jpg", "12.jpg", "13.jpg", "14.jpg", "15.jpg", "16.jpg", "17.jpg", "18.jpg", "19.jpg", "20.jpg"],
+    images: ["1.jpg", "2.jpg", "3.jpg", "4.jpg", "5.jpg", "6.jpg", "7.jpg", "8.jpg", "9.jpg", "10.jpg", "11.jpg", "12.jpg", "13.jpg", "14.jpg", "15.jpg", "16.jpg", "17.jpg"],
     captions: [
-      "Schlafzimmer 1 mit Boxspring-Doppelbett",
-      "Schlafzimmer 1 mit Smart-TV und Blick ins Grüne",
-      "Frische Handtücher im Schlafzimmer 1",
-      "Nachttisch mit Leselampe",
+      "Schlafzimmer 1 mit zwei Einzelbetten",
+      "Schlafzimmer 1 – Einzelbetten mit Nachttischlampe",
+      "Schlafzimmer 1 mit Schlafsofa und Smart-TV",
+      "Schlafsofa am Fenster",
       "Schlafzimmer 2 mit Doppelbett und Smart-TV",
+      "Nachttisch mit Leselampe",
       "Fire TV mit Netflix, Prime Video und Disney+",
-      "Schlafzimmer 3 mit zwei Einzelbetten",
-      "Schlafzimmer 3 – Einzelbetten mit Nachttischlampe",
-      "Schlafzimmer 3 mit Sofa und Smart-TV",
-      "Gemütliches Sofa am Fenster",
-      "Esstisch für sechs Personen",
+      "Großer Esstisch",
       "Küche mit Backofen, Ceranfeld und Spülmaschine",
       "Arbeitsfläche mit Spüle, Messern und Schneidebrettern",
       "Toaster und Wasserkocher",
@@ -354,10 +351,10 @@ window.GTH_APARTMENTS = [
     ],
     video: "", // Roomtour: YouTube-/Vimeo-Link oder Datei, z. B. "images/wohnungen/<id>/roomtour.mp4"
     description: [
-      "Das Herzstück Coburg ist unsere Monteurwohnung für Handwerker, Monteure und Projektteams – mit Platz für bis zu 6 Personen und für Einsätze von wenigen Nächten bis zu mehreren Monaten.",
-      "Drei gemütliche Schlafzimmer – zwei mit Doppelbett, eines mit zwei Einzelbetten – jeweils mit Smart-TV und Fire TV, eine voll ausgestattete Küche mit Spülmaschine, ein großer Esstisch und ein modernes Bad mit Regendusche sorgen dafür, dass Ihr Team nach Feierabend gut zur Ruhe kommt. Waschmaschine und Trockner stehen im Keller bereit. Rechnung auf Firma selbstverständlich möglich."
+      "Das Herzstück Coburg ist unsere Monteurwohnung für Handwerker, Monteure und Projektteams – mit Platz für bis zu 5 Personen und für Einsätze von wenigen Nächten bis zu mehreren Monaten.",
+      "Zwei gemütliche Schlafzimmer – eines mit zwei Einzelbetten und Schlafsofa, eines mit Doppelbett – jeweils mit Smart-TV und Fire TV, eine voll ausgestattete Küche mit Spülmaschine, ein großer Esstisch und ein modernes Bad mit Regendusche sorgen dafür, dass Ihr Team nach Feierabend gut zur Ruhe kommt. Waschmaschine und Trockner stehen im Keller bereit. Rechnung auf Firma selbstverständlich möglich."
     ],
-    amenities: ["Bis zu 6 Personen", "3 Schlafzimmer", "Voll ausgestattete Küche", "Backofen, Ceranfeld & Spülmaschine", "Senseo-Kaffeemaschine, Toaster & Wasserkocher", "Esstisch für 6 Personen", "Smart-TV mit Fire TV (Netflix, Prime, Disney+)", "WLAN", "Bad mit Regendusche", "Waschmaschine & Trockner (Keller)", "Handtücher & Bettwäsche", "Endreinigung inklusive", "Rechnung für Firmen", "Langzeitmiete möglich", "Nichtraucherwohnung"],
+    amenities: ["Bis zu 5 Personen", "2 Schlafzimmer", "Schlafsofa", "Voll ausgestattete Küche", "Backofen, Ceranfeld & Spülmaschine", "Senseo-Kaffeemaschine, Toaster & Wasserkocher", "Großer Esstisch", "Smart-TV mit Fire TV (Netflix, Prime, Disney+)", "WLAN", "Bad mit Regendusche", "Waschmaschine & Trockner (Keller)", "Handtücher & Bettwäsche", "Endreinigung inklusive", "Rechnung für Firmen", "Langzeitmiete möglich", "Nichtraucherwohnung"],
     smoobuId: "2636538",
     calendarHash: ""
   },
