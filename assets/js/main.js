@@ -68,14 +68,16 @@
     return '<img src="' + esc(src) + '" alt="' + esc(alt) + '"' + (eager ? "" : ' loading="lazy"') +
       ' data-city="' + esc(city) + '" onerror="GTH.imgFail(this)">';
   }
+  // Versionsnummer an Bildadressen, damit Browser neue Fotos sofort laden (wird von scripts/prerender.js gesetzt)
+  var IMGV = window.GTH_ASSET_VERSION ? "?v=" + window.GTH_ASSET_VERSION : "";
   function aptImg(apt, i) {
     var file = apt.images && apt.images[i];
-    return file ? "images/wohnungen/" + apt.id + "/" + file : "";
+    return file ? "images/wohnungen/" + apt.id + "/" + file + IMGV : "";
   }
   // Kleines Vorschaubild (images/wohnungen/<id>/thumbs/…) für die Leiste unter der Galerie
   function aptThumb(apt, i) {
     var file = apt.images && apt.images[i];
-    return file ? "images/wohnungen/" + apt.id + "/thumbs/" + file : "";
+    return file ? "images/wohnungen/" + apt.id + "/thumbs/" + file + IMGV : "";
   }
   // Bildbeschreibung (alt-Text) – nutzt captions aus apartments.js, sonst „Foto n“
   function aptAlt(apt, i) {

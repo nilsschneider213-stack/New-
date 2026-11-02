@@ -23,6 +23,17 @@ const ROOT = path.resolve(__dirname, "..");
 const SITE = "https://www.greentree-homes.com/";
 const PR = /<!--pr-->[\s\S]*?<!--\/pr-->/;
 
+// Neue Versionsnummer: Browser laden dadurch geänderte Skripte und Fotos sofort neu
+const VERSION = new Date().toISOString().replace(/\D/g, "").slice(0, 12);
+{
+  const aptFile = path.join(ROOT, "assets/js/apartments.js");
+  fs.writeFileSync(aptFile, fs.readFileSync(aptFile, "utf8").replace(/window\.GTH_ASSET_VERSION = "[^"]*";/, 'window.GTH_ASSET_VERSION = "' + VERSION + '";'));
+  fs.readdirSync(ROOT).filter((f) => f.endsWith(".html")).forEach((f) => {
+    const file = path.join(ROOT, f);
+    fs.writeFileSync(file, fs.readFileSync(file, "utf8").replace(/(assets\/(?:js\/[a-z]+\.js|css\/style\.css))(\?v=\d+)?"/g, "$1?v=" + VERSION + '"'));
+  });
+}
+
 // Daten wie im Browser laden
 const win = {};
 vm.runInNewContext(fs.readFileSync(path.join(ROOT, "assets/js/config.js"), "utf8"), { window: win });

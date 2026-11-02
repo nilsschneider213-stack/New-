@@ -24,6 +24,9 @@
  *  (siehe README.md, Abschnitt „Smoobu verbinden“).
  * ============================================================
  */
+// Wird von scripts/prerender.js automatisch hochgezählt (sorgt dafür, dass neue Fotos sofort sichtbar sind)
+window.GTH_ASSET_VERSION = "202611021750";
+
 window.GTH_CITIES = [
   {
     id: "coburg",

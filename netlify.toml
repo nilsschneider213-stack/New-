@@ -2,16 +2,24 @@
 [build]
   publish = "."
 
-# Bilder, Schriften, CSS und JS dürfen vom Browser zwischengespeichert werden (schnellere Ladezeiten)
+# Skripte, Styles und Bilder immer auf Aktualität prüfen lassen, damit Änderungen
+# (neue Fotos, Texte) sofort bei allen Besuchern ankommen. Netlify antwortet bei
+# unveränderten Dateien mit "nicht geändert" – das bleibt trotzdem schnell.
 [[headers]]
   for = "/assets/*"
   [headers.values]
-    Cache-Control = "public, max-age=604800"
+    Cache-Control = "public, max-age=0, must-revalidate"
 
 [[headers]]
   for = "/images/*"
   [headers.values]
-    Cache-Control = "public, max-age=604800"
+    Cache-Control = "public, max-age=0, must-revalidate"
+
+# Schriften ändern sich nie und dürfen lange gespeichert werden
+[[headers]]
+  for = "/assets/fonts/*"
+  [headers.values]
+    Cache-Control = "public, max-age=31536000, immutable"
 
 # Grundlegende Sicherheits-Header
 [[headers]]
