@@ -25,7 +25,7 @@
  * ============================================================
  */
 // Wird von scripts/prerender.js automatisch hochgezählt (sorgt dafür, dass neue Fotos sofort sichtbar sind)
-window.GTH_ASSET_VERSION = "202611021832";
+window.GTH_ASSET_VERSION = "202611021833";
 
 window.GTH_CITIES = [
   {
@@ -383,7 +383,7 @@ window.GTH_APARTMENTS = [
       "Unser helles Dachstudio liegt im ruhigen Coburger Stadtteil Cortendorf – mit eigenem Balkon und Blick auf die Veste Coburg. Großzügig geschnitten, verbindet es Schlafen, Wohnen und Arbeiten in einem offenen Raum mit Dachschrägen und warmem Holzboden.",
       "Boxspringbett, Sofa, Arbeitsplatz am Fenster, eine offene Küche mit Esstisch für vier sowie eine eigene Ankleide machen es ideal für Paare, Städtereisende und Geschäftsreisende. Waschmaschinen und Trockner stehen im Waschraum des Hauses bereit."
     ],
-    amenities: ["Balkon mit Loungemöbeln & Vesteblick", "Boxspringbett", "Sofa", "Arbeitsplatz", "WLAN", "Küche mit Backofen & Ceranfeld", "Esstisch für 4 Personen", "Senseo-Kaffeemaschine & Wasserkocher", "Ankleide", "Bad mit Dusche", "Waschmaschine & Trockner (Waschraum)", "Smart-TV & Streaming", "Föhn", "Handtücher & Bettwäsche"],
+    amenities: ["Balkon mit Loungemöbeln & Vesteblick", "Boxspringbett", "Sofa", "Arbeitsplatz", "WLAN", "Küche mit Backofen & Ceranfeld", "Esstisch für 4 Personen", "Senseo-Kaffeemaschine & Wasserkocher", "Ankleide", "Bad mit Dusche", "Waschmaschine & Trockner (Waschraum)", "Smart-TV & Streaming", "Föhn", "Handtücher & Bettwäsche", "Nichtraucherwohnung"],
     smoobuId: "2428678",
     calendarHash: ""
   }
