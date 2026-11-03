@@ -1,0 +1,10 @@
+// Einstellungen für Cloudflare (Workers mit statischen Dateien).
+// Die Website besteht aus fertigen Dateien – es wird nichts gebaut.
+{
+  "name": "greentree-homes",
+  "compatibility_date": "2025-09-01",
+  "assets": {
+    "directory": ".",
+    "not_found_handling": "404-page"
+  }
+}
