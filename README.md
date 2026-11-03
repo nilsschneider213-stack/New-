@@ -40,7 +40,7 @@ Am einfachsten: Die Einbettungscodes aus Smoobu kopieren und an Claude schicken 
 Fehlen die Angaben, sehen Gäste stattdessen „Unverbindlich anfragen“. Der Smoobu-Inhalt wird erst nach Klick auf „Kalender anzeigen“ geladen (Zwei-Klick-Lösung, DSGVO-konform). Darum braucht die Seite keinen Cookie-Banner: Sie setzt selbst keine Cookies, nutzt kein Tracking und lädt keine Google Fonts.
 
 ### 3. Wohnungen – `assets/js/apartments.js`
-Die 6 Wohnungen sind angelegt und mit Smoobu verknüpft (Kundennummer 1066393): Coburg: Herzstück Coburg (Monteurwohnung), Studio mit Balkon & Vesteblick · Bamberg: Penthouse Weide, Penthouse Eiche · Regensburg: Penthouse Orange, Die Stadtvilla. Felder mit `null` (Größe, Betten, teils Gästezahl) werden ausgeblendet, bis sie eingetragen sind. Beschreibungen bitte prüfen und ergänzen.
+Die 6 Wohnungen sind angelegt und mit Smoobu verknüpft (Kundennummer 1066393): Coburg: B2B Coburg (Monteurwohnung), Studio mit Balkon & Vesteblick · Bamberg: Penthouse Weide, Penthouse Eiche · Regensburg: Penthouse Orange, Die Stadtvilla. Felder mit `null` (Größe, Betten, teils Gästezahl) werden ausgeblendet, bis sie eingetragen sind. Beschreibungen bitte prüfen und ergänzen.
 
 ### 4. Fotos
 ```
@@ -73,7 +73,7 @@ Ohne Server öffnen die Formulare das E-Mail-Programm des Besuchers. Damit die F
 In `impressum.html`, `datenschutz.html` und `agb.html` sind alle Stellen zum Ausfüllen **gelb markiert**. Die Texte sind Vorlagen und ersetzen keine Rechtsberatung. Bitte vor dem Livegang prüfen lassen (z. B. über einen Rechtstext-Dienst oder einen Anwalt) und danach den gelben Hinweiskasten oben auf den Seiten entfernen.
 
 ## Google / SEO
-- **Eigene Seite je Wohnung** mit Suchbegriffen in der Adresse, z. B. `ferienwohnung-regensburg-penthouse-orange.html`, `monteurwohnung-coburg-herzstueck.html`. Die Adresse steht in `apartments.js` bei `slug`.
+- **Eigene Seite je Wohnung** mit Suchbegriffen in der Adresse, z. B. `ferienwohnung-regensburg-penthouse-orange.html`, `monteurwohnung-coburg-b2b.html`. Die Adresse steht in `apartments.js` bei `slug`.
 - Menü, Fußbereich, Wohnungslisten und Wohnungsseiten liegen als fertiges HTML vor, damit Suchmaschinen alles sofort lesen können. **Nach Änderungen an `apartments.js` oder `config.js`** einmal `node scripts/prerender.js` ausführen (oder Claude fragen) – das aktualisiert alle Seiten und die `sitemap.xml`.
 - Seitentitel und Beschreibungen enthalten Suchbegriffe wie „Apartments Bayern“, „Serviced Apartments“, „Ferienwohnung Coburg/Bamberg/Regensburg“, „Monteurwohnung Coburg“, „Unterkunft Bayern“.
 - Strukturierte Daten (schema.org `LodgingBusiness` auf der Startseite, `Accommodation` je Wohnung) für Google.

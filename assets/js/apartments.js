@@ -25,7 +25,7 @@
  * ============================================================
  */
 // Wird von scripts/prerender.js automatisch hochgezählt (sorgt dafür, dass neue Fotos sofort sichtbar sind)
-window.GTH_ASSET_VERSION = "202611032229";
+window.GTH_ASSET_VERSION = "202611032242";
 
 window.GTH_CITIES = [
   {
@@ -319,9 +319,9 @@ window.GTH_APARTMENTS = [
   /* ---------------- COBURG ---------------- */
   {
     id: "herzstueck-coburg",
-    slug: "monteurwohnung-coburg-herzstueck", // eigene Seite: monteurwohnung-coburg-herzstueck.html
+    slug: "monteurwohnung-coburg-b2b", // eigene Seite: monteurwohnung-coburg-b2b.html
     city: "coburg",
-    name: "Herzstück Coburg",
+    name: "B2B Coburg",
     tagline: "Unsere Monteurwohnung in Coburg – bis zu 5 Personen",
     type: ["monteur"],
     guests: 5,
@@ -351,7 +351,7 @@ window.GTH_APARTMENTS = [
     ],
     video: "", // Roomtour: YouTube-/Vimeo-Link oder Datei, z. B. "images/wohnungen/<id>/roomtour.mp4"
     description: [
-      "Das Herzstück Coburg ist unsere Monteurwohnung für Handwerker, Monteure und Projektteams – mit Platz für bis zu 5 Personen und für Einsätze von wenigen Nächten bis zu mehreren Monaten.",
+      "B2B Coburg ist unsere Monteurwohnung für Handwerker, Monteure und Projektteams – mit Platz für bis zu 5 Personen und für Einsätze von wenigen Nächten bis zu mehreren Monaten.",
       "Zwei gemütliche Schlafzimmer – eines mit zwei Einzelbetten und Schlafsofa, eines mit Doppelbett – jeweils mit Smart-TV und Fire TV, eine voll ausgestattete Küche mit Spülmaschine, ein großer Esstisch und ein modernes Bad mit Regendusche sorgen dafür, dass Ihr Team nach Feierabend gut zur Ruhe kommt. Waschmaschine und Trockner stehen im Keller bereit. Rechnung auf Firma selbstverständlich möglich."
     ],
     amenities: ["Bis zu 5 Personen", "2 Schlafzimmer", "Schlafsofa", "Voll ausgestattete Küche", "Backofen, Ceranfeld & Spülmaschine", "Senseo-Kaffeemaschine, Toaster & Wasserkocher", "Großer Esstisch", "Smart-TV mit Fire TV (Netflix, Prime, Disney+)", "WLAN", "Bad mit Regendusche", "Waschmaschine & Trockner (Keller)", "Handtücher & Bettwäsche", "Endreinigung inklusive", "Rechnung für Firmen", "Langzeitmiete möglich", "Nichtraucherwohnung"],
