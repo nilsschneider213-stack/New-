@@ -848,7 +848,13 @@
         }
 
         if (CFG.formEndpoint) {
-          // Eigener Formular-Dienst (z. B. Formspree) aus config.js
+          // Eigener Formular-Dienst (z. B. Web3Forms) aus config.js
+          if (CFG.formAccessKey) data.set("access_key", CFG.formAccessKey);
+          data.set("subject", subject);
+          data.set("from_name", "GreenTree Homes Website");
+          if (data.get("email")) data.set("replyto", data.get("email"));
+          data.delete("_subject");
+          data.delete("form-name");
           send(CFG.formEndpoint, { method: "POST", body: data, headers: { Accept: "application/json" } }, function () {
             status.className = "form-status err";
             status.textContent = "Leider ist ein Fehler aufgetreten. Bitte schreiben Sie uns direkt an " + (CFG.company && CFG.company.email) + ".";

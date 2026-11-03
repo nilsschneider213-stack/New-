@@ -46,8 +46,10 @@ window.GTH_CONFIG = {
    * Ohne eigenen Server können Formulare über einen Dienst wie Formspree,
    * Web3Forms o. ä. verschickt werden. Trage hier die Endpoint-URL ein
    * (z. B. "https://formspree.io/f/abcdwxyz").
+   * Aktuell: Web3Forms (web3forms.com) – Anfragen gehen per E-Mail an die dort hinterlegte Adresse.
    * Bleibt das Feld leer, öffnet das Formular das E-Mail-Programm des Besuchers.
    * Hinweis: Den genutzten Dienst in der Datenschutzerklärung ergänzen!
    */
-  formEndpoint: ""
+  formEndpoint: "https://api.web3forms.com/submit",
+  formAccessKey: "3baa394d-12ab-491c-a88e-1435ac2b9f62" // Web3Forms (öffentlicher Schlüssel, darf im Code stehen)
 };
