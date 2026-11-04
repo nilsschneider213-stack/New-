@@ -387,10 +387,24 @@
     target.innerHTML =
       '<div class="booking-fallback" hidden>' + ICONS.calendar +
         "<h3>Jetzt direkt buchen</h3><p>Der Buchungskalender kann hier gerade nicht angezeigt werden. Öffnen Sie ihn einfach in einem neuen Fenster – dort wählen Sie Ihre Daten und buchen direkt.</p>" + newTab + "</div>" +
+      '<div class="booking-done" role="status" aria-live="polite" tabindex="-1" hidden>' + ICONS.check +
+        "<div><strong>Vielen Dank – Ihre Buchung wurde übermittelt!</strong>" +
+        "<span>Sie erhalten in Kürze eine Bestätigung per E-Mail. Die Details sehen Sie unten im Buchungsfenster. Bei Fragen erreichen Sie uns jederzeit unter " +
+        esc((CFG.company && CFG.company.email) || "") + ".</span></div></div>" +
       '<iframe id="' + id + '" class="smoobu-booking" src="' + esc(url) + '" title="Buchung" allowtransparency="true" allowfullscreen></iframe>' +
       '<p class="embed-hint booking-newtab">Buchungsfenster wird nicht richtig angezeigt? <a href="' + esc(url) + '" target="_blank" rel="noopener">Hier in neuem Fenster buchen →</a></p>';
     var frame = $("#" + id), start = Date.now(), ready = false, lastH = 0;
     var fallback = $(".booking-fallback", target);
+    // Das Smoobu-Formular sendet die Buchung per Seitenwechsel (create-pending). Lädt das Buchungsfenster
+    // nach dem ersten Laden erneut, wurde die Buchung abgeschickt: eigene Bestätigung einblenden.
+    var loads = 0, done = $(".booking-done", target);
+    frame.addEventListener("load", function () {
+      loads++;
+      if (loads < 2 || !done.hidden) return;
+      done.hidden = false;
+      done.scrollIntoView({ behavior: "smooth", block: "start" });
+      try { done.focus({ preventScroll: true }); } catch (e) { /* ältere Browser */ }
+    });
     // Meldet sich das Buchungsfenster nicht (z. B. weil der Browser oder eine Vorschau
     // fremde Fenster blockiert), wird statt eines leeren Feldes ein Buchungs-Button gezeigt.
     function showFallback() {

@@ -857,3 +857,10 @@ h3 { font-size: 1.55rem; }
 .media__photo img { object-fit: contain; }
 .media__track { height: clamp(360px, 62vw, 620px); }
 @media (max-width: 640px) { .media__track { height: min(118vw, 560px); } }
+
+/* Bestätigung nach dem Absenden einer Buchung */
+.booking-done { display: flex; gap: 14px; align-items: flex-start; background: var(--green-50); border: 1px solid var(--green-100); border-left: 4px solid var(--green-700); border-radius: var(--radius-sm); padding: 18px 20px; margin-bottom: 16px; scroll-margin-top: 96px; outline: none; }
+.booking-done[hidden] { display: none; }
+.booking-done svg { width: 28px; height: 28px; color: var(--green-700); flex: none; margin-top: 2px; }
+.booking-done strong { display: block; font-family: var(--serif); font-size: 1.35rem; line-height: 1.2; color: var(--green-900); margin-bottom: 4px; }
+.booking-done span { color: var(--muted); font-size: .95rem; }
