@@ -561,7 +561,7 @@ p { margin: 0 0 1em; }
   .site-header .container { gap: 12px; }
 }
 .hero__cta { display: flex; gap: 12px; flex-wrap: wrap; margin-top: 26px; }
-#kalender { scroll-margin-top: 96px; }
+#kalender, .smoobu-booking { scroll-margin-top: 96px; }
 .media.on-video .media__actions, .media.on-video .media__count { display: none; }
 .media.on-video .media__nav { top: 14px; transform: none; width: 38px; height: 38px; font-size: 1.4rem; }
 @media (max-width: 640px) { .hero__cta { display: none; } }

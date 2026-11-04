@@ -25,7 +25,7 @@
  * ============================================================
  */
 // Wird von scripts/prerender.js automatisch hochgezählt (sorgt dafür, dass neue Fotos sofort sichtbar sind)
-window.GTH_ASSET_VERSION = "202611032306";
+window.GTH_ASSET_VERSION = "202611040303";
 
 window.GTH_CITIES = [
   {

@@ -389,7 +389,7 @@
         "<h3>Jetzt direkt buchen</h3><p>Der Buchungskalender kann hier gerade nicht angezeigt werden. Öffnen Sie ihn einfach in einem neuen Fenster – dort wählen Sie Ihre Daten und buchen direkt.</p>" + newTab + "</div>" +
       '<iframe id="' + id + '" class="smoobu-booking" src="' + esc(url) + '" title="Buchung" allowtransparency="true" allowfullscreen></iframe>' +
       '<p class="embed-hint booking-newtab">Buchungsfenster wird nicht richtig angezeigt? <a href="' + esc(url) + '" target="_blank" rel="noopener">Hier in neuem Fenster buchen →</a></p>';
-    var frame = $("#" + id), start = Date.now(), ready = false;
+    var frame = $("#" + id), start = Date.now(), ready = false, lastH = 0;
     var fallback = $(".booking-fallback", target);
     // Meldet sich das Buchungsfenster nicht (z. B. weil der Browser oder eine Vorschau
     // fremde Fenster blockiert), wird statt eines leeren Feldes ein Buchungs-Button gezeigt.
@@ -422,7 +422,16 @@
         tolerance: 34,
         checkOrigin: false,
         initCallback: function () { clearTimeout(timer); markReady(); },
-        resizedCallback: markReady,
+        resizedCallback: function (info) {
+          markReady();
+          // Nach dem Absenden zeigt Smoobu die Bestätigung oben im (dann deutlich kürzeren) Fenster:
+          // dorthin scrollen, damit der Gast sie sieht und nicht auf eine leere Fläche schaut.
+          var h = parseInt(info && info.height, 10) || 0;
+          if (lastH && h && h < lastH - 400 && frame.getBoundingClientRect().top < 0) {
+            frame.scrollIntoView({ behavior: "smooth", block: "start" });
+          }
+          if (h) lastH = h;
+        },
         // Beim Laden darf das Buchungsfenster die Seite nicht nach unten ziehen
         scrollCallback: function () { return Date.now() - start > 4000; }
       }, frame);
