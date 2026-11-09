@@ -25,7 +25,7 @@
  * ============================================================
  */
 // Wird von scripts/prerender.js automatisch hochgezählt (sorgt dafür, dass neue Fotos sofort sichtbar sind)
-window.GTH_ASSET_VERSION = "202611092102";
+window.GTH_ASSET_VERSION = "202611092108";
 
 window.GTH_CITIES = [
   {
@@ -322,8 +322,9 @@ window.GTH_APARTMENTS = [
     slug: "monteurwohnung-coburg-b2b", // eigene Seite: monteurwohnung-coburg-b2b.html
     city: "coburg",
     name: "B2B Coburg",
-    tagline: "Unsere Monteurwohnung in Coburg – bis zu 5 Personen",
-    type: ["monteur"],
+    tagline: "Geräumige Wohnung für Gruppen und längere Aufenthalte in Coburg – bis zu 5 Personen",
+    kind: "Apartment für Gruppen & längere Aufenthalte", // Bezeichnung in Seitentitel/Google
+    type: ["ferien", "monteur"],
     guests: 5,
     bedrooms: 2,
     beds: "1 Doppelbett, 2 Einzelbetten, 1 Schlafsofa",
@@ -351,10 +352,10 @@ window.GTH_APARTMENTS = [
     ],
     video: "", // Roomtour: YouTube-/Vimeo-Link oder Datei, z. B. "images/wohnungen/<id>/roomtour.mp4"
     description: [
-      "B2B Coburg ist unsere Monteurwohnung für Handwerker, Monteure und Projektteams – mit Platz für bis zu 5 Personen und für Einsätze von wenigen Nächten bis zu mehreren Monaten.",
-      "Zwei gemütliche Schlafzimmer – eines mit zwei Einzelbetten und Schlafsofa, eines mit Doppelbett – jeweils mit Smart-TV und Fire TV, eine voll ausgestattete Küche mit Spülmaschine, ein großer Esstisch und ein modernes Bad mit Regendusche sorgen dafür, dass Ihr Team nach Feierabend gut zur Ruhe kommt. Waschmaschine und Trockner stehen im Keller bereit. Rechnung auf Firma selbstverständlich möglich."
+      "B2B Coburg ist eine geräumige Wohnung für bis zu 5 Personen – ideal für Gruppen, Familien und Freunde und besonders geeignet für mittel- bis längerfristige Aufenthalte von einigen Wochen bis zu mehreren Monaten. Auch Projektteams, Handwerker und Monteure, die eine Zeit lang in Coburg arbeiten, finden hier ein komfortables Zuhause auf Zeit.",
+      "Zwei gemütliche Schlafzimmer – eines mit zwei Einzelbetten und Schlafsofa, eines mit Doppelbett – jeweils mit Smart-TV und Fire TV, eine voll ausgestattete Küche mit Spülmaschine, ein großer Esstisch für gemeinsame Mahlzeiten und ein modernes Bad mit Regendusche sorgen dafür, dass man sich auch bei einem längeren Aufenthalt rundum wohlfühlt. Waschmaschine und Trockner stehen im Keller bereit. Für Firmen ist eine Rechnung selbstverständlich möglich."
     ],
-    amenities: ["Bis zu 5 Personen", "2 Schlafzimmer", "Schlafsofa", "Voll ausgestattete Küche", "Backofen, Ceranfeld & Spülmaschine", "Senseo-Kaffeemaschine, Toaster & Wasserkocher", "Großer Esstisch", "Smart-TV mit Fire TV (Netflix, Prime, Disney+)", "WLAN", "Bad mit Regendusche", "Waschmaschine & Trockner (Keller)", "Handtücher & Bettwäsche", "Endreinigung inklusive", "Rechnung für Firmen", "Langzeitmiete möglich", "Nichtraucherwohnung"],
+    amenities: ["Bis zu 5 Personen", "Ideal für Gruppen & längere Aufenthalte", "2 Schlafzimmer", "Schlafsofa", "Voll ausgestattete Küche", "Backofen, Ceranfeld & Spülmaschine", "Senseo-Kaffeemaschine, Toaster & Wasserkocher", "Großer Esstisch", "Smart-TV mit Fire TV (Netflix, Prime, Disney+)", "WLAN", "Bad mit Regendusche", "Waschmaschine & Trockner (Keller)", "Handtücher & Bettwäsche", "Endreinigung inklusive", "Rechnung für Firmen", "Langzeitmiete möglich", "Nichtraucherwohnung"],
     smoobuId: "2636538",
     calendarHash: ""
   },

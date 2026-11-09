@@ -526,7 +526,7 @@
       return;
     }
     var city = cityById(a.city) || {};
-    var kind = a.type.indexOf("monteur") > -1 ? "Monteurwohnung" : "Ferienwohnung & Serviced Apartment";
+    var kind = a.kind || (a.type.indexOf("monteur") > -1 ? "Monteurwohnung" : "Ferienwohnung & Serviced Apartment");
     document.title = a.name + " – " + kind + " in " + city.name + " (Bayern) | GreenTree Homes";
     var md = $('meta[name="description"]');
     if (md) md.setAttribute("content", a.name + ": " + kind + " in " + city.name + ", Bayern. " + a.tagline + ". Fotos, Ausstattung und direkte Online-Buchung bei GreenTree Homes.");
