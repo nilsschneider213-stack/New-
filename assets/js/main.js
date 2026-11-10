@@ -395,16 +395,24 @@
       '<p class="embed-hint booking-newtab">Buchungsfenster wird nicht richtig angezeigt? <a href="' + esc(url) + '" target="_blank" rel="noopener">Hier in neuem Fenster buchen →</a></p>';
     var frame = $("#" + id), start = Date.now(), ready = false, lastH = 0;
     var fallback = $(".booking-fallback", target);
-    // Das Smoobu-Formular sendet die Buchung per Seitenwechsel (create-pending). Lädt das Buchungsfenster
-    // nach dem ersten Laden erneut, wurde die Buchung abgeschickt: eigene Bestätigung einblenden.
-    var loads = 0, done = $(".booking-done", target);
+    // Das Smoobu-Formular sendet die Buchung per Seitenwechsel (create-pending). Danach zeigt Smoobu eine
+    // deutlich kürzere Bestätigungsseite. Die eigene Bestätigung erscheint deshalb nur, wenn das Fenster
+    // neu geladen wurde UND die neue Seite deutlich kürzer ist als das Buchungsformular. Suche/Verfügbarkeitsprüfung (ohne Seitenwechsel) und bloßes Neuladen
+    // des Formulars (z. B. Sicherheitsprüfung, Sprache) lösen sie nicht aus.
+    var loads = 0, done = $(".booking-done", target), maxH = 0, pending = false;
     frame.addEventListener("load", function () {
       loads++;
-      if (loads < 2 || !done.hidden) return;
+      pending = loads >= 2 && done.hidden;
+    });
+    function checkBooked(h) {
+      if (h > maxH && !pending) maxH = h;
+      if (!pending || !h || !maxH) return;
+      if (h > maxH - 400) { pending = false; if (h > maxH) maxH = h; return; } // nur Formular neu geladen
+      pending = false;
       done.hidden = false;
       done.scrollIntoView({ behavior: "smooth", block: "start" });
       try { done.focus({ preventScroll: true }); } catch (e) { /* ältere Browser */ }
-    });
+    }
     // Meldet sich das Buchungsfenster nicht (z. B. weil der Browser oder eine Vorschau
     // fremde Fenster blockiert), wird statt eines leeren Feldes ein Buchungs-Button gezeigt.
     function showFallback() {
@@ -441,6 +449,7 @@
           // Nach dem Absenden zeigt Smoobu die Bestätigung oben im (dann deutlich kürzeren) Fenster:
           // dorthin scrollen, damit der Gast sie sieht und nicht auf eine leere Fläche schaut.
           var h = parseInt(info && info.height, 10) || 0;
+          checkBooked(h);
           if (lastH && h && h < lastH - 400 && frame.getBoundingClientRect().top < 0) {
             frame.scrollIntoView({ behavior: "smooth", block: "start" });
           }
