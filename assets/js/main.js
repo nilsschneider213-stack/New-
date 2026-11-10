@@ -232,7 +232,7 @@
       (a.priceFrom || a.video ? '<div class="card__foot">' + (a.priceFrom ? '<span class="price">ab <strong>' + a.priceFrom + " €</strong> / Nacht</span>" : "") +
         (a.video ? '<span class="tag tag--video">▶ Roomtour</span>' : "") + "</div>" : "") +
       '<div class="card__actions"><a class="btn btn--outline" href="' + href + '">Details & Fotos</a>' +
-      '<a class="btn btn--primary" href="' + aptUrl(a, dateQuery() + "&buchen=1") + '#kalender">Jetzt buchen</a></div></div></article>';
+      '<a class="btn btn--primary" href="' + esc(bookUrl(a) || aptUrl(a, dateQuery() + "&buchen=1") + "#kalender") + '">Jetzt buchen</a></div></div></article>';
   }
 
   function initHome() {
@@ -442,6 +442,12 @@
     }).catch(function () { /* ohne Größenanpassung: Ersatz-Button nach Zeitablauf */ });
   }
 
+  // Direkter Link ins Smoobu-Buchungssystem der Wohnung (Daten wählen → Preis → buchen → bezahlen)
+  function bookUrl(a) {
+    var l = smoobuLinks(a);
+    return /^https:\/\/booking\.smoobu\.com\//.test(l.booking || "") ? l.booking : "";
+  }
+
   function smoobuEmbed(container, links, opts) {
     opts = opts || {};
     if (!container) return;
@@ -548,6 +554,11 @@
     var g = /^\d+$/.test(params.get("gaeste") || "") ? params.get("gaeste") : "";
     var inquiry = "kontakt.html?wohnung=" + encodeURIComponent(a.id) + (arr ? "&anreise=" + arr : "") + (dep ? "&abreise=" + dep : "") + (g ? "&gaeste=" + g : "");
 
+    var bUrl = bookUrl(a);
+    function bookBtn(cls) {
+      return bUrl ? '<a class="' + cls + '" href="' + esc(bUrl) + '">Jetzt buchen</a>'
+        : '<a class="' + cls + '" href="' + inquiry + '">Jetzt anfragen</a>';
+    }
     root.innerHTML = mediaHtml(a, photos, video) +
       '<div class="detail"><div>' +
       '<div class="card__tags" style="position:static;margin-bottom:12px">' + a.type.map(function (t) {
@@ -566,45 +577,25 @@
       "<li><a href=\"agb.html#storno\">Kostenlose Stornierung</a> bis 5 Tage vor Anreise</li><li>Nichtraucherwohnung, Haustiere sind leider nicht gestattet</li>" +
       "<li>Rund um die Uhr persönlich für Sie erreichbar</li><li>Rechnung mit ausgewiesener MwSt. für Geschäftsreisende</li></ul>" +
       '<div class="book-cta"><div><strong>Gefällt Ihnen ' + esc(a.name) + '?</strong><span>Freie Termine prüfen und direkt beim Gastgeber buchen – ohne Portalgebühren.</span></div>' +
-      '<button type="button" class="btn btn--primary" data-book>Jetzt buchen</button></div>' +
+      bookBtn("btn btn--primary") + "</div>" +
       '<h2 id="kalender" style="margin-top:40px">Verfügbarkeit & Buchung</h2>' +
-      (arr && dep ? '<div class="notice">Ihr gewünschter Zeitraum: <strong>' + fmtDate(arr) + " – " + fmtDate(dep) + "</strong>. Bitte wählen Sie die Daten im Kalender aus.</div>" : "") +
-      '<div class="embed-wrap" id="detail-embed"></div>' +
+      '<div class="book-steps">' +
+      "<ol><li><strong>Reisedaten wählen</strong> – freie Tage sehen Sie direkt im Kalender.</li>" +
+      "<li><strong>Preis sehen &amp; „Jetzt buchen“</strong> – der Gesamtpreis wird sofort angezeigt.</li>" +
+      "<li><strong>Daten eingeben &amp; bezahlen</strong> – per PayPal oder auf Rechnung. Die Bestätigung kommt per E-Mail.</li></ol>" +
+      bookBtn("btn btn--primary btn--lg") +
+      "<small>Sie gelangen zu unserem sicheren Buchungssystem (Smoobu) – direkt beim Gastgeber, ohne Portalgebühren. " +
+      '<a href="datenschutz.html#smoobu">Datenschutz</a></small></div>' +
       "</div>" +
       '<aside class="booking-box"><h3>' + esc(a.name) + "</h3>" +
-      '<span class="price">' + (a.priceFrom ? "ab <strong>" + a.priceFrom + " €</strong> / Nacht" : "Preise & Verfügbarkeit im Kalender") + "</span>" +
-      '<form id="box-form"><div class="row"><div class="field"><label for="b-arr">Anreise</label><input type="date" id="b-arr" value="' + arr + '"></div>' +
-      '<div class="field"><label for="b-dep">Abreise</label><input type="date" id="b-dep" value="' + dep + '"></div></div>' +
-      '<div class="field" style="margin-bottom:16px"><label for="b-g">Gäste</label><select id="b-g">' +
-      Array.apply(null, Array(a.guests || 6)).map(function (_, i) { var v = i + 1; return '<option value="' + v + '"' + (String(v) === g ? " selected" : "") + ">" + v + (v === 1 ? " Gast" : " Gäste") + "</option>"; }).join("") +
-      "</select></div>" +
-      '<button type="button" class="btn btn--primary btn--block" data-book>Jetzt buchen</button>' +
-      '<a class="btn btn--outline btn--block" style="margin-top:10px" id="box-inquiry" href="' + inquiry + '">Unverbindlich anfragen</a>' +
-      "<small>Direkt beim Gastgeber buchen – ohne Portalgebühren. Beim Buchen wird der Kalender unseres Partners Smoobu geladen (<a href=\"datenschutz.html#smoobu\">Datenschutz</a>).</small></form></aside></div>" +
+      '<span class="price">' + (a.priceFrom ? "ab <strong>" + a.priceFrom + " €</strong> / Nacht" : "Preis &amp; freie Termine nach Auswahl der Reisedaten") + "</span>" +
+      bookBtn("btn btn--primary btn--block") +
+      '<a class="btn btn--outline btn--block" style="margin-top:10px" href="' + inquiry + '">Unverbindlich anfragen</a>' +
+      "<small>Im Buchungssystem wählen Sie Ihre Reisedaten, sehen sofort den Preis und buchen direkt – ohne Portalgebühren.</small></aside></div>" +
       '<div class="book-bar"><div><strong>' + esc(a.name) + "</strong><span>" + esc(city.name) + (a.guests ? " · bis " + a.guests + " Gäste" : "") + "</span></div>" +
-      '<button type="button" class="btn btn--primary" data-book>Jetzt buchen</button></div>';
+      bookBtn("btn btn--primary") + "</div>";
     document.body.classList.add("has-book-bar");
 
-    linkDates($("#b-arr"), $("#b-dep"));
-    function updInquiry() {
-      var q = "kontakt.html?wohnung=" + encodeURIComponent(a.id);
-      if ($("#b-arr").value) q += "&anreise=" + $("#b-arr").value;
-      if ($("#b-dep").value) q += "&abreise=" + $("#b-dep").value;
-      q += "&gaeste=" + $("#b-g").value;
-      $("#box-inquiry").href = q;
-    }
-    ["#b-arr", "#b-dep", "#b-g"].forEach(function (s) { $(s).addEventListener("change", updInquiry); });
-
-    var embed = $("#detail-embed");
-    smoobuEmbed(embed, smoobuLinks(a), { inquiryHref: inquiry });
-    // Alle „Jetzt buchen“-Buttons: zum Kalender springen und ihn öffnen
-    $all("[data-book]").forEach(function (b) {
-      b.addEventListener("click", function (e) {
-        e.preventDefault();
-        $("#kalender").scrollIntoView({ behavior: "smooth", block: "start" });
-        if (embed.gthLoad) embed.gthLoad();
-      });
-    });
     if (params.get("buchen") === "1") {
       var toCal = function () { $("#kalender").scrollIntoView({ block: "start" }); };
       setTimeout(toCal, 50);
@@ -664,7 +655,7 @@
       (n > 1 ? '<button type="button" class="media__nav media__prev" aria-label="Zurück">‹</button><button type="button" class="media__nav media__next" aria-label="Weiter">›</button>' +
         '<div class="media__count"><span id="media-pos">1</span> / ' + n + "</div>" : "") +
       '<div class="media__actions">' + (video ? '<button type="button" class="btn btn--light media__tour" data-go="1">▶ Roomtour</button>' : "") +
-      '<button type="button" class="btn btn--primary" data-book>Jetzt buchen</button></div>' +
+      (bookUrl(a) ? '<a class="btn btn--primary" href="' + esc(bookUrl(a)) + '">Jetzt buchen</a>' : "") + "</div>" +
       "</div>" + thumbs;
   }
 
@@ -749,9 +740,13 @@
     var info = $("#booking-dates");
     if (info && isDate(arr) && isDate(dep)) {
       info.hidden = false;
-      info.innerHTML = "Ihr gewünschter Zeitraum: <strong>" + fmtDate(arr) + " – " + fmtDate(dep) + "</strong>. Bitte wählen Sie die Daten im Kalender aus.";
+      info.innerHTML = "Ihr gewünschter Zeitraum: <strong>" + fmtDate(arr) + " – " + fmtDate(dep) + "</strong>.";
     }
-    smoobuEmbed(box, smoobuLinks(aptById(params.get("wohnung")) || null), { inquiryHref: "kontakt.html" + location.search });
+    // Eine Wohnung gewählt → direkt in ihr Buchungssystem; sonst alle Wohnungen mit „Jetzt buchen“-Button
+    var w = aptById(params.get("wohnung"));
+    if (w && bookUrl(w)) { location.replace(bookUrl(w)); return; }
+    if (info && !info.hidden) info.innerHTML += " Wählen Sie unten Ihre Wohnung – im Buchungssystem geben Sie die Daten ein und sehen sofort den Preis.";
+    box.innerHTML = '<div class="grid grid--3">' + APTS.map(aptCard).join("") + "</div>";
   }
 
   /* ---------- Bewertungen (Elfsight-Widgets, Zwei-Klick-Lösung) ---------- */
